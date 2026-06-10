@@ -1,0 +1,626 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.adm{background:#f5f0eb;min-height:700px;border-radius:16px;overflow:hidden;font-family:var(--font-sans);}
+.topbar{background:#fff;border-bottom:0.5px solid #e0d9d1;padding:.65rem 1.25rem;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:8px;}
+.lc{width:26px;height:26px;background:#c8522a;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.lc i{color:#fff;font-size:13px;}
+.logo-name{font-size:13px;font-weight:500;color:#1a1a18;}
+.adm-badge{font-size:10px;background:#FAEEDA;color:#633806;padding:2px 8px;border-radius:20px;margin-left:4px;}
+.tb-right{display:flex;align-items:center;gap:8px;}
+.tb-btn{background:none;border:0.5px solid #d3d1c7;border-radius:7px;padding:5px 11px;font-size:12px;color:#1a1a18;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:5px;font-weight:500;}
+.tb-btn:hover{background:#f5f0eb;}
+.layout{display:grid;grid-template-columns:200px minmax(0,1fr);}
+.sidenav{background:#fff;border-right:0.5px solid #e0d9d1;padding:.75rem 0;min-height:650px;}
+.nav-section{font-size:10px;font-weight:500;color:#b4b2a9;text-transform:uppercase;letter-spacing:.5px;padding:10px 16px 5px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 16px;font-size:13px;color:#5f5e5a;cursor:pointer;border:none;background:none;font-family:var(--font-sans);width:100%;text-align:left;}
+.nav-item i{font-size:16px;flex-shrink:0;}
+.nav-item:hover{background:#f5f0eb;color:#1a1a18;}
+.nav-item.active{background:#FAECE7;color:#c8522a;font-weight:500;}
+.nav-item.active i{color:#c8522a;}
+.nav-badge{margin-left:auto;font-size:10px;background:#F09595;color:#501313;padding:1px 6px;border-radius:20px;}
+.main{padding:1.25rem;}
+
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem;}
+.met-card{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:13px 14px;}
+.met-label{font-size:11px;color:#888780;display:flex;align-items:center;gap:5px;margin-bottom:6px;}
+.met-label i{font-size:14px;color:#c8522a;}
+.met-value{font-size:22px;font-weight:500;color:#1a1a18;}
+.met-sub{font-size:11px;color:#888780;margin-top:2px;}
+.met-up{color:#3B6D11;}
+.met-down{color:#A32D2D;}
+
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem;}
+.section-title{font-size:14px;font-weight:500;color:#1a1a18;display:flex;align-items:center;gap:7px;}
+.section-title i{font-size:17px;color:#c8522a;}
+.btn-primary{background:#c8522a;color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:5px;}
+.btn-primary:hover{background:#b04621;}
+
+.search-bar{display:flex;gap:8px;margin-bottom:.85rem;align-items:center;}
+.search-inp{position:relative;flex:1;}
+.search-inp i{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:16px;color:#888780;pointer-events:none;}
+.search-inp input{width:100%;border:0.5px solid #d3d1c7;border-radius:8px;padding:7px 10px 7px 32px;font-size:12px;color:#1a1a18;background:#fff;outline:none;font-family:var(--font-sans);}
+.search-inp input:focus{border-color:#c8522a;}
+.filter-sel{border:0.5px solid #d3d1c7;border-radius:8px;padding:7px 10px;font-size:12px;color:#1a1a18;background:#fff;outline:none;font-family:var(--font-sans);cursor:pointer;}
+
+.table-wrap{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;overflow:hidden;}
+table{width:100%;border-collapse:collapse;table-layout:fixed;}
+thead tr{background:#f5f0eb;}
+th{font-size:11px;font-weight:500;color:#5f5e5a;padding:9px 12px;text-align:left;border-bottom:0.5px solid #e0d9d1;text-transform:uppercase;letter-spacing:.4px;}
+td{font-size:12px;color:#1a1a18;padding:9px 12px;border-bottom:0.5px solid #f0ece8;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#fafaf8;}
+.user-cell{display:flex;align-items:center;gap:8px;}
+.av{width:28px;height:28px;border-radius:50%;background:#FAECE7;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#993C1D;flex-shrink:0;}
+.av.r{background:#E1F5EE;color:#085041;}
+.av.g{background:#EAF3DE;color:#27500A;}
+.user-name{font-size:12px;font-weight:500;color:#1a1a18;line-height:1.3;}
+.user-email{font-size:11px;color:#888780;}
+.role-badge{font-size:10px;padding:2px 8px;border-radius:20px;white-space:nowrap;}
+.rb-pesq{background:#FAECE7;color:#993C1D;}
+.rb-leit{background:#E1F5EE;color:#085041;}
+.rb-adm{background:#FAEEDA;color:#633806;}
+.status-badge{font-size:10px;padding:2px 8px;border-radius:20px;white-space:nowrap;}
+.sb-ativo{background:#EAF3DE;color:#27500A;}
+.sb-inativo{background:#F1EFE8;color:#5f5e5a;}
+.sb-suspenso{background:#FCEBEB;color:#791F1F;}
+.actions-cell{display:flex;gap:5px;align-items:center;}
+.act-btn{background:none;border:0.5px solid #d3d1c7;border-radius:6px;padding:4px 8px;font-size:11px;color:#1a1a18;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:4px;white-space:nowrap;}
+.act-btn:hover{background:#f5f0eb;}
+.act-btn.danger{border-color:#F09595;color:#A32D2D;}
+.act-btn.danger:hover{background:#FCEBEB;}
+.act-btn.warn{border-color:#FAC775;color:#633806;}
+.act-btn.warn:hover{background:#FAEEDA;}
+.act-btn.info{border-color:#85B7EB;color:#0C447C;}
+.act-btn.info:hover{background:#E6F1FB;}
+.act-btn i{font-size:13px;}
+
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+.tags-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.25rem;}
+.tag-pill{display:flex;align-items:center;gap:6px;background:#fff;border:0.5px solid #e0d9d1;border-radius:20px;padding:5px 10px 5px 12px;font-size:12px;color:#1a1a18;}
+.tag-pill .cnt{font-size:10px;background:#f5f0eb;color:#888780;padding:1px 6px;border-radius:20px;}
+.tag-pill .del{background:none;border:none;cursor:pointer;color:#b4b2a9;font-size:14px;display:flex;align-items:center;padding:0;line-height:1;}
+.tag-pill .del:hover{color:#A32D2D;}
+.add-tag-row{display:flex;gap:8px;align-items:center;}
+.add-tag-row input{border:0.5px solid #d3d1c7;border-radius:8px;padding:7px 12px;font-size:12px;color:#1a1a18;background:#fff;outline:none;font-family:var(--font-sans);width:220px;}
+.add-tag-row input:focus{border-color:#c8522a;}
+
+.comment-card{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:12px;margin-bottom:8px;}
+.comment-card.flagged{border-color:#F09595;background:#FCEBEB;}
+.cc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;}
+.cc-left{display:flex;align-items:center;gap:8px;}
+.cc-author{font-size:12px;font-weight:500;color:#1a1a18;}
+.cc-article{font-size:11px;color:#888780;margin-top:1px;}
+.cc-time{font-size:11px;color:#b4b2a9;}
+.cc-text{font-size:12px;color:#444441;line-height:1.55;margin-bottom:9px;}
+.cc-footer{display:flex;align-items:center;justify-content:space-between;}
+.report-tag{font-size:10px;padding:2px 8px;border-radius:20px;}
+.rt-plagio{background:#FCEBEB;color:#791F1F;}
+.rt-conduta{background:#FAEEDA;color:#633806;}
+.rt-spam{background:#F1EFE8;color:#5f5e5a;}
+.cc-actions{display:flex;gap:5px;}
+
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;}
+.modal-bg.open{display:flex;}
+.modal{background:#fff;border-radius:16px;width:440px;max-height:85vh;overflow-y:auto;}
+.mh{padding:1.1rem 1.25rem 0;position:sticky;top:0;background:#fff;z-index:1;}
+.mt{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.micon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;}
+.mi-warn{background:#FAEEDA;} .mi-warn i{font-size:19px;color:#633806;}
+.mi-danger{background:#FCEBEB;} .mi-danger i{font-size:19px;color:#A32D2D;}
+.mi-info{background:#E6F1FB;} .mi-info i{font-size:19px;color:#185FA5;}
+.mi-tag{background:#FAECE7;} .mi-tag i{font-size:19px;color:#993C1D;}
+.m-close{background:none;border:none;cursor:pointer;color:#888780;font-size:19px;padding:3px;border-radius:6px;line-height:1;}
+.m-close:hover{background:#f5f0eb;}
+.m-title{font-size:15px;font-weight:500;color:#1a1a18;margin-bottom:3px;}
+.m-sub{font-size:12px;color:#5f5e5a;line-height:1.5;padding-bottom:.9rem;border-bottom:0.5px solid #f0ece8;}
+.mb{padding:.9rem 1.25rem 1.25rem;}
+.detail-row{display:flex;gap:8px;margin-bottom:10px;}
+.dr-label{font-size:11px;color:#888780;width:90px;flex-shrink:0;padding-top:1px;}
+.dr-val{font-size:12px;color:#1a1a18;flex:1;line-height:1.5;}
+.mf{display:flex;gap:8px;justify-content:flex-end;padding:.9rem 1.25rem;border-top:0.5px solid #f0ece8;position:sticky;bottom:0;background:#fff;}
+.btn-mc{background:none;border:0.5px solid #d3d1c7;border-radius:7px;padding:7px 14px;font-size:12px;cursor:pointer;color:#1a1a18;font-family:var(--font-sans);font-weight:500;}
+.btn-mc:hover{background:#f5f0eb;}
+.btn-md{background:#E24B4A;color:#fff;border:none;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:5px;}
+.btn-md:hover{background:#A32D2D;}
+.btn-mw{background:#BA7517;color:#fff;border:none;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:5px;}
+.btn-mw:hover{background:#633806;}
+.btn-mp{background:#c8522a;color:#fff;border:none;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:5px;}
+.btn-mp:hover{background:#b04621;}
+.highlight-box{background:#FAEEDA;border-left:3px solid #BA7517;border-radius:0 6px 6px 0;padding:9px 12px;font-size:12px;color:#412402;margin-bottom:1rem;line-height:1.5;}
+.highlight-danger{background:#FCEBEB;border-left-color:#E24B4A;color:#501313;}
+.empty{text-align:center;padding:2.5rem 1rem;color:#b4b2a9;}
+.empty i{font-size:34px;display:block;margin:0 auto 8px;color:#d3d1c7;}
+.empty p{font-size:12px;}
+.toast{position:fixed;bottom:20px;right:20px;background:#2c2c2a;color:#fff;font-size:12px;padding:8px 14px;border-radius:8px;display:none;align-items:center;gap:6px;z-index:300;}
+</style>
+
+<div class="adm">
+  <div class="topbar">
+    <div class="logo">
+      <div class="lc"><i class="ti ti-heart" aria-hidden="true"></i></div>
+      <span class="logo-name">Lumina</span>
+      <span class="adm-badge">Admin</span>
+    </div>
+    <div class="tb-right">
+      <button class="tb-btn"><i class="ti ti-bell" aria-hidden="true" style="font-size:15px;"></i></button>
+      <button class="tb-btn"><i class="ti ti-shield-check" aria-hidden="true" style="font-size:15px;color:#c8522a;"></i> Admin Geral</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="sidenav">
+      <p class="nav-section">Painel</p>
+      <button class="nav-item active" onclick="goTab('metrics',this)"><i class="ti ti-chart-bar" aria-hidden="true"></i> Métricas</button>
+      <p class="nav-section">Usuários</p>
+      <button class="nav-item" onclick="goTab('users',this)"><i class="ti ti-users" aria-hidden="true"></i> Usuários</button>
+      <p class="nav-section">Conteúdo</p>
+      <button class="nav-item" onclick="goTab('tags',this)"><i class="ti ti-tags" aria-hidden="true"></i> Tags de atuação</button>
+      <button class="nav-item" onclick="goTab('reports',this)"><i class="ti ti-flag" aria-hidden="true"></i> Denúncias <span class="nav-badge" id="reportBadge">3</span></button>
+    </nav>
+
+    <div class="main">
+
+      <!-- MÉTRICAS -->
+      <div id="tab-metrics" class="tab-content active">
+        <div class="metrics-grid">
+          <div class="met-card">
+            <p class="met-label"><i class="ti ti-users" aria-hidden="true"></i> Usuários</p>
+            <p class="met-value">1.284</p>
+            <p class="met-sub met-up">↑ +38 este mês</p>
+          </div>
+          <div class="met-card">
+            <p class="met-label"><i class="ti ti-file-text" aria-hidden="true"></i> Artigos</p>
+            <p class="met-value">427</p>
+            <p class="met-sub met-up">↑ +12 este mês</p>
+          </div>
+          <div class="met-card">
+            <p class="met-label"><i class="ti ti-coins" aria-hidden="true"></i> Total arrecadado</p>
+            <p class="met-value">R$ 84.200</p>
+            <p class="met-sub met-up">↑ +R$ 3.100 este mês</p>
+          </div>
+          <div class="met-card">
+            <p class="met-label"><i class="ti ti-flag" aria-hidden="true"></i> Denúncias abertas</p>
+            <p class="met-value" id="metDenuncias">3</p>
+            <p class="met-sub met-down">↑ +2 esta semana</p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.25rem;">
+          <div class="met-card">
+            <p class="met-label"><i class="ti ti-microscope" aria-hidden="true"></i> Pesquisadoras ativas</p>
+            <p class="met-value">312</p>
+            <p class="met-sub">de 1.284 usuários</p>
+          </div>
+          <div class="met-card">
+            <p class="met-label"><i class="ti ti-eye" aria-hidden="true"></i> Visualizações (mês)</p>
+            <p class="met-value">94.801</p>
+            <p class="met-sub met-up">↑ +12% vs mês anterior</p>
+          </div>
+          <div class="met-card">
+            <p class="met-label"><i class="ti ti-message-circle" aria-hidden="true"></i> Comentários</p>
+            <p class="met-value">2.108</p>
+            <p class="met-sub">total na plataforma</p>
+          </div>
+          <div class="met-card">
+            <p class="met-label"><i class="ti ti-ban" aria-hidden="true"></i> Contas suspensas</p>
+            <p class="met-value" id="metSuspensos">1</p>
+            <p class="met-sub">contas atualmente suspensas</p>
+          </div>
+        </div>
+
+        <div class="table-wrap" style="margin-bottom:1.25rem;">
+          <table>
+            <thead><tr><th style="width:40%">Área de pesquisa</th><th style="width:20%">Artigos</th><th style="width:20%">Visualizações</th><th style="width:20%">Financiamento</th></tr></thead>
+            <tbody>
+              <tr><td>Sociologia</td><td>98</td><td>41.200</td><td>R$ 28.400</td></tr>
+              <tr><td>Medicina</td><td>87</td><td>29.800</td><td>R$ 22.100</td></tr>
+              <tr><td>Biologia</td><td>74</td><td>14.300</td><td>R$ 18.700</td></tr>
+              <tr><td>Engenharia</td><td>61</td><td>8.900</td><td>R$ 9.200</td></tr>
+              <tr><td>Física</td><td>42</td><td>5.600</td><td>R$ 4.800</td></tr>
+              <tr><td>Outras</td><td>65</td><td>7.100</td><td>R$ 1.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- USUÁRIOS -->
+      <div id="tab-users" class="tab-content">
+        <div class="section-head">
+          <p class="section-title"><i class="ti ti-users" aria-hidden="true"></i> Usuários cadastrados</p>
+        </div>
+        <div class="search-bar">
+          <div class="search-inp"><i class="ti ti-search" aria-hidden="true"></i><input type="text" id="userSearch" placeholder="Buscar por nome ou e-mail..." oninput="filterUsers()"></div>
+          <select class="filter-sel" id="roleFilter" onchange="filterUsers()">
+            <option value="">Todos os perfis</option>
+            <option value="Pesquisadora">Pesquisadora</option>
+            <option value="Leitora">Leitora</option>
+          </select>
+          <select class="filter-sel" id="statusFilter" onchange="filterUsers()">
+            <option value="">Todos os status</option>
+            <option value="Ativo">Ativo</option>
+            <option value="Suspenso">Suspenso</option>
+            <option value="Inativo">Inativo</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th style="width:28%">Usuária</th>
+              <th style="width:13%">Perfil</th>
+              <th style="width:11%">Status</th>
+              <th style="width:12%">Cadastro</th>
+              <th style="width:10%">Artigos</th>
+              <th style="width:26%">Ações</th>
+            </tr></thead>
+            <tbody id="usersTbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAGS -->
+      <div id="tab-tags" class="tab-content">
+        <div class="section-head">
+          <p class="section-title"><i class="ti ti-tags" aria-hidden="true"></i> Tags de área de atuação</p>
+        </div>
+        <div class="tags-grid" id="tagsGrid"></div>
+        <div class="add-tag-row">
+          <input type="text" id="newTagInput" placeholder="Nova tag (ex: Oceanografia)..." maxlength="50" onkeydown="if(event.key==='Enter')addTag()">
+          <button class="btn-primary" onclick="addTag()"><i class="ti ti-plus" aria-hidden="true"></i> Adicionar</button>
+        </div>
+      </div>
+
+      <!-- DENÚNCIAS -->
+      <div id="tab-reports" class="tab-content">
+        <div class="section-head">
+          <p class="section-title"><i class="ti ti-flag" aria-hidden="true"></i> Comentários denunciados</p>
+        </div>
+        <div id="reportsList"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL VISUALIZAR USUÁRIO -->
+<div class="modal-bg" id="modalView">
+  <div class="modal">
+    <div class="mh">
+      <div class="mt"><div class="micon mi-info"><i class="ti ti-user" aria-hidden="true"></i></div><button class="m-close" onclick="closeModal('modalView')"><i class="ti ti-x"></i></button></div>
+      <p class="m-title" id="mvTitle">Dados da usuária</p>
+      <p class="m-sub" id="mvSub">Informações do cadastro</p>
+    </div>
+    <div class="mb" id="mvBody"></div>
+    <div class="mf"><button class="btn-mc" onclick="closeModal('modalView')">Fechar</button></div>
+  </div>
+</div>
+
+<!-- MODAL DESATIVAR -->
+<div class="modal-bg" id="modalDeact">
+  <div class="modal">
+    <div class="mh">
+      <div class="mt"><div class="micon mi-warn"><i class="ti ti-user-off" aria-hidden="true"></i></div><button class="m-close" onclick="closeModal('modalDeact')"><i class="ti ti-x"></i></button></div>
+      <p class="m-title">Desativar conta</p>
+      <p class="m-sub">A usuária perderá acesso à plataforma mas seus dados serão mantidos.</p>
+    </div>
+    <div class="mb">
+      <div class="highlight-box" id="deactName"></div>
+      <p style="font-size:12px;color:#5f5e5a;line-height:1.6;">A conta ficará com status <strong>Inativo</strong>. A usuária não poderá fazer login até que o acesso seja reativado manualmente.</p>
+    </div>
+    <div class="mf"><button class="btn-mc" onclick="closeModal('modalDeact')">Cancelar</button><button class="btn-mw" onclick="confirmDeact()"><i class="ti ti-user-off" aria-hidden="true"></i> Desativar conta</button></div>
+  </div>
+</div>
+
+<!-- MODAL SUSPENDER -->
+<div class="modal-bg" id="modalSuspend">
+  <div class="modal">
+    <div class="mh">
+      <div class="mt"><div class="micon mi-danger"><i class="ti ti-ban" aria-hidden="true"></i></div><button class="m-close" onclick="closeModal('modalSuspend')"><i class="ti ti-x"></i></button></div>
+      <p class="m-title">Suspender conta</p>
+      <p class="m-sub">Contas suspensas ficam bloqueadas por violação das políticas da plataforma.</p>
+    </div>
+    <div class="mb">
+      <div class="highlight-box highlight-danger" id="suspendName"></div>
+      <div style="margin-bottom:.9rem;">
+        <label style="font-size:12px;font-weight:500;color:#1a1a18;display:block;margin-bottom:5px;">Motivo da suspensão <span style="color:#c8522a;">*</span></label>
+        <select id="suspendReason" style="width:100%;border:0.5px solid #d3d1c7;border-radius:8px;padding:8px 10px;font-size:12px;color:#1a1a18;background:#fff;font-family:var(--font-sans);outline:none;">
+          <option value="">Selecione o motivo</option>
+          <option>Denúncias recorrentes confirmadas</option>
+          <option>Plágio comprovado</option>
+          <option>Conduta imprópria</option>
+          <option>Spam sistemático</option>
+          <option>Violação dos termos de uso</option>
+        </select>
+      </div>
+    </div>
+    <div class="mf"><button class="btn-mc" onclick="closeModal('modalSuspend')">Cancelar</button><button class="btn-md" onclick="confirmSuspend()"><i class="ti ti-ban" aria-hidden="true"></i> Suspender conta</button></div>
+  </div>
+</div>
+
+<!-- MODAL REMOVER COMENTÁRIO -->
+<div class="modal-bg" id="modalRem">
+  <div class="modal">
+    <div class="mh">
+      <div class="mt"><div class="micon mi-danger"><i class="ti ti-trash" aria-hidden="true"></i></div><button class="m-close" onclick="closeModal('modalRem')"><i class="ti ti-x"></i></button></div>
+      <p class="m-title">Remover comentário</p>
+      <p class="m-sub">O comentário será excluído permanentemente da plataforma.</p>
+    </div>
+    <div class="mb">
+      <div class="highlight-box highlight-danger" id="remCommentPreview" style="font-style:italic;"></div>
+      <p style="font-size:12px;color:#5f5e5a;line-height:1.6;">Esta ação não pode ser desfeita. A denúncia será marcada como <strong>Confirmada</strong> e o comentário removido.</p>
+    </div>
+    <div class="mf"><button class="btn-mc" onclick="closeModal('modalRem')">Cancelar</button><button class="btn-md" onclick="confirmRemove()"><i class="ti ti-trash" aria-hidden="true"></i> Remover comentário</button></div>
+  </div>
+</div>
+
+<!-- MODAL IGNORAR DENÚNCIA -->
+<div class="modal-bg" id="modalIgnore">
+  <div class="modal">
+    <div class="mh">
+      <div class="mt"><div class="micon mi-warn"><i class="ti ti-checks" aria-hidden="true"></i></div><button class="m-close" onclick="closeModal('modalIgnore')"><i class="ti ti-x"></i></button></div>
+      <p class="m-title">Marcar como falsa</p>
+      <p class="m-sub">A denúncia será arquivada como falsa e nenhuma ação será tomada.</p>
+    </div>
+    <div class="mb">
+      <p style="font-size:12px;color:#5f5e5a;line-height:1.6;">O comentário permanecerá visível. O usuário que fez a denúncia será registrado para monitoramento de denúncias recorrentes falsas.</p>
+    </div>
+    <div class="mf"><button class="btn-mc" onclick="closeModal('modalIgnore')">Cancelar</button><button class="btn-mp" onclick="confirmIgnore()"><i class="ti ti-checks" aria-hidden="true"></i> Confirmar</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><i class="ti ti-check" style="color:#5DCAA5;"></i><span id="toastMsg"></span></div>
+
+<script>
+const USERS = [
+  {id:1,name:'Dra. Ana Costa',email:'ana.costa@usp.br',role:'Pesquisadora',status:'Ativo',since:'12/03/2024',articles:3,av:'AC',avc:'',bio:'Pesquisadora em sociologia, foco em equidade de gênero.',lattes:'lattes.cnpq.br/1234',area:'Sociologia'},
+  {id:2,name:'Julia Santos',email:'julia.santos@gmail.com',role:'Leitora',status:'Ativo',since:'04/08/2024',articles:0,av:'JS',avc:'r',bio:'Estudante de graduação em ciências sociais.',lattes:'-',area:'-'},
+  {id:3,name:'Profa. Carla Duarte',email:'carla.duarte@unicamp.br',role:'Pesquisadora',status:'Ativo',since:'20/01/2024',articles:5,av:'CD',avc:'g',bio:'Bióloga, pesquisadora em ecologia e biodiversidade.',lattes:'lattes.cnpq.br/5678',area:'Biologia'},
+  {id:4,name:'Paulo Ribeiro',email:'paulo.r@outlook.com',role:'Leitor',status:'Suspenso',since:'03/11/2023',articles:0,av:'PR',avc:'',bio:'Usuário leitor.',lattes:'-',area:'-'},
+  {id:5,name:'Dra. Renata Moura',email:'renata.moura@fiocruz.br',role:'Pesquisadora',status:'Ativo',since:'15/06/2024',articles:2,av:'RM',avc:'r',bio:'Médica pesquisadora na área de saúde coletiva.',lattes:'lattes.cnpq.br/9012',area:'Medicina'},
+  {id:6,name:'Maria Carvalho',email:'maria.c@hotmail.com',role:'Leitora',status:'Inativo',since:'22/02/2024',articles:0,av:'MC',avc:'g',bio:'Aposentada, leitora ocasional.',lattes:'-',area:'-'},
+  {id:7,name:'Eng. Fernanda Lima',email:'fernanda.lima@poli.usp.br',role:'Pesquisadora',status:'Ativo',since:'09/09/2024',articles:1,av:'FL',avc:'',bio:'Engenheira estrutural, pesquisadora em algoritmos de otimização.',lattes:'lattes.cnpq.br/3456',area:'Engenharia'},
+];
+
+const REPORTS = [
+  {id:1,author:'Paulo Ribeiro',authorAv:'PR',authorAvc:'',article:'Representatividade feminina na ciência brasileira',text:'Isso é completamente falso e tendencioso. Qualquer pessoa sabe que os dados foram fabricados para a agenda política.',category:'Conduta imprópria',catClass:'rt-conduta',time:'há 3 horas',userId:4},
+  {id:2,author:'Usuário Anônimo',authorAv:'UA',authorAvc:'g',article:'Detecção precoce de sepse via biomarcadores',text:'Buy followers cheap! Limited offer: www.spam-link.com get 10000 followers NOW!!',category:'Spam',catClass:'rt-spam',time:'há 1 dia',userId:null},
+  {id:3,author:'Lucas Ferreira',authorAv:'LF',authorAvc:'r',article:'Impacto das mudanças climáticas na Mata Atlântica',text:'Este trecho foi copiado ipsis litteris do artigo "Climate Change in Brazilian Biomes" publicado em 2022 na Nature.',category:'Plágio',catClass:'rt-plagio',time:'há 2 dias',userId:null},
+];
+
+const TAGS_INIT = ['Sociologia','Biologia','Engenharia','Medicina','Física','Química','Psicologia','Educação','Direito','Economia','Nutrição','Enfermagem','Geologia','Oceanografia'];
+let tags = [...TAGS_INIT];
+let usersData = USERS.map(u=>({...u}));
+let reportsData = REPORTS.map(r=>({...r}));
+let activeUserId = null;
+let activeReportId = null;
+
+function goTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='users') renderUsers(usersData);
+  if(name==='tags') renderTags();
+  if(name==='reports') renderReports();
+}
+
+function renderUsers(list) {
+  const q = document.getElementById('userSearch').value.toLowerCase();
+  const rf = document.getElementById('roleFilter').value;
+  const sf = document.getElementById('statusFilter').value;
+  let filtered = list.filter(u=>{
+    if(q && !u.name.toLowerCase().includes(q) && !u.email.toLowerCase().includes(q)) return false;
+    if(rf && u.role!==rf) return false;
+    if(sf && u.status!==sf) return false;
+    return true;
+  });
+  const tbody = document.getElementById('usersTbody');
+  if(!filtered.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:#b4b2a9;padding:2rem;font-size:12px;">Nenhum usuário encontrado.</td></tr>';return;}
+  tbody.innerHTML = filtered.map(u=>{
+    const sbc = u.status==='Ativo'?'sb-ativo':u.status==='Suspenso'?'sb-suspenso':'sb-inativo';
+    const rbc = u.role==='Pesquisadora'||u.role==='Pesquisador'?'rb-pesq':'rb-leit';
+    const canDeact = u.status==='Ativo';
+    const canSuspend = u.status!=='Suspenso';
+    const canReact = u.status!=='Ativo';
+    return `<tr>
+      <td><div class="user-cell"><div class="av ${u.avc}">${u.av}</div><div><p class="user-name">${u.name}</p><p class="user-email">${u.email}</p></div></div></td>
+      <td><span class="role-badge ${rbc}">${u.role}</span></td>
+      <td><span class="status-badge ${sbc}" id="ustatus-${u.id}">${u.status}</span></td>
+      <td style="color:#888780;">${u.since}</td>
+      <td style="text-align:center;">${u.articles}</td>
+      <td><div class="actions-cell">
+        <button class="act-btn info" onclick="openView(${u.id})" title="Ver dados"><i class="ti ti-eye" aria-hidden="true"></i></button>
+        ${canDeact?`<button class="act-btn warn" onclick="openDeact(${u.id})" title="Desativar"><i class="ti ti-user-off" aria-hidden="true"></i></button>`:''}
+        ${canSuspend?`<button class="act-btn danger" onclick="openSuspend(${u.id})" title="Suspender"><i class="ti ti-ban" aria-hidden="true"></i></button>`:''}
+        ${canReact?`<button class="act-btn" onclick="reactivate(${u.id})" title="Reativar"><i class="ti ti-user-check" aria-hidden="true"></i></button>`:''}
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+
+function filterUsers(){renderUsers(usersData);}
+
+function openView(id){
+  const u = usersData.find(x=>x.id===id);
+  if(!u) return;
+  document.getElementById('mvTitle').textContent = u.name;
+  document.getElementById('mvSub').textContent = u.email;
+  const sbc = u.status==='Ativo'?'sb-ativo':u.status==='Suspenso'?'sb-suspenso':'sb-inativo';
+  const rbc = u.role==='Pesquisadora'?'rb-pesq':'rb-leit';
+  document.getElementById('mvBody').innerHTML = `
+    <div class="detail-row"><p class="dr-label">Perfil</p><p class="dr-val"><span class="role-badge ${rbc}">${u.role}</span></p></div>
+    <div class="detail-row"><p class="dr-label">Status</p><p class="dr-val"><span class="status-badge ${sbc}">${u.status}</span></p></div>
+    <div class="detail-row"><p class="dr-label">Cadastro</p><p class="dr-val">${u.since}</p></div>
+    <div class="detail-row"><p class="dr-label">Artigos</p><p class="dr-val">${u.articles} publicados</p></div>
+    <div class="detail-row"><p class="dr-label">Área</p><p class="dr-val">${u.area}</p></div>
+    <div class="detail-row"><p class="dr-label">Lattes</p><p class="dr-val" style="color:#185FA5;">${u.lattes}</p></div>
+    <div class="detail-row"><p class="dr-label">Biografia</p><p class="dr-val" style="color:#5f5e5a;">${u.bio}</p></div>`;
+  openModal('modalView');
+}
+
+function openDeact(id){
+  const u = usersData.find(x=>x.id===id);
+  if(!u) return;
+  activeUserId = id;
+  document.getElementById('deactName').textContent = u.name + ' — ' + u.email;
+  openModal('modalDeact');
+}
+
+function confirmDeact(){
+  const u = usersData.find(x=>x.id===activeUserId);
+  if(u){ u.status='Inativo'; }
+  closeModal('modalDeact');
+  renderUsers(usersData);
+  showToast('Conta de '+u.name+' desativada.');
+  activeUserId=null;
+}
+
+function openSuspend(id){
+  const u = usersData.find(x=>x.id===id);
+  if(!u) return;
+  activeUserId = id;
+  document.getElementById('suspendName').textContent = u.name + ' — ' + u.email;
+  document.getElementById('suspendReason').value='';
+  openModal('modalSuspend');
+}
+
+function confirmSuspend(){
+  const reason = document.getElementById('suspendReason').value;
+  if(!reason){showToast('Selecione o motivo da suspensão.');return;}
+  const u = usersData.find(x=>x.id===activeUserId);
+  if(u){ u.status='Suspenso'; }
+  closeModal('modalSuspend');
+  renderUsers(usersData);
+  updateSuspCount();
+  showToast('Conta de '+u.name+' suspensa.');
+  activeUserId=null;
+}
+
+function reactivate(id){
+  const u = usersData.find(x=>x.id===id);
+  if(u){ u.status='Ativo'; }
+  renderUsers(usersData);
+  updateSuspCount();
+  showToast('Conta de '+u.name+' reativada.');
+}
+
+function updateSuspCount(){
+  const c = usersData.filter(u=>u.status==='Suspenso').length;
+  document.getElementById('metSuspensos').textContent = c;
+}
+
+function renderTags(){
+  const grid = document.getElementById('tagsGrid');
+  if(!tags.length){grid.innerHTML='<p style="font-size:12px;color:#888780;">Nenhuma tag cadastrada.</p>';return;}
+  grid.innerHTML = tags.map((t,i)=>`
+    <span class="tag-pill">${t}
+      <span class="cnt">${Math.floor(Math.random()*80+5)}</span>
+      <button class="del" onclick="removeTag(${i})" aria-label="remover tag ${t}"><i class="ti ti-x" aria-hidden="true"></i></button>
+    </span>`).join('');
+}
+
+function addTag(){
+  const inp = document.getElementById('newTagInput');
+  const val = inp.value.trim();
+  if(!val) return;
+  if(tags.some(t=>t.toLowerCase()===val.toLowerCase())){showToast('Tag já existe.');return;}
+  tags.push(val);
+  inp.value='';
+  renderTags();
+  showToast('Tag "'+val+'" adicionada.');
+}
+
+function removeTag(i){
+  const t = tags[i];
+  tags.splice(i,1);
+  renderTags();
+  showToast('Tag "'+t+'" removida.');
+}
+
+function renderReports(){
+  const list = document.getElementById('reportsList');
+  if(!reportsData.length){
+    list.innerHTML='<div class="empty"><i class="ti ti-checks" aria-hidden="true"></i><p>Nenhuma denúncia pendente.</p></div>';
+    return;
+  }
+  list.innerHTML = reportsData.map(r=>`
+    <div class="comment-card flagged" id="report-${r.id}">
+      <div class="cc-header">
+        <div class="cc-left">
+          <div class="av ${r.authorAvc}">${r.authorAv}</div>
+          <div><p class="cc-author">${r.author}</p><p class="cc-article">em: ${r.article}</p></div>
+        </div>
+        <span class="cc-time">${r.time}</span>
+      </div>
+      <p class="cc-text">"${r.text}"</p>
+      <div class="cc-footer">
+        <span class="report-tag ${r.catClass}">${r.category}</span>
+        <div class="cc-actions">
+          <button class="act-btn" onclick="openIgnore(${r.id})" title="Marcar como falsa"><i class="ti ti-checks" aria-hidden="true"></i> Falsa</button>
+          ${r.userId?`<button class="act-btn warn" onclick="openSuspendFromReport(${r.id})" title="Suspender autor"><i class="ti ti-ban" aria-hidden="true"></i> Suspender autor</button>`:''}
+          <button class="act-btn danger" onclick="openRemove(${r.id})" title="Remover comentário"><i class="ti ti-trash" aria-hidden="true"></i> Remover</button>
+        </div>
+      </div>
+    </div>`).join('');
+  updateReportCount();
+}
+
+function openRemove(id){
+  activeReportId = id;
+  const r = reportsData.find(x=>x.id===id);
+  document.getElementById('remCommentPreview').textContent = r.text.substring(0,120)+(r.text.length>120?'...':'');
+  openModal('modalRem');
+}
+
+function confirmRemove(){
+  reportsData = reportsData.filter(r=>r.id!==activeReportId);
+  closeModal('modalRem');
+  renderReports();
+  showToast('Comentário removido com sucesso.');
+  activeReportId=null;
+}
+
+function openIgnore(id){
+  activeReportId = id;
+  openModal('modalIgnore');
+}
+
+function confirmIgnore(){
+  reportsData = reportsData.filter(r=>r.id!==activeReportId);
+  closeModal('modalIgnore');
+  renderReports();
+  showToast('Denúncia arquivada como falsa.');
+  activeReportId=null;
+}
+
+function openSuspendFromReport(reportId){
+  const r = reportsData.find(x=>x.id===reportId);
+  if(!r||!r.userId) return;
+  openSuspend(r.userId);
+}
+
+function updateReportCount(){
+  const c = reportsData.length;
+  const badge = document.getElementById('reportBadge');
+  badge.textContent = c;
+  badge.style.display = c===0?'none':'';
+  document.getElementById('metDenuncias').textContent = c;
+}
+
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.style.display='flex';
+  setTimeout(()=>{t.style.display='none';},2800);
+}
+
+renderUsers(usersData);
+renderTags();
+renderReports();
+</script>

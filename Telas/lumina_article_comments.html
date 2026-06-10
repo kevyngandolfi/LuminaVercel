@@ -1,0 +1,306 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:0;background:#f5f0eb;font-family:var(--font-sans);}
+.main{padding:1.5rem;}
+.article-header{margin-bottom:1rem;}
+.article-header h1{font-size:20px;font-weight:500;color:var(--color-text-primary);font-family:Georgia,serif;margin-bottom:4px;}
+.article-meta{font-size:12px;color:var(--color-text-secondary);}
+.pdf-viewer{background:#444441;border-radius:8px;overflow:hidden;margin-bottom:1.5rem;}
+.pdf-bar{display:flex;align-items:center;justify-content:space-between;padding:6px 12px;background:#2c2c2a;}
+.pdf-bar span{font-size:12px;color:#b4b2a9;}
+.pdf-bar-nav{display:flex;gap:8px;align-items:center;}
+.pdf-bar-nav button{background:none;border:none;color:#b4b2a9;cursor:pointer;font-size:16px;padding:0 4px;line-height:1;}
+.pdf-page{background:#fff;margin:12px;border-radius:4px;padding:1.5rem;min-height:220px;}
+.pdf-page h2{font-size:16px;text-align:center;color:#2c2c2a;margin-bottom:4px;font-family:Georgia,serif;}
+.pdf-page .pdf-author{font-size:12px;text-align:center;color:#888780;margin-bottom:12px;}
+.pdf-page p{font-size:11px;color:#444441;line-height:1.6;}
+.pdf-page .pdf-label{font-size:11px;font-weight:500;color:#444441;margin-bottom:4px;}
+.sidebar{background:#2c2c2a;padding:1.25rem;display:flex;flex-direction:column;gap:10px;}
+.btn-contribuir{background:#c8522a;color:#fff;border:none;border-radius:8px;padding:10px;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--font-sans);}
+.btn-contribuir:hover{background:#b04621;}
+.btn-outline{background:transparent;border:0.5px solid #888780;color:#d3d1c7;border-radius:8px;padding:9px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:var(--font-sans);}
+.btn-outline:hover{background:#444441;}
+.btn-outline i{font-size:16px;}
+.sidebar-divider{height:0.5px;background:#444441;margin:4px 0;}
+.sidebar-label{font-size:11px;color:#888780;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+.comments-section{margin-top:0;}
+.comments-title{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.comments-title .badge{background:#FAECE7;color:#993C1D;font-size:11px;padding:2px 8px;border-radius:20px;font-weight:400;}
+.comment-input-area{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:12px;margin-bottom:1rem;}
+.comment-input-top{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
+.avatar{width:34px;height:34px;border-radius:50%;background:#FAECE7;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#993C1D;flex-shrink:0;}
+.comment-input-area textarea{width:100%;border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:9px 11px;font-size:13px;color:var(--color-text-primary);font-family:var(--font-sans);resize:none;min-height:72px;background:var(--color-background-secondary);outline:none;line-height:1.5;}
+.comment-input-area textarea:focus{border-color:#c8522a;box-shadow:0 0 0 2px rgba(200,82,42,0.1);}
+.comment-actions{display:flex;justify-content:space-between;align-items:center;}
+.char-hint{font-size:11px;color:var(--color-text-tertiary);}
+.char-hint span{color:var(--color-text-secondary);}
+.btn-send{background:#c8522a;color:#fff;border:none;border-radius:7px;padding:7px 14px;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:var(--font-sans);}
+.btn-send:hover{background:#b04621;}
+.btn-send:disabled{background:#d3d1c7;cursor:default;}
+.btn-cancel{background:none;border:none;font-size:12px;color:var(--color-text-secondary);cursor:pointer;padding:7px 10px;border-radius:7px;}
+.btn-cancel:hover{background:var(--color-background-secondary);}
+.comments-list{display:flex;flex-direction:column;gap:10px;}
+.comment-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:12px;}
+.comment-header{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.comment-author{font-size:13px;font-weight:500;color:var(--color-text-primary);}
+.comment-time{font-size:11px;color:var(--color-text-tertiary);margin-left:auto;}
+.comment-text{font-size:13px;color:var(--color-text-secondary);line-height:1.55;}
+.comment-footer{display:flex;align-items:center;gap:4px;margin-top:9px;}
+.btn-icon{background:none;border:none;cursor:pointer;color:var(--color-text-tertiary);font-size:13px;padding:4px 6px;border-radius:6px;display:flex;align-items:center;gap:4px;font-family:var(--font-sans);}
+.btn-icon:hover{background:var(--color-background-secondary);color:var(--color-text-secondary);}
+.btn-icon i{font-size:15px;}
+.btn-report{margin-left:auto;color:var(--color-text-tertiary);}
+.btn-report:hover{color:#c8522a;background:#FAECE7;}
+.comment-card.flagged{border-color:#F09595;background:#FCEBEB;}
+.comment-card.flagged .comment-text{color:#A32D2D;}
+.toast{position:absolute;top:12px;right:12px;background:#2c2c2a;color:#fff;font-size:12px;padding:8px 14px;border-radius:8px;display:none;align-items:center;gap:6px;}
+.modal-overlay{display:none;min-height:200px;background:rgba(0,0,0,0.45);border-radius:12px;padding:2rem;align-items:center;justify-content:center;margin-bottom:1rem;}
+.modal-box{background:var(--color-background-primary);border-radius:12px;padding:1.25rem;width:100%;max-width:340px;}
+.modal-title{font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px;}
+.modal-sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:14px;}
+.modal-box select,.modal-box textarea{width:100%;margin-bottom:10px;}
+.modal-box textarea{min-height:70px;resize:none;}
+.modal-footer{display:flex;gap:8px;justify-content:flex-end;}
+.btn-modal-cancel{background:none;border:0.5px solid var(--color-border-secondary);border-radius:7px;padding:7px 12px;font-size:13px;cursor:pointer;color:var(--color-text-secondary);font-family:var(--font-sans);}
+.btn-modal-send{background:#c8522a;color:#fff;border:none;border-radius:7px;padding:7px 14px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-sans);}
+</style>
+
+<div style="position:relative;">
+
+<div id="reportModal" class="modal-overlay">
+  <div class="modal-box">
+    <p class="modal-title">Denunciar comentário</p>
+    <p class="modal-sub">Selecione a categoria e descreva o motivo.</p>
+    <select id="reportCategory">
+      <option value="">Selecione a categoria *</option>
+      <option>Plágio</option>
+      <option>Conduta imprópria</option>
+      <option>Spam</option>
+    </select>
+    <textarea id="reportReason" placeholder="Descreva o motivo da denúncia *" maxlength="300"></textarea>
+    <div class="modal-footer">
+      <button class="btn-modal-cancel" onclick="closeReport()">Cancelar</button>
+      <button class="btn-modal-send" onclick="submitReport()">Enviar denúncia</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="main">
+    <div class="article-header">
+      <h1>Representatividade feminina na ciência brasileira</h1>
+      <p class="article-meta">Autora: Dra. Ana Costa &nbsp;·&nbsp; Publicado em 12/05/2025 &nbsp;·&nbsp; Área: Sociologia</p>
+    </div>
+
+    <div class="pdf-viewer">
+      <div class="pdf-bar">
+        <span>Visualizador de PDF</span>
+        <div class="pdf-bar-nav">
+          <button aria-label="página anterior"><i class="ti ti-chevron-left"></i></button>
+          <span id="pageInd">1 / 39</span>
+          <button aria-label="próxima página"><i class="ti ti-chevron-right"></i></button>
+        </div>
+      </div>
+      <div class="pdf-page">
+        <h2>Representatividade feminina na ciência brasileira</h2>
+        <p class="pdf-author">Dra. Ana Costa</p>
+        <p class="pdf-label">Resumo:</p>
+        <p>Este artigo analisa a participação de mulheres em posições de liderança científica no Brasil ao longo das últimas duas décadas. Os dados revelam avanços significativos em áreas como biologia e medicina, enquanto engenharia e física ainda apresentam disparidades expressivas. A pesquisa utiliza dados do CNPq e entrevistas com pesquisadoras de diferentes regiões do país para traçar um panorama atual e propor políticas de incentivo à equidade de gênero no ambiente acadêmico.</p>
+      </div>
+    </div>
+
+    <div class="comments-section">
+      <p class="comments-title">
+        <i class="ti ti-message-circle" aria-hidden="true" style="font-size:17px;color:#c8522a;"></i>
+        Comentários
+        <span class="badge" id="commentCount">2</span>
+      </p>
+
+      <div class="comment-input-area">
+        <div class="comment-input-top">
+          <div class="avatar">MC</div>
+          <textarea id="commentBox" placeholder="Escreva um comentário técnico sobre o artigo..." maxlength="500" oninput="updateChar()"></textarea>
+        </div>
+        <div class="comment-actions">
+          <span class="char-hint"><span id="charCount">0</span>/500</span>
+          <div style="display:flex;gap:6px;">
+            <button class="btn-cancel" onclick="clearComment()">Cancelar</button>
+            <button class="btn-send" id="sendBtn" onclick="postComment()" disabled>
+              <i class="ti ti-send" aria-hidden="true"></i> Comentar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="comments-list" id="commentsList">
+
+        <div class="comment-card">
+          <div class="comment-header">
+            <div class="avatar" style="width:30px;height:30px;font-size:11px;">JS</div>
+            <span class="comment-author">Julia Santos</span>
+            <span class="comment-time">há 2 horas</span>
+          </div>
+          <p class="comment-text">Excelente levantamento! Os dados sobre engenharia confirmam o que observamos no cenário institucional. Seria interessante expandir a análise para a pós-graduação stricto sensu.</p>
+          <div class="comment-footer">
+            <button class="btn-icon" onclick="toggleLike(this)" aria-label="curtir">
+              <i class="ti ti-thumb-up"></i> <span>4</span>
+            </button>
+            <button class="btn-icon" aria-label="responder">
+              <i class="ti ti-corner-down-right"></i> Responder
+            </button>
+            <button class="btn-icon btn-report" onclick="openReport(this)" aria-label="denunciar">
+              <i class="ti ti-flag"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="comment-card">
+          <div class="comment-header">
+            <div class="avatar" style="width:30px;height:30px;font-size:11px;background:#E1F5EE;color:#085041;">PR</div>
+            <span class="comment-author">Paulo Ribeiro</span>
+            <span class="comment-time">há 5 horas</span>
+          </div>
+          <p class="comment-text">A metodologia com entrevistas semiestruturadas complementa bem os dados quantitativos do CNPq. Ótima escolha metodológica.</p>
+          <div class="comment-footer">
+            <button class="btn-icon" onclick="toggleLike(this)" aria-label="curtir">
+              <i class="ti ti-thumb-up"></i> <span>11</span>
+            </button>
+            <button class="btn-icon" aria-label="responder">
+              <i class="ti ti-corner-down-right"></i> Responder
+            </button>
+            <button class="btn-icon btn-report" onclick="openReport(this)" aria-label="denunciar">
+              <i class="ti ti-flag"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <button class="btn-contribuir" onclick="sendPrompt('Quero entender como funciona o sistema de doações da Lumina para apoiar pesquisas')">
+      <i class="ti ti-heart" aria-hidden="true"></i> Contribuir
+    </button>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-label">Ações</div>
+    <button class="btn-outline" onclick="toggleFav(this)">
+      <i class="ti ti-star" aria-hidden="true"></i>
+      <span>Favoritar</span>
+    </button>
+    <button class="btn-outline">
+      <i class="ti ti-share" aria-hidden="true"></i>
+      Compartilhar
+    </button>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-label">Pesquisadora</div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="avatar" style="width:30px;height:30px;font-size:11px;">AC</div>
+      <div>
+        <p style="font-size:12px;font-weight:500;color:#d3d1c7;">Dra. Ana Costa</p>
+        <p style="font-size:11px;color:#888780;">Sociologia · USP</p>
+      </div>
+    </div>
+    <button class="btn-outline" style="font-size:12px;padding:7px 10px;">
+      <i class="ti ti-user-plus" aria-hidden="true"></i> Seguir
+    </button>
+  </div>
+</div>
+
+<div id="toast" class="toast">
+  <i class="ti ti-check" style="color:#5DCAA5;"></i>
+  <span id="toastMsg">Comentário enviado!</span>
+</div>
+</div>
+
+<script>
+function updateChar(){
+  const box=document.getElementById('commentBox');
+  const count=box.value.length;
+  document.getElementById('charCount').textContent=count;
+  document.getElementById('sendBtn').disabled=count===0;
+}
+
+function clearComment(){
+  const box=document.getElementById('commentBox');
+  box.value='';
+  document.getElementById('charCount').textContent='0';
+  document.getElementById('sendBtn').disabled=true;
+}
+
+function postComment(){
+  const box=document.getElementById('commentBox');
+  const text=box.value.trim();
+  if(!text) return;
+  const list=document.getElementById('commentsList');
+  const card=document.createElement('div');
+  card.className='comment-card';
+  card.style.borderColor='#c8522a';
+  card.innerHTML=`
+    <div class="comment-header">
+      <div class="avatar" style="width:30px;height:30px;font-size:11px;">MC</div>
+      <span class="comment-author">Maria Carvalho</span>
+      <span class="comment-time">agora</span>
+    </div>
+    <p class="comment-text">${text.replace(/</g,'&lt;')}</p>
+    <div class="comment-footer">
+      <button class="btn-icon" onclick="toggleLike(this)" aria-label="curtir">
+        <i class="ti ti-thumb-up"></i> <span>0</span>
+      </button>
+      <button class="btn-icon" aria-label="responder">
+        <i class="ti ti-corner-down-right"></i> Responder
+      </button>
+      <button class="btn-icon btn-report" onclick="openReport(this)" aria-label="denunciar">
+        <i class="ti ti-flag"></i>
+      </button>
+    </div>`;
+  list.prepend(card);
+  const badge=document.getElementById('commentCount');
+  badge.textContent=parseInt(badge.textContent)+1;
+  clearComment();
+  showToast('Comentário enviado com sucesso!');
+  setTimeout(()=>{ card.style.borderColor=''; },2000);
+}
+
+function toggleLike(btn){
+  const span=btn.querySelector('span');
+  const icon=btn.querySelector('i');
+  const liked=btn.dataset.liked==='1';
+  btn.dataset.liked=liked?'0':'1';
+  span.textContent=parseInt(span.textContent)+(liked?-1:1);
+  icon.style.color=liked?'':' #c8522a';
+}
+
+function toggleFav(btn){
+  const liked=btn.dataset.fav==='1';
+  btn.dataset.fav=liked?'0':'1';
+  btn.querySelector('span').textContent=liked?'Favoritar':'Favoritado';
+  btn.querySelector('i').style.color=liked?'':'#c8522a';
+}
+
+let reportTarget=null;
+function openReport(btn){
+  reportTarget=btn.closest('.comment-card');
+  document.getElementById('reportModal').style.display='flex';
+}
+function closeReport(){
+  document.getElementById('reportModal').style.display='none';
+  document.getElementById('reportCategory').value='';
+  document.getElementById('reportReason').value='';
+  reportTarget=null;
+}
+function submitReport(){
+  const cat=document.getElementById('reportCategory').value;
+  const reason=document.getElementById('reportReason').value.trim();
+  if(!cat||!reason){ showToast('Preencha todos os campos.'); return; }
+  closeReport();
+  showToast('Denúncia enviada para análise.');
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.style.display='flex';
+  setTimeout(()=>{ t.style.display='none'; },2800);
+}
+</script>

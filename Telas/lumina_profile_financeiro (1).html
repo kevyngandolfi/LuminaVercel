@@ -1,0 +1,330 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-sans);}
+.page{background:#f5f0eb;min-height:700px;border-radius:16px;overflow:hidden;}
+.topbar{background:#fff;border-bottom:0.5px solid #e0d9d1;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:8px;}
+.logo-circle{width:28px;height:28px;background:#c8522a;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.logo-circle i{color:#fff;font-size:14px;}
+.logo-name{font-size:14px;font-weight:500;color:#1a1a18;}
+.topbar-actions{display:flex;gap:8px;}
+.btn-top{background:none;border:0.5px solid #d3d1c7;border-radius:7px;padding:6px 12px;font-size:12px;color:#1a1a18;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:5px;font-weight:500;}
+.content{padding:1.5rem;}
+.profile-block{display:grid;grid-template-columns:180px minmax(0,1fr);gap:1.25rem;margin-bottom:1.25rem;}
+.left-col{display:flex;flex-direction:column;gap:10px;}
+.avatar-wrap{width:140px;height:140px;border-radius:50%;border:3px solid #fff;overflow:hidden;display:flex;align-items:center;justify-content:center;margin:0 auto;}
+.avatar-initials{font-size:42px;font-weight:500;color:#993C1D;background:#FAECE7;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.info-tags{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:12px;}
+.info-tags-title{font-size:10px;font-weight:500;color:#5f5e5a;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-size:11px;background:#f5f0eb;color:#444441;padding:3px 9px;border-radius:20px;display:flex;align-items:center;gap:4px;}
+.tag i{font-size:12px;color:#c8522a;}
+.right-col{display:flex;flex-direction:column;gap:10px;}
+.name-block{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:14px 16px;}
+.name-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.profile-name{font-size:20px;font-weight:500;color:#1a1a18;font-family:Georgia,serif;}
+.btn-edit{background:none;border:0.5px solid #d3d1c7;border-radius:7px;padding:7px 14px;font-size:12px;color:#1a1a18;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:5px;font-weight:500;}
+.profile-area{font-size:12px;color:#5f5e5a;margin-bottom:6px;display:flex;align-items:center;gap:5px;}
+.profile-area i{font-size:14px;color:#c8522a;}
+.followers-row{display:flex;gap:16px;margin-top:4px;}
+.fol-item{font-size:12px;color:#5f5e5a;}
+.fol-item span{font-weight:500;color:#1a1a18;}
+.bio-block{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:14px 16px;flex:1;}
+.bio-label{font-size:10px;font-weight:500;color:#5f5e5a;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.bio-text{font-size:13px;color:#444441;line-height:1.65;}
+.links-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.link-btn{background:#f5f0eb;border:none;border-radius:7px;padding:6px 11px;font-size:11px;color:#1a1a18;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:5px;font-weight:500;}
+.link-btn i{font-size:14px;color:#c8522a;}
+.tabs-row{display:flex;border-bottom:0.5px solid #e0d9d1;margin-bottom:1.25rem;background:#fff;border-radius:10px 10px 0 0;overflow:hidden;}
+.tab{padding:11px 16px;font-size:13px;color:#5f5e5a;cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--font-sans);display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.tab:hover{color:#c8522a;background:#fff9f7;}
+.tab.active{color:#c8522a;border-bottom-color:#c8522a;font-weight:500;}
+.tab i{font-size:15px;}
+.tab .tc{font-size:10px;background:#FAECE7;color:#993C1D;padding:2px 6px;border-radius:20px;font-weight:400;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+.proj-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.proj-toolbar-title{font-size:13px;color:#5f5e5a;}
+.projects-grid{display:flex;flex-direction:column;gap:10px;}
+.project-card{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:14px;}
+.proj-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px;}
+.proj-title{font-size:14px;font-weight:500;color:#1a1a18;line-height:1.4;}
+.proj-badge{font-size:10px;padding:3px 8px;border-radius:20px;white-space:nowrap;}
+.badge-green{background:#EAF3DE;color:#1e4d09;}
+.badge-amber{background:#FAEEDA;color:#633806;}
+.badge-gray{background:#F1EFE8;color:#2c2c2a;}
+.proj-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+.proj-meta span{font-size:11px;color:#5f5e5a;display:flex;align-items:center;gap:3px;}
+.proj-meta i{font-size:13px;}
+.proj-desc{font-size:12px;color:#444441;line-height:1.55;}
+.progress-wrap{margin-top:8px;}
+.progress-label{display:flex;justify-content:space-between;font-size:11px;color:#5f5e5a;margin-bottom:5px;}
+.progress-bar{height:6px;background:#f0ece8;border-radius:10px;overflow:hidden;}
+.progress-fill{height:100%;background:#c8522a;border-radius:10px;}
+
+.favs-grid{display:flex;flex-direction:column;gap:10px;}
+.fav-card{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:14px;display:flex;gap:12px;align-items:flex-start;}
+.fav-icon{width:36px;height:36px;border-radius:8px;background:#FAECE7;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fav-icon i{font-size:18px;color:#993C1D;}
+.fav-body{flex:1;min-width:0;}
+.fav-title{font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:3px;line-height:1.4;}
+.fav-author{font-size:11px;color:#5f5e5a;margin-bottom:5px;}
+.fav-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.fav-tag{font-size:10px;background:#f5f0eb;color:#444441;padding:2px 8px;border-radius:20px;}
+
+.archived-note{display:flex;align-items:center;gap:8px;background:#F1EFE8;border-radius:8px;padding:10px 13px;margin-bottom:1rem;font-size:12px;color:#5f5e5a;}
+.archived-note i{font-size:16px;color:#888780;flex-shrink:0;}
+.empty-state{text-align:center;padding:2.5rem 1rem;color:#888780;}
+.empty-state i{font-size:36px;display:block;margin:0 auto 8px;color:#d3d1c7;}
+.empty-state p{font-size:13px;}
+
+/* Painel financeiro */
+.fin-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem;}
+.fin-card{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:14px;}
+.fin-card-label{font-size:11px;color:#888780;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;display:flex;align-items:center;gap:5px;}
+.fin-card-label i{font-size:14px;color:#c8522a;}
+.fin-card-value{font-size:22px;font-weight:500;color:#1a1a18;}
+.fin-card-sub{font-size:11px;color:#888780;margin-top:3px;}
+.fin-section-title{font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.fin-section-title i{font-size:16px;color:#c8522a;}
+.fin-block{margin-bottom:1.25rem;}
+.proj-fin-card{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:14px;margin-bottom:10px;}
+.proj-fin-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px;}
+.proj-fin-title{font-size:13px;font-weight:500;color:#1a1a18;line-height:1.4;}
+.proj-fin-total{font-size:13px;font-weight:500;color:#c8522a;white-space:nowrap;}
+.proj-fin-meta{display:flex;gap:12px;margin-bottom:10px;}
+.proj-fin-meta span{font-size:11px;color:#5f5e5a;display:flex;align-items:center;gap:3px;}
+.proj-fin-meta i{font-size:13px;}
+.donations-list{border-top:0.5px solid #f0ece8;padding-top:10px;display:flex;flex-direction:column;gap:7px;}
+.donation-row{display:flex;align-items:center;justify-content:space-between;}
+.donation-who{display:flex;align-items:center;gap:7px;}
+.mini-av{width:22px;height:22px;border-radius:50%;background:#FAECE7;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;color:#993C1D;flex-shrink:0;}
+.donation-name{font-size:12px;color:#444441;}
+.donation-date{font-size:11px;color:#888780;}
+.donation-val{font-size:12px;font-weight:500;color:#1e4d09;background:#EAF3DE;padding:2px 8px;border-radius:20px;}
+.donation-method{font-size:10px;color:#888780;background:#f5f0eb;padding:2px 7px;border-radius:20px;}
+</style>
+
+<div class="page">
+  <div class="topbar">
+    <div class="logo">
+      <div class="logo-circle"><i class="ti ti-heart" aria-hidden="true"></i></div>
+      <span class="logo-name">Lumina</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-top"><i class="ti ti-bell" aria-hidden="true"></i></button>
+      <button class="btn-top"><i class="ti ti-user" aria-hidden="true"></i> Dra. Ana Costa</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="profile-block">
+      <div class="left-col">
+        <div class="avatar-wrap"><div class="avatar-initials">AC</div></div>
+        <div class="info-tags">
+          <p class="info-tags-title">Formação</p>
+          <div class="tag-row">
+            <span class="tag"><i class="ti ti-school"></i>Doutorado</span>
+            <span class="tag"><i class="ti ti-building"></i>USP</span>
+            <span class="tag"><i class="ti ti-certificate"></i>Mestrado</span>
+            <span class="tag"><i class="ti ti-map-pin"></i>São Paulo</span>
+          </div>
+        </div>
+      </div>
+      <div class="right-col">
+        <div class="name-block">
+          <div class="name-row">
+            <p class="profile-name">Dra. Ana Costa</p>
+            <button class="btn-edit"><i class="ti ti-edit"></i> Editar perfil</button>
+          </div>
+          <p class="profile-area"><i class="ti ti-microscope"></i> Sociologia · Gênero e Ciência</p>
+          <div class="followers-row">
+            <p class="fol-item"><span>34</span> seguidores</p>
+            <p class="fol-item"><span>12</span> seguindo</p>
+            <p class="fol-item"><span>3</span> publicações</p>
+          </div>
+        </div>
+        <div class="bio-block">
+          <p class="bio-label">Biografia</p>
+          <p class="bio-text">Pesquisadora em sociologia com foco em equidade de gênero na ciência brasileira. Doutora pela USP, com pós-doutorado na Unicamp. Membro do grupo de pesquisa GêneroLab e colaboradora do CNPq desde 2018.</p>
+          <div class="links-row">
+            <button class="link-btn"><i class="ti ti-external-link"></i> Currículo Lattes</button>
+            <button class="link-btn"><i class="ti ti-brand-orcid"></i> ORCID</button>
+            <button class="link-btn"><i class="ti ti-mail"></i> Contato</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs-row">
+      <button class="tab" onclick="switchTab('projetos',this)"><i class="ti ti-file-text"></i> Projetos <span class="tc">3</span></button>
+      <button class="tab" onclick="switchTab('favoritos',this)"><i class="ti ti-star"></i> Favoritos <span class="tc">3</span></button>
+      <button class="tab" onclick="switchTab('arquivados',this)"><i class="ti ti-archive"></i> Arquivados <span class="tc">0</span></button>
+      <button class="tab active" onclick="switchTab('financeiro',this)"><i class="ti ti-chart-bar"></i> Painel financeiro</button>
+    </div>
+
+    <div id="tab-projetos" class="tab-content">
+      <div class="proj-toolbar">
+        <p class="proj-toolbar-title">Seus artigos e pesquisas publicadas</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="proj-top">
+            <p class="proj-title">Representatividade feminina na ciência brasileira</p>
+            <span class="proj-badge badge-green">Concluída</span>
+          </div>
+          <div class="proj-meta"><span><i class="ti ti-calendar"></i> 12/05/2025</span><span><i class="ti ti-eye"></i> 3.200 views</span><span><i class="ti ti-currency-dollar"></i> Financiado</span></div>
+          <p class="proj-desc">Análise da participação de mulheres em cargos de liderança científica no Brasil nas últimas duas décadas, com dados do CNPq e entrevistas regionais.</p>
+        </div>
+        <div class="project-card">
+          <div class="proj-top">
+            <p class="proj-title">Desigualdade de gênero no mercado de trabalho pós-pandemia</p>
+            <span class="proj-badge badge-amber">Em andamento</span>
+          </div>
+          <div class="proj-meta"><span><i class="ti ti-calendar"></i> 03/01/2025</span><span><i class="ti ti-eye"></i> 1.430 views</span><span><i class="ti ti-currency-dollar"></i> Financiado</span></div>
+          <p class="proj-desc">Análise dos dados da PNAD Contínua sobre a recuperação assimétrica de empregos entre homens e mulheres no período 2021-2024.</p>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Meta de financiamento</span><span>R$ 8.400 / R$ 15.000</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:56%"></div></div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="proj-top">
+            <p class="proj-title">Mulheres na liderança universitária: um estudo de caso</p>
+            <span class="proj-badge badge-gray">Encerrada</span>
+          </div>
+          <div class="proj-meta"><span><i class="ti ti-calendar"></i> 07/2023</span><span><i class="ti ti-eye"></i> 890 views</span></div>
+          <p class="proj-desc">Estudo qualitativo sobre trajetórias de reitoras e pró-reitoras em universidades federais brasileiras entre 2010 e 2022.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-favoritos" class="tab-content">
+      <div class="favs-grid">
+        <div class="fav-card"><div class="fav-icon"><i class="ti ti-file-text"></i></div><div class="fav-body"><p class="fav-title">Impacto das mudanças climáticas na biodiversidade da Mata Atlântica</p><p class="fav-author">Profa. Carla Duarte · Biologia</p><div class="fav-tags"><span class="fav-tag">Em andamento</span><span class="fav-tag">Financiado</span><span class="fav-tag">2025</span></div></div></div>
+        <div class="fav-card"><div class="fav-icon"><i class="ti ti-file-text"></i></div><div class="fav-body"><p class="fav-title">Detecção precoce de sepse via biomarcadores inflamatórios</p><p class="fav-author">Dra. Renata Moura · Medicina</p><div class="fav-tags"><span class="fav-tag">Em andamento</span><span class="fav-tag">2024</span></div></div></div>
+        <div class="fav-card"><div class="fav-icon"><i class="ti ti-file-text"></i></div><div class="fav-body"><p class="fav-title">Algoritmos de otimização aplicados à engenharia estrutural</p><p class="fav-author">Eng. Fernanda Lima · Engenharia</p><div class="fav-tags"><span class="fav-tag">Concluída</span><span class="fav-tag">2024</span></div></div></div>
+      </div>
+    </div>
+
+    <div id="tab-arquivados" class="tab-content">
+      <div class="archived-note"><i class="ti ti-info-circle"></i> Artigos arquivados ficam ocultos do seu perfil público, mas você pode desarquivá-los a qualquer momento.</div>
+      <div class="empty-state"><i class="ti ti-archive" aria-hidden="true"></i><p>Nenhum artigo arquivado ainda.</p></div>
+    </div>
+
+    <div id="tab-financeiro" class="tab-content active">
+      <div class="fin-summary">
+        <div class="fin-card">
+          <p class="fin-card-label"><i class="ti ti-coins" aria-hidden="true"></i> Total recebido</p>
+          <p class="fin-card-value">R$ 11.240</p>
+          <p class="fin-card-sub">em todos os projetos</p>
+        </div>
+        <div class="fin-card">
+          <p class="fin-card-label"><i class="ti ti-users" aria-hidden="true"></i> Apoiadores</p>
+          <p class="fin-card-value">38</p>
+          <p class="fin-card-sub">contribuições únicas</p>
+        </div>
+        <div class="fin-card">
+          <p class="fin-card-label"><i class="ti ti-clock" aria-hidden="true"></i> Último recebimento</p>
+          <p class="fin-card-value">R$ 150</p>
+          <p class="fin-card-sub">há 2 dias · via Pix</p>
+        </div>
+      </div>
+
+      <div class="fin-block">
+        <p class="fin-section-title"><i class="ti ti-target" aria-hidden="true"></i> Projetos com meta de financiamento</p>
+        <div class="proj-fin-card">
+          <div class="proj-fin-top">
+            <p class="proj-fin-title">Desigualdade de gênero no mercado de trabalho pós-pandemia</p>
+            <p class="proj-fin-total">R$ 8.400 / R$ 15.000</p>
+          </div>
+          <div class="proj-fin-meta">
+            <span><i class="ti ti-calendar"></i> Meta até 12/2025</span>
+            <span><i class="ti ti-users"></i> 24 apoiadores</span>
+            <span style="color:#c8522a;"><i class="ti ti-chart-pie"></i> 56% atingida</span>
+          </div>
+          <div class="progress-bar" style="margin-bottom:10px;"><div class="progress-fill" style="width:56%"></div></div>
+          <div class="donations-list">
+            <div class="donation-row">
+              <div class="donation-who">
+                <div class="mini-av">JS</div>
+                <div><p class="donation-name">Julia Santos</p><p class="donation-date">08/06/2025</p></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="donation-method">Pix</span>
+                <span class="donation-val">+ R$ 150</span>
+              </div>
+            </div>
+            <div class="donation-row">
+              <div class="donation-who">
+                <div class="mini-av" style="background:#E1F5EE;color:#085041;">PR</div>
+                <div><p class="donation-name">Paulo Ribeiro</p><p class="donation-date">05/06/2025</p></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="donation-method">PayPal</span>
+                <span class="donation-val">+ R$ 300</span>
+              </div>
+            </div>
+            <div class="donation-row">
+              <div class="donation-who">
+                <div class="mini-av" style="background:#EAF3DE;color:#27500A;">MC</div>
+                <div><p class="donation-name">Maria Carvalho</p><p class="donation-date">01/06/2025</p></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="donation-method">Pix</span>
+                <span class="donation-val">+ R$ 80</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fin-block">
+        <p class="fin-section-title"><i class="ti ti-heart" aria-hidden="true"></i> Doações diretas por artigo</p>
+        <div class="proj-fin-card">
+          <div class="proj-fin-top">
+            <p class="proj-fin-title">Representatividade feminina na ciência brasileira</p>
+            <p class="proj-fin-total">R$ 2.840 recebidos</p>
+          </div>
+          <div class="proj-fin-meta">
+            <span><i class="ti ti-users"></i> 14 apoiadores</span>
+            <span><i class="ti ti-calendar"></i> Última doação em 03/06/2025</span>
+          </div>
+          <div class="donations-list">
+            <div class="donation-row">
+              <div class="donation-who">
+                <div class="mini-av" style="background:#FAEEDA;color:#633806;">LF</div>
+                <div><p class="donation-name">Lucas Ferreira</p><p class="donation-date">03/06/2025</p></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="donation-method">PayPal</span>
+                <span class="donation-val">+ R$ 200</span>
+              </div>
+            </div>
+            <div class="donation-row">
+              <div class="donation-who">
+                <div class="mini-av">RM</div>
+                <div><p class="donation-name">Renata Moura</p><p class="donation-date">28/05/2025</p></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span class="donation-method">Pix</span>
+                <span class="donation-val">+ R$ 50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+</script>

@@ -1,0 +1,579 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-sans);}
+.page{background:#f5f0eb;min-height:700px;border-radius:16px;overflow:hidden;}
+.topbar{background:#fff;border-bottom:0.5px solid #e0d9d1;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:8px;}
+.logo-circle{width:28px;height:28px;background:#c8522a;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.logo-circle i{color:#fff;font-size:14px;}
+.logo-name{font-size:14px;font-weight:500;color:#1a1a18;}
+.topbar-actions{display:flex;gap:8px;}
+.btn-top{background:none;border:0.5px solid #d3d1c7;border-radius:7px;padding:6px 12px;font-size:12px;color:#1a1a18;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:5px;font-weight:500;}
+.btn-top:hover{background:#f5f0eb;}
+.btn-top i{font-size:15px;color:#1a1a18;}
+.content{padding:1.5rem;}
+.profile-block{display:grid;grid-template-columns:180px minmax(0,1fr);gap:1.25rem;margin-bottom:1.25rem;}
+.left-col{display:flex;flex-direction:column;gap:10px;}
+.avatar-wrap{width:140px;height:140px;border-radius:50%;border:3px solid #fff;overflow:hidden;display:flex;align-items:center;justify-content:center;margin:0 auto;}
+.avatar-initials{font-size:42px;font-weight:500;color:#993C1D;background:#FAECE7;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.info-tags{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:12px;}
+.info-tags-title{font-size:10px;font-weight:500;color:#5f5e5a;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-size:11px;background:#f5f0eb;color:#444441;padding:3px 9px;border-radius:20px;display:flex;align-items:center;gap:4px;}
+.tag i{font-size:12px;color:#c8522a;}
+.right-col{display:flex;flex-direction:column;gap:10px;}
+.name-block{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:14px 16px;}
+.name-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.profile-name{font-size:20px;font-weight:500;color:#1a1a18;font-family:Georgia,serif;}
+.btn-edit{background:none;border:0.5px solid #d3d1c7;border-radius:7px;padding:7px 14px;font-size:12px;color:#1a1a18;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:5px;font-weight:500;}
+.btn-edit:hover{background:#f5f0eb;border-color:#c8522a;color:#c8522a;}
+.btn-edit i{font-size:15px;}
+.profile-area{font-size:12px;color:#5f5e5a;margin-bottom:6px;display:flex;align-items:center;gap:5px;}
+.profile-area i{font-size:14px;color:#c8522a;}
+.followers-row{display:flex;gap:16px;margin-top:4px;}
+.fol-item{font-size:12px;color:#5f5e5a;}
+.fol-item span{font-weight:500;color:#1a1a18;}
+.bio-block{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:14px 16px;flex:1;}
+.bio-label{font-size:10px;font-weight:500;color:#5f5e5a;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.bio-text{font-size:13px;color:#444441;line-height:1.65;}
+.links-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.link-btn{background:#f5f0eb;border:none;border-radius:7px;padding:6px 11px;font-size:11px;color:#1a1a18;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:5px;font-weight:500;}
+.link-btn:hover{background:#e8e0d8;}
+.link-btn i{font-size:14px;color:#c8522a;}
+
+.tabs-row{display:flex;border-bottom:0.5px solid #e0d9d1;margin-bottom:1.25rem;background:#fff;border-radius:10px 10px 0 0;overflow:hidden;}
+.tab{padding:11px 16px;font-size:13px;color:#5f5e5a;cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--font-sans);display:flex;align-items:center;gap:6px;transition:color .15s;white-space:nowrap;}
+.tab:hover{color:#c8522a;background:#fff9f7;}
+.tab.active{color:#c8522a;border-bottom-color:#c8522a;font-weight:500;}
+.tab i{font-size:15px;}
+.tab .tc{font-size:10px;background:#FAECE7;color:#993C1D;padding:2px 6px;border-radius:20px;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* projetos */
+.proj-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.proj-toolbar-title{font-size:13px;color:#5f5e5a;}
+.btn-upload{background:#c8522a;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:6px;}
+.btn-upload:hover{background:#b04621;}
+.btn-upload i{font-size:16px;}
+
+.projects-grid{display:flex;flex-direction:column;gap:10px;}
+.project-card{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:14px;transition:border-color .15s;}
+.project-card:hover{border-color:#c8522a;}
+.proj-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px;}
+.proj-title{font-size:14px;font-weight:500;color:#1a1a18;line-height:1.4;}
+.proj-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.proj-badge{font-size:10px;padding:3px 8px;border-radius:20px;white-space:nowrap;}
+.badge-green{background:#EAF3DE;color:#1e4d09;}
+.badge-amber{background:#FAEEDA;color:#633806;}
+.badge-gray{background:#F1EFE8;color:#2c2c2a;}
+.badge-archive{background:#F1EFE8;color:#2c2c2a;}
+.proj-menu{position:relative;}
+.btn-menu{background:none;border:none;cursor:pointer;color:#5f5e5a;padding:5px;border-radius:6px;display:flex;align-items:center;font-size:18px;}
+.btn-menu:hover{background:#f5f0eb;color:#1a1a18;}
+.dropdown{display:none;position:absolute;right:0;top:110%;background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:5px;z-index:10;min-width:150px;box-shadow:0 4px 16px rgba(0,0,0,.08);}
+.dropdown.open{display:block;}
+.dd-item{display:flex;align-items:center;gap:8px;padding:8px 10px;font-size:13px;color:#1a1a18;border-radius:7px;cursor:pointer;font-family:var(--font-sans);background:none;border:none;width:100%;text-align:left;font-weight:500;}
+.dd-item i{font-size:16px;}
+.dd-item:hover{background:#f5f0eb;}
+.dd-item.danger{color:#A32D2D;}
+.dd-item.danger:hover{background:#FCEBEB;}
+.dd-sep{height:0.5px;background:#f0ece8;margin:4px 0;}
+.proj-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+.proj-meta span{font-size:11px;color:#5f5e5a;display:flex;align-items:center;gap:3px;}
+.proj-meta i{font-size:13px;}
+.proj-desc{font-size:12px;color:#444441;line-height:1.55;margin-bottom:10px;}
+.progress-wrap{margin-top:4px;}
+.progress-label{display:flex;justify-content:space-between;font-size:11px;color:#5f5e5a;margin-bottom:5px;}
+.progress-bar{height:6px;background:#f0ece8;border-radius:10px;overflow:hidden;}
+.progress-fill{height:100%;background:#c8522a;border-radius:10px;}
+
+/* favoritos */
+.favs-grid{display:flex;flex-direction:column;gap:10px;}
+.fav-card{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:14px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s;}
+.fav-card:hover{border-color:#c8522a;}
+.fav-icon{width:36px;height:36px;border-radius:8px;background:#FAECE7;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fav-icon i{font-size:18px;color:#993C1D;}
+.fav-body{flex:1;min-width:0;}
+.fav-title{font-size:13px;font-weight:500;color:#1a1a18;margin-bottom:3px;line-height:1.4;}
+.fav-author{font-size:11px;color:#5f5e5a;margin-bottom:5px;}
+.fav-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.fav-tag{font-size:10px;background:#f5f0eb;color:#444441;padding:2px 8px;border-radius:20px;}
+.btn-unfav{background:none;border:none;cursor:pointer;color:#c8522a;padding:6px;border-radius:7px;display:flex;align-items:center;}
+.btn-unfav:hover{background:#FAECE7;}
+.btn-unfav i{font-size:18px;}
+
+/* arquivados */
+.archived-note{display:flex;align-items:center;gap:8px;background:#F1EFE8;border-radius:8px;padding:10px 13px;margin-bottom:1rem;font-size:12px;color:#5f5e5a;}
+.archived-note i{font-size:16px;color:#888780;flex-shrink:0;}
+.archived-card{background:#fff;border:0.5px solid #e0d9d1;border-radius:10px;padding:14px;opacity:.85;transition:border-color .15s;}
+.archived-card:hover{border-color:#c8522a;opacity:1;}
+
+/* empty */
+.empty-state{text-align:center;padding:2.5rem 1rem;color:#888780;}
+.empty-state i{font-size:36px;display:block;margin:0 auto 8px;color:#d3d1c7;}
+.empty-state p{font-size:13px;}
+
+/* overlay */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center;padding:1rem;}
+.overlay.open{display:flex;}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;}
+.modal-header{padding:1.25rem 1.25rem 0;position:sticky;top:0;background:#fff;z-index:1;}
+.modal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.modal-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.mi-upload{background:#FAECE7;}
+.mi-upload i{font-size:20px;color:#993C1D;}
+.mi-danger{background:#FCEBEB;}
+.mi-danger i{font-size:20px;color:#A32D2D;}
+.mi-archive{background:#F1EFE8;}
+.mi-archive i{font-size:20px;color:#444441;}
+.btn-close{background:none;border:none;cursor:pointer;color:#888780;font-size:20px;padding:4px;border-radius:6px;line-height:1;}
+.btn-close:hover{background:#f5f0eb;color:#1a1a18;}
+.modal-title{font-size:16px;font-weight:500;color:#1a1a18;margin-bottom:3px;}
+.modal-sub{font-size:13px;color:#5f5e5a;line-height:1.5;margin-bottom:1rem;padding-bottom:1rem;border-bottom:0.5px solid #f0ece8;}
+.modal-body{padding:0 1.25rem 1.25rem;}
+.field{margin-bottom:1rem;}
+.field label{display:block;font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:5px;}
+.req{color:#c8522a;}
+.opt{font-weight:400;color:#888780;font-size:11px;margin-left:3px;}
+.field input,.field textarea,.field select{width:100%;border:0.5px solid #d3d1c7;border-radius:8px;padding:9px 12px;font-size:13px;color:#1a1a18;background:#fff;outline:none;font-family:var(--font-sans);}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#c8522a;box-shadow:0 0 0 2px rgba(200,82,42,.1);}
+.field input::placeholder,.field textarea::placeholder{color:#b4b2a9;}
+.field textarea{resize:vertical;min-height:80px;line-height:1.5;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.upload-area{border:1.5px dashed #d3d1c7;border-radius:10px;padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .15s;background:#fafaf8;}
+.upload-area:hover{border-color:#c8522a;background:#fff9f7;}
+.upload-area i{font-size:32px;color:#c8522a;display:block;margin:0 auto 8px;}
+.upload-area p{font-size:13px;color:#5f5e5a;margin-bottom:3px;}
+.upload-area span{font-size:11px;color:#b4b2a9;}
+.upload-area input{display:none;}
+.file-chosen{margin-top:8px;font-size:12px;color:#c8522a;font-weight:500;display:none;}
+.license-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.license-opt{border:0.5px solid #d3d1c7;border-radius:8px;padding:9px 10px;cursor:pointer;text-align:center;transition:border-color .15s,background .15s;}
+.license-opt:hover{background:#fff9f7;}
+.license-opt.selected{border-color:#c8522a;background:#FAECE7;}
+.license-opt p{font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:2px;}
+.license-opt span{font-size:10px;color:#5f5e5a;}
+.modal-footer{display:flex;gap:8px;justify-content:flex-end;padding:1rem 1.25rem;border-top:0.5px solid #f0ece8;position:sticky;bottom:0;background:#fff;}
+.btn-modal-cancel{background:none;border:0.5px solid #d3d1c7;border-radius:7px;padding:8px 16px;font-size:13px;cursor:pointer;color:#1a1a18;font-family:var(--font-sans);font-weight:500;}
+.btn-modal-cancel:hover{background:#f5f0eb;}
+.btn-modal-primary{background:#c8522a;color:#fff;border:none;border-radius:7px;padding:8px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:6px;}
+.btn-modal-primary:hover{background:#b04621;}
+.btn-modal-danger{background:#E24B4A;color:#fff;border:none;border-radius:7px;padding:8px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:6px;}
+.btn-modal-danger:hover{background:#A32D2D;}
+.btn-modal-archive{background:#444441;color:#fff;border:none;border-radius:7px;padding:8px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:6px;}
+.btn-modal-archive:hover{background:#2c2c2a;}
+.confirm-preview{background:#f5f0eb;border-radius:8px;padding:10px 12px;font-size:12px;color:#444441;line-height:1.5;margin-bottom:1rem;border-left:3px solid #E24B4A;}
+.confirm-preview-archive{border-left-color:#888780;}
+.char-hint{font-size:11px;color:#b4b2a9;text-align:right;margin-top:3px;}
+</style>
+
+<div class="page">
+  <div class="topbar">
+    <div class="logo">
+      <div class="logo-circle"><i class="ti ti-heart" aria-hidden="true"></i></div>
+      <span class="logo-name">Lumina</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-top"><i class="ti ti-bell" aria-hidden="true"></i></button>
+      <button class="btn-top"><i class="ti ti-user" aria-hidden="true"></i> Dra. Ana Costa</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="profile-block">
+      <div class="left-col">
+        <div class="avatar-wrap"><div class="avatar-initials">AC</div></div>
+        <div class="info-tags">
+          <p class="info-tags-title">Formação</p>
+          <div class="tag-row">
+            <span class="tag"><i class="ti ti-school"></i>Doutorado</span>
+            <span class="tag"><i class="ti ti-building"></i>USP</span>
+            <span class="tag"><i class="ti ti-certificate"></i>Mestrado</span>
+            <span class="tag"><i class="ti ti-map-pin"></i>São Paulo</span>
+          </div>
+        </div>
+      </div>
+      <div class="right-col">
+        <div class="name-block">
+          <div class="name-row">
+            <p class="profile-name">Dra. Ana Costa</p>
+            <button class="btn-edit"><i class="ti ti-edit"></i> Editar perfil</button>
+          </div>
+          <p class="profile-area"><i class="ti ti-microscope"></i> Sociologia · Gênero e Ciência</p>
+          <div class="followers-row">
+            <p class="fol-item"><span>34</span> seguidores</p>
+            <p class="fol-item"><span>12</span> seguindo</p>
+            <p class="fol-item"><span id="pubCount">3</span> publicações</p>
+          </div>
+        </div>
+        <div class="bio-block">
+          <p class="bio-label">Biografia</p>
+          <p class="bio-text">Pesquisadora em sociologia com foco em equidade de gênero na ciência brasileira. Doutora pela USP, com pós-doutorado na Unicamp. Membro do grupo de pesquisa GêneroLab e colaboradora do CNPq desde 2018.</p>
+          <div class="links-row">
+            <button class="link-btn"><i class="ti ti-external-link"></i> Currículo Lattes</button>
+            <button class="link-btn"><i class="ti ti-brand-orcid"></i> ORCID</button>
+            <button class="link-btn"><i class="ti ti-mail"></i> Contato</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs-row">
+      <button class="tab active" onclick="switchTab('projetos',this)"><i class="ti ti-file-text"></i> Projetos <span class="tc" id="tabProjCount">3</span></button>
+      <button class="tab" onclick="switchTab('favoritos',this)"><i class="ti ti-star"></i> Favoritos <span class="tc" id="tabFavCount">3</span></button>
+      <button class="tab" onclick="switchTab('arquivados',this)"><i class="ti ti-archive"></i> Arquivados <span class="tc" id="tabArcCount">0</span></button>
+    </div>
+
+    <!-- PROJETOS -->
+    <div id="tab-projetos" class="tab-content active">
+      <div class="proj-toolbar">
+        <p class="proj-toolbar-title">Seus artigos e pesquisas publicadas</p>
+        <button class="btn-upload" onclick="openModal('uploadModal')"><i class="ti ti-upload"></i> Novo artigo</button>
+      </div>
+      <div class="projects-grid" id="projGrid">
+        <div class="project-card" id="proj-1">
+          <div class="proj-top">
+            <p class="proj-title">Representatividade feminina na ciência brasileira</p>
+            <div class="proj-right">
+              <span class="proj-badge badge-green">Concluída</span>
+              <div class="proj-menu">
+                <button class="btn-menu" onclick="toggleMenu('menu-1')" aria-label="opções"><i class="ti ti-dots-vertical"></i></button>
+                <div class="dropdown" id="menu-1">
+                  <button class="dd-item" onclick="closeMenus()"><i class="ti ti-edit" style="color:#c8522a;"></i> Editar</button>
+                  <div class="dd-sep"></div>
+                  <button class="dd-item" onclick="openArchive('proj-1','Representatividade feminina na ciência brasileira')"><i class="ti ti-archive" style="color:#5f5e5a;"></i> Arquivar</button>
+                  <button class="dd-item danger" onclick="openDelete('proj-1','Representatividade feminina na ciência brasileira')"><i class="ti ti-trash"></i> Excluir</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-meta"><span><i class="ti ti-calendar"></i> 12/05/2025</span><span><i class="ti ti-eye"></i> 3.200 views</span><span><i class="ti ti-currency-dollar"></i> Financiado</span></div>
+          <p class="proj-desc">Análise da participação de mulheres em cargos de liderança científica no Brasil nas últimas duas décadas, com dados do CNPq e entrevistas regionais.</p>
+        </div>
+
+        <div class="project-card" id="proj-2">
+          <div class="proj-top">
+            <p class="proj-title">Desigualdade de gênero no mercado de trabalho pós-pandemia</p>
+            <div class="proj-right">
+              <span class="proj-badge badge-amber">Em andamento</span>
+              <div class="proj-menu">
+                <button class="btn-menu" onclick="toggleMenu('menu-2')" aria-label="opções"><i class="ti ti-dots-vertical"></i></button>
+                <div class="dropdown" id="menu-2">
+                  <button class="dd-item" onclick="closeMenus()"><i class="ti ti-edit" style="color:#c8522a;"></i> Editar</button>
+                  <div class="dd-sep"></div>
+                  <button class="dd-item" onclick="openArchive('proj-2','Desigualdade de gênero no mercado de trabalho pós-pandemia')"><i class="ti ti-archive" style="color:#5f5e5a;"></i> Arquivar</button>
+                  <button class="dd-item danger" onclick="openDelete('proj-2','Desigualdade de gênero no mercado de trabalho pós-pandemia')"><i class="ti ti-trash"></i> Excluir</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-meta"><span><i class="ti ti-calendar"></i> 03/01/2025</span><span><i class="ti ti-eye"></i> 1.430 views</span><span><i class="ti ti-currency-dollar"></i> Financiado</span></div>
+          <p class="proj-desc">Análise dos dados da PNAD Contínua sobre a recuperação assimétrica de empregos entre homens e mulheres no período 2021-2024.</p>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Meta de financiamento</span><span>R$ 8.400 / R$ 15.000</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:56%"></div></div>
+          </div>
+        </div>
+
+        <div class="project-card" id="proj-3">
+          <div class="proj-top">
+            <p class="proj-title">Mulheres na liderança universitária: um estudo de caso</p>
+            <div class="proj-right">
+              <span class="proj-badge badge-gray">Encerrada</span>
+              <div class="proj-menu">
+                <button class="btn-menu" onclick="toggleMenu('menu-3')" aria-label="opções"><i class="ti ti-dots-vertical"></i></button>
+                <div class="dropdown" id="menu-3">
+                  <button class="dd-item" onclick="closeMenus()"><i class="ti ti-edit" style="color:#c8522a;"></i> Editar</button>
+                  <div class="dd-sep"></div>
+                  <button class="dd-item" onclick="openArchive('proj-3','Mulheres na liderança universitária: um estudo de caso')"><i class="ti ti-archive" style="color:#5f5e5a;"></i> Arquivar</button>
+                  <button class="dd-item danger" onclick="openDelete('proj-3','Mulheres na liderança universitária: um estudo de caso')"><i class="ti ti-trash"></i> Excluir</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-meta"><span><i class="ti ti-calendar"></i> 07/2023</span><span><i class="ti ti-eye"></i> 890 views</span></div>
+          <p class="proj-desc">Estudo qualitativo sobre trajetórias de reitoras e pró-reitoras em universidades federais brasileiras entre 2010 e 2022.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAVORITOS -->
+    <div id="tab-favoritos" class="tab-content">
+      <div class="favs-grid" id="favsList">
+        <div class="fav-card" id="fav-1"><div class="fav-icon"><i class="ti ti-file-text"></i></div><div class="fav-body"><p class="fav-title">Impacto das mudanças climáticas na biodiversidade da Mata Atlântica</p><p class="fav-author">Profa. Carla Duarte · Biologia</p><div class="fav-tags"><span class="fav-tag">Em andamento</span><span class="fav-tag">Financiado</span><span class="fav-tag">2025</span></div></div><button class="btn-unfav" onclick="removeFav('fav-1')" title="Remover favorito"><i class="ti ti-star"></i></button></div>
+        <div class="fav-card" id="fav-2"><div class="fav-icon"><i class="ti ti-file-text"></i></div><div class="fav-body"><p class="fav-title">Detecção precoce de sepse via biomarcadores inflamatórios</p><p class="fav-author">Dra. Renata Moura · Medicina</p><div class="fav-tags"><span class="fav-tag">Em andamento</span><span class="fav-tag">2024</span></div></div><button class="btn-unfav" onclick="removeFav('fav-2')" title="Remover favorito"><i class="ti ti-star"></i></button></div>
+        <div class="fav-card" id="fav-3"><div class="fav-icon"><i class="ti ti-file-text"></i></div><div class="fav-body"><p class="fav-title">Algoritmos de otimização aplicados à engenharia estrutural</p><p class="fav-author">Eng. Fernanda Lima · Engenharia</p><div class="fav-tags"><span class="fav-tag">Concluída</span><span class="fav-tag">2024</span></div></div><button class="btn-unfav" onclick="removeFav('fav-3')" title="Remover favorito"><i class="ti ti-star"></i></button></div>
+      </div>
+    </div>
+
+    <!-- ARQUIVADOS -->
+    <div id="tab-arquivados" class="tab-content">
+      <div class="archived-note"><i class="ti ti-info-circle"></i> Artigos arquivados ficam ocultos do seu perfil público, mas você pode desarquivá-los a qualquer momento.</div>
+      <div class="projects-grid" id="arcGrid">
+        <div class="empty-state" id="arcEmpty"><i class="ti ti-archive"></i><p>Nenhum artigo arquivado ainda.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL UPLOAD -->
+<div class="overlay" id="uploadModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-top">
+        <div class="modal-icon mi-upload"><i class="ti ti-upload"></i></div>
+        <button class="btn-close" onclick="closeModal('uploadModal')"><i class="ti ti-x"></i></button>
+      </div>
+      <p class="modal-title">Publicar novo artigo</p>
+      <p class="modal-sub">Envie o arquivo PDF e preencha as informações do seu trabalho.</p>
+    </div>
+    <div class="modal-body">
+      <div class="field">
+        <label>Arquivo PDF <span class="req">*</span></label>
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+          <i class="ti ti-file-upload"></i>
+          <p>Clique para selecionar ou arraste o PDF aqui</p>
+          <span>Máximo 50 MB · somente PDF</span>
+          <p class="file-chosen" id="fileChosen"></p>
+          <input type="file" id="fileInput" accept=".pdf" onchange="showFile(this)">
+        </div>
+      </div>
+      <div class="field">
+        <label>Título do artigo <span class="req">*</span></label>
+        <input type="text" placeholder="Ex: Representatividade feminina na ciência brasileira" maxlength="300" id="uploadTitle" oninput="updateUploadBtn()">
+      </div>
+      <div class="field">
+        <label>Autoras <span class="req">*</span></label>
+        <input type="text" placeholder="Ex: Ana Costa, Carla Duarte" maxlength="500">
+      </div>
+      <div class="field">
+        <label>Resumo <span class="req">*</span></label>
+        <textarea placeholder="Descreva brevemente o artigo..." maxlength="2000" id="uploadResumo" oninput="updateUploadBtn(); this.nextElementSibling.textContent=this.value.length+'/2000'"></textarea>
+        <p class="char-hint">0/2000</p>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Área de atuação <span class="req">*</span></label>
+          <select>
+            <option value="">Selecione...</option>
+            <option>Sociologia</option><option>Biologia</option><option>Engenharia</option>
+            <option>Medicina</option><option>Física</option><option>Educação</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Status <span class="req">*</span></label>
+          <select>
+            <option>Em andamento</option><option>Concluída</option><option>Encerrada</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Licença Creative Commons <span class="req">*</span></label>
+        <div class="license-grid">
+          <div class="license-opt selected" onclick="selectLicense(this)"><p>CC BY</p><span>Atribuição</span></div>
+          <div class="license-opt" onclick="selectLicense(this)"><p>CC BY-SA</p><span>Compartilha igual</span></div>
+          <div class="license-opt" onclick="selectLicense(this)"><p>CC BY-NC</p><span>Não comercial</span></div>
+          <div class="license-opt" onclick="selectLicense(this)"><p>CC BY-ND</p><span>Sem derivações</span></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Palavras-chave <span class="opt">(opcional)</span></label>
+        <input type="text" placeholder="Ex: gênero, ciência, equidade (separadas por vírgula)">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-modal-cancel" onclick="closeModal('uploadModal')">Cancelar</button>
+      <button class="btn-modal-primary" id="uploadBtn" onclick="submitUpload()"><i class="ti ti-upload"></i> Publicar artigo</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EXCLUIR -->
+<div class="overlay" id="deleteModal">
+  <div class="modal" style="max-width:380px;">
+    <div class="modal-header">
+      <div class="modal-top">
+        <div class="modal-icon mi-danger"><i class="ti ti-trash"></i></div>
+        <button class="btn-close" onclick="closeModal('deleteModal')"><i class="ti ti-x"></i></button>
+      </div>
+      <p class="modal-title">Excluir artigo?</p>
+      <p class="modal-sub">Essa ação não pode ser desfeita. O artigo será removido permanentemente da plataforma.</p>
+    </div>
+    <div class="modal-body">
+      <div class="confirm-preview" id="deletePreview"></div>
+      <div class="field">
+        <label>Por que você quer excluir? <span class="opt">(opcional)</span></label>
+        <select>
+          <option value="">Selecione um motivo...</option>
+          <option>Conteúdo desatualizado</option>
+          <option>Erro nas informações</option>
+          <option>Publicado por engano</option>
+          <option>Substituído por nova versão</option>
+          <option>Outro</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-modal-cancel" onclick="closeModal('deleteModal')">Cancelar</button>
+      <button class="btn-modal-danger" onclick="confirmDelete()"><i class="ti ti-trash"></i> Excluir artigo</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ARQUIVAR -->
+<div class="overlay" id="archiveModal">
+  <div class="modal" style="max-width:380px;">
+    <div class="modal-header">
+      <div class="modal-top">
+        <div class="modal-icon mi-archive"><i class="ti ti-archive"></i></div>
+        <button class="btn-close" onclick="closeModal('archiveModal')"><i class="ti ti-x"></i></button>
+      </div>
+      <p class="modal-title">Arquivar artigo?</p>
+      <p class="modal-sub">O artigo ficará oculto do seu perfil público. Você pode desarquivá-lo quando quiser na aba "Arquivados".</p>
+    </div>
+    <div class="modal-body">
+      <div class="confirm-preview confirm-preview-archive" id="archivePreview"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-modal-cancel" onclick="closeModal('archiveModal')">Cancelar</button>
+      <button class="btn-modal-archive" onclick="confirmArchive()"><i class="ti ti-archive"></i> Arquivar artigo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let targetId = null;
+let targetTitle = null;
+let archiveId = null;
+let archiveTitle = null;
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  closeMenus();
+}
+
+function toggleMenu(id) {
+  const isOpen = document.getElementById(id).classList.contains('open');
+  closeMenus();
+  if (!isOpen) document.getElementById(id).classList.add('open');
+}
+
+function closeMenus() {
+  document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.proj-menu')) closeMenus();
+});
+
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function openDelete(projId, title) {
+  closeMenus();
+  targetId = projId; targetTitle = title;
+  document.getElementById('deletePreview').textContent = '"' + title + '"';
+  openModal('deleteModal');
+}
+
+function confirmDelete() {
+  if (!targetId) return;
+  const card = document.getElementById(targetId);
+  if (card) {
+    card.style.opacity = '0'; card.style.transition = 'opacity .2s';
+    setTimeout(() => { card.remove(); updateProjCount(); }, 200);
+  }
+  closeModal('deleteModal');
+  targetId = null;
+}
+
+function openArchive(projId, title) {
+  closeMenus();
+  archiveId = projId; archiveTitle = title;
+  document.getElementById('archivePreview').textContent = '"' + title + '"';
+  openModal('archiveModal');
+}
+
+function confirmArchive() {
+  if (!archiveId) return;
+  const card = document.getElementById(archiveId);
+  if (card) {
+    const titleText = archiveTitle;
+    card.style.opacity = '0'; card.style.transition = 'opacity .2s';
+    setTimeout(() => {
+      card.remove();
+      updateProjCount();
+      // adiciona na aba arquivados
+      const arcGrid = document.getElementById('arcGrid');
+      const empty = document.getElementById('arcEmpty');
+      if (empty) empty.remove();
+      const newCard = document.createElement('div');
+      newCard.className = 'archived-card';
+      newCard.id = 'arc-' + archiveId;
+      newCard.innerHTML = `
+        <div class="proj-top">
+          <p class="proj-title" style="color:#5f5e5a;">${titleText}</p>
+          <button class="btn-edit" style="flex-shrink:0;" onclick="unarchive('arc-${archiveId}','${titleText}')">
+            <i class="ti ti-archive-off" style="font-size:14px;"></i> Desarquivar
+          </button>
+        </div>
+        <div class="proj-meta"><span><i class="ti ti-archive"></i> Arquivado agora</span></div>
+        <p class="proj-desc" style="color:#888780;">Este artigo está oculto do seu perfil público.</p>`;
+      arcGrid.appendChild(newCard);
+      updateArcCount();
+    }, 200);
+  }
+  closeModal('archiveModal');
+  archiveId = null;
+}
+
+function unarchive(cardId, title) {
+  const card = document.getElementById(cardId);
+  if (card) { card.style.opacity='0'; card.style.transition='opacity .2s'; setTimeout(()=>{ card.remove(); updateArcCount(); const arcGrid=document.getElementById('arcGrid'); if(!arcGrid.querySelector('.archived-card')){ const e=document.createElement('div'); e.className='empty-state'; e.id='arcEmpty'; e.innerHTML='<i class="ti ti-archive" aria-hidden="true"></i><p>Nenhum artigo arquivado ainda.</p>'; arcGrid.appendChild(e); }}, 200); }
+}
+
+function updateProjCount() {
+  const c = document.querySelectorAll('#projGrid .project-card').length;
+  document.getElementById('tabProjCount').textContent = c;
+  document.getElementById('pubCount').textContent = c;
+}
+
+function updateArcCount() {
+  const c = document.querySelectorAll('#arcGrid .archived-card').length;
+  document.getElementById('tabArcCount').textContent = c;
+}
+
+function removeFav(id) {
+  const card = document.getElementById(id);
+  card.style.opacity='0'; card.style.transition='opacity .2s';
+  setTimeout(()=>{ card.remove(); const c=document.querySelectorAll('#favsList .fav-card').length; document.getElementById('tabFavCount').textContent=c; if(c===0){ document.getElementById('favsList').innerHTML='<div class="empty-state"><i class="ti ti-star"></i><p>Nenhum artigo favorito ainda.</p></div>'; }},200);
+}
+
+function showFile(input) {
+  const name = input.files[0]?.name || '';
+  const el = document.getElementById('fileChosen');
+  el.textContent = name ? '✓ ' + name : '';
+  el.style.display = name ? 'block' : 'none';
+  updateUploadBtn();
+}
+
+function updateUploadBtn() {
+  const title = document.getElementById('uploadTitle').value.trim();
+  const resumo = document.getElementById('uploadResumo').value.trim();
+  const file = document.getElementById('fileInput').files.length > 0;
+  document.getElementById('uploadBtn').disabled = !(title && resumo && file);
+}
+
+function selectLicense(el) {
+  document.querySelectorAll('.license-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function submitUpload() {
+  closeModal('uploadModal');
+}
+</script>
