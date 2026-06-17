@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,31 +9,43 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
 
   <style>
     /* ─── TOKENS ──────────────────────────────────────────── */
     :root {
-      --cream:      #F7F3EE;
+      --cream: #F7F3EE;
       --cream-dark: #EDE7DE;
-      --orange:     #E5501E;
+      --orange: #E5501E;
       --orange-dim: #B83E16;
-      --black:      #181614;
-      --ink:        #2B2622;
-      --muted:      #7A7168;
-      --line:       #DDD7CF;
-      --white:      #FFFFFF;
+      --black: #181614;
+      --ink: #2B2622;
+      --muted: #7A7168;
+      --line: #DDD7CF;
+      --white: #FFFFFF;
 
       --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans:  'DM Sans', system-ui, sans-serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
 
       --max-w: 1200px;
       --pad-x: clamp(24px, 5vw, 80px);
     }
 
     /* ─── RESET ───────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: var(--sans);
       background: var(--cream);
@@ -40,9 +53,23 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    button { cursor: pointer; font-family: var(--sans); border: none; background: none; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: var(--sans);
+      border: none;
+      background: none;
+    }
 
     /* ─── UTILITIES ───────────────────────────────────────── */
     .container {
@@ -51,6 +78,7 @@
       margin-inline: auto;
       padding-inline: var(--pad-x);
     }
+
     .tag {
       display: inline-block;
       font-size: 11px;
@@ -73,11 +101,13 @@
       z-index: 100;
       transition: background .3s, box-shadow .3s;
     }
+
     .site-header.scrolled {
       background: rgba(247, 243, 238, .95);
       backdrop-filter: blur(10px);
       box-shadow: 0 1px 0 var(--line);
     }
+
     .header-inner {
       display: flex;
       align-items: center;
@@ -91,14 +121,14 @@
       align-items: center;
       gap: 10px;
     }
-    
+
     .logo-mark {
       width: 200px;
       height: auto;
       position: relative;
       overflow: hidden;
     }
-    
+
     .logo-name {
       font-family: var(--serif);
       font-size: 22px;
@@ -107,8 +137,10 @@
       color: var(--white);
       transition: color .3s;
     }
-    
-    .site-header.scrolled .logo-name { color: var(--black); }
+
+    .site-header.scrolled .logo-name {
+      color: var(--black);
+    }
 
     /* Nav */
     .nav {
@@ -116,20 +148,31 @@
       align-items: center;
       gap: 32px;
     }
+
     .nav-links {
       display: flex;
       gap: 28px;
       list-style: none;
     }
+
     .nav-links a {
       font-size: 14px;
       font-weight: 400;
-      color: rgba(255,255,255,.85);
+      color: rgba(255, 255, 255, .85);
       transition: color .2s;
     }
-    .nav-links a:hover { color: var(--white); }
-    .site-header.scrolled .nav-links a { color: var(--muted); }
-    .site-header.scrolled .nav-links a:hover { color: var(--ink); }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .site-header.scrolled .nav-links a {
+      color: var(--muted);
+    }
+
+    .site-header.scrolled .nav-links a:hover {
+      color: var(--ink);
+    }
 
     .btn-nav {
       font-size: 13px;
@@ -138,21 +181,33 @@
       border-radius: 6px;
       transition: background .2s, color .2s;
     }
+
     .btn-nav-ghost {
-      border: 1px solid rgba(255,255,255,.4);
+      border: 1px solid rgba(255, 255, 255, .4);
       color: var(--white);
     }
-    .btn-nav-ghost:hover { background: rgba(255,255,255,.1); }
+
+    .btn-nav-ghost:hover {
+      background: rgba(255, 255, 255, .1);
+    }
+
     .btn-nav-fill {
       background: var(--orange);
       color: var(--white);
     }
-    .btn-nav-fill:hover { background: var(--orange-dim); }
+
+    .btn-nav-fill:hover {
+      background: var(--orange-dim);
+    }
+
     .site-header.scrolled .btn-nav-ghost {
       border-color: var(--line);
       color: var(--ink);
     }
-    .site-header.scrolled .btn-nav-ghost:hover { background: var(--cream-dark); }
+
+    .site-header.scrolled .btn-nav-ghost:hover {
+      background: var(--cream-dark);
+    }
 
     /* ─────────────────────────────────────────────────────── */
     /* HERO                                                   */
@@ -173,9 +228,10 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 60% 70% at 50% 60%, rgba(80,70,60,.15) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 70% at 50% 60%, rgba(80, 70, 60, .15) 0%, transparent 70%),
         linear-gradient(160deg, #3B3430 0%, #2A2420 40%, #1A1512 100%);
     }
+
     /* Subtle organic texture */
     .hero-bg::after {
       content: '';
@@ -195,23 +251,25 @@
       justify-content: center;
       pointer-events: none;
     }
+
     .hero-orb-shape {
       width: 520px;
       height: 520px;
       border-radius: 50%;
-      background: radial-gradient(ellipse at 35% 35%, rgba(180,160,140,.18), rgba(100,85,70,.08) 60%, transparent);
-      border: 1px solid rgba(255,255,255,.06);
+      background: radial-gradient(ellipse at 35% 35%, rgba(180, 160, 140, .18), rgba(100, 85, 70, .08) 60%, transparent);
+      border: 1px solid rgba(255, 255, 255, .06);
       box-shadow:
-        inset 0 0 80px rgba(255,255,255,.03),
-        0 0 120px rgba(0,0,0,.4);
+        inset 0 0 80px rgba(255, 255, 255, .03),
+        0 0 120px rgba(0, 0, 0, .4);
     }
+
     .hero-orb-inner {
       position: absolute;
       width: 380px;
       height: 380px;
       border-radius: 50%;
-      background: radial-gradient(ellipse at 40% 30%, rgba(200,180,155,.12), transparent 65%);
-      border: 1px solid rgba(255,255,255,.04);
+      background: radial-gradient(ellipse at 40% 30%, rgba(200, 180, 155, .12), transparent 65%);
+      border: 1px solid rgba(255, 255, 255, .04);
     }
 
     .hero-content {
@@ -221,14 +279,16 @@
       padding-inline: var(--pad-x);
       animation: fadeUp .9s ease both;
     }
+
     .hero-eyebrow {
       font-size: 12px;
       font-weight: 500;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.45);
+      color: rgba(255, 255, 255, .45);
       margin-bottom: 20px;
     }
+
     .hero-title {
       font-family: var(--serif);
       font-size: clamp(38px, 5.5vw, 68px);
@@ -237,14 +297,16 @@
       color: var(--white);
       margin-bottom: 16px;
     }
+
     .hero-title em {
       font-style: italic;
-      color: rgba(255,255,255,.75);
+      color: rgba(255, 255, 255, .75);
     }
+
     .hero-sub {
       font-size: 16px;
       font-weight: 300;
-      color: rgba(255,255,255,.55);
+      color: rgba(255, 255, 255, .55);
       margin-bottom: 40px;
       max-width: 520px;
       margin-inline: auto;
@@ -254,19 +316,21 @@
     .search-wrap {
       display: flex;
       align-items: center;
-      background: rgba(255,255,255,.10);
+      background: rgba(255, 255, 255, .10);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,.18);
+      border: 1px solid rgba(255, 255, 255, .18);
       border-radius: 12px;
       padding: 6px 6px 6px 20px;
       max-width: 580px;
       margin-inline: auto;
       transition: border-color .2s, background .2s;
     }
+
     .search-wrap:focus-within {
-      border-color: rgba(255,255,255,.35);
-      background: rgba(255,255,255,.14);
+      border-color: rgba(255, 255, 255, .35);
+      background: rgba(255, 255, 255, .14);
     }
+
     .search-input {
       flex: 1;
       background: none;
@@ -276,7 +340,11 @@
       font-size: 15px;
       color: var(--white);
     }
-    .search-input::placeholder { color: rgba(255,255,255,.4); }
+
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, .4);
+    }
+
     .search-btn {
       display: flex;
       align-items: center;
@@ -290,16 +358,24 @@
       transition: background .2s;
       white-space: nowrap;
     }
-    .search-btn:hover { background: var(--orange-dim); }
-    .search-btn svg { width: 16px; height: 16px; }
+
+    .search-btn:hover {
+      background: var(--orange-dim);
+    }
+
+    .search-btn svg {
+      width: 16px;
+      height: 16px;
+    }
 
     .hero-hint {
       margin-top: 20px;
       font-size: 12px;
-      color: rgba(255,255,255,.3);
+      color: rgba(255, 255, 255, .3);
     }
+
     .hero-hint a {
-      color: rgba(255,255,255,.5);
+      color: rgba(255, 255, 255, .5);
       text-decoration: underline;
       text-underline-offset: 2px;
     }
@@ -314,15 +390,16 @@
       flex-direction: column;
       align-items: center;
       gap: 8px;
-      color: rgba(255,255,255,.3);
+      color: rgba(255, 255, 255, .3);
       font-size: 11px;
       letter-spacing: .1em;
       text-transform: uppercase;
     }
+
     .scroll-line {
       width: 1px;
       height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,.3), transparent);
+      background: linear-gradient(to bottom, rgba(255, 255, 255, .3), transparent);
       animation: scrollPulse 2s ease infinite;
     }
 
@@ -333,17 +410,20 @@
       padding-block: 72px 80px;
       border-bottom: 1px solid var(--line);
     }
+
     .section-header {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       margin-bottom: 32px;
     }
+
     .section-title {
       font-family: var(--serif);
       font-size: clamp(22px, 2.5vw, 30px);
       font-weight: 400;
     }
+
     .section-link {
       font-size: 13px;
       color: var(--orange);
@@ -353,7 +433,10 @@
       gap: 4px;
       transition: gap .2s;
     }
-    .section-link:hover { gap: 8px; }
+
+    .section-link:hover {
+      gap: 8px;
+    }
 
     /* Scroll container */
     .carousel-track {
@@ -365,10 +448,24 @@
       padding-bottom: 16px;
       cursor: grab;
     }
-    .carousel-track:active { cursor: grabbing; }
-    .carousel-track::-webkit-scrollbar { height: 4px; }
-    .carousel-track::-webkit-scrollbar-track { background: var(--cream-dark); border-radius: 2px; }
-    .carousel-track::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+
+    .carousel-track:active {
+      cursor: grabbing;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .carousel-track::-webkit-scrollbar-track {
+      background: var(--cream-dark);
+      border-radius: 2px;
+    }
+
+    .carousel-track::-webkit-scrollbar-thumb {
+      background: var(--line);
+      border-radius: 2px;
+    }
 
     /* Research card */
     .research-card {
@@ -381,30 +478,39 @@
       cursor: pointer;
       transition: box-shadow .25s, transform .25s;
     }
+
     .research-card:hover {
-      box-shadow: 0 8px 32px rgba(0,0,0,.08);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .08);
       transform: translateY(-3px);
     }
+
     .card-thumb {
       aspect-ratio: 16/10;
       overflow: hidden;
       position: relative;
     }
+
     /* Placeholder thumbs with distinct gradients */
     .card-thumb-img {
       width: 100%;
       height: 100%;
       transition: transform .4s ease;
     }
-    .research-card:hover .card-thumb-img { transform: scale(1.04); }
+
+    .research-card:hover .card-thumb-img {
+      transform: scale(1.04);
+    }
+
     .card-area {
       position: absolute;
       top: 10px;
       left: 10px;
     }
+
     .card-body {
       padding: 16px 18px 18px;
     }
+
     .card-title {
       font-family: var(--serif);
       font-size: 17px;
@@ -416,6 +522,7 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+
     .card-abstract {
       font-size: 13px;
       color: var(--muted);
@@ -426,6 +533,7 @@
       overflow: hidden;
       margin-bottom: 14px;
     }
+
     .card-author {
       display: flex;
       align-items: center;
@@ -433,6 +541,7 @@
       border-top: 1px solid var(--line);
       padding-top: 12px;
     }
+
     .author-avatar {
       width: 28px;
       height: 28px;
@@ -440,9 +549,11 @@
       flex-shrink: 0;
       overflow: hidden;
     }
+
     .author-info {
       min-width: 0;
     }
+
     .author-name {
       font-size: 12.5px;
       font-weight: 500;
@@ -450,6 +561,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
     .author-field {
       font-size: 11px;
       color: var(--muted);
@@ -462,10 +574,12 @@
       padding-block: 96px;
       border-bottom: 1px solid var(--line);
     }
+
     .value-intro {
       max-width: 640px;
       margin-bottom: 64px;
     }
+
     .value-eyebrow {
       font-size: 12px;
       letter-spacing: .12em;
@@ -474,6 +588,7 @@
       font-weight: 500;
       margin-bottom: 14px;
     }
+
     .value-title {
       font-family: var(--serif);
       font-size: clamp(28px, 3.5vw, 44px);
@@ -481,12 +596,14 @@
       line-height: 1.15;
       margin-bottom: 16px;
     }
+
     .value-desc {
       font-size: 15px;
       color: var(--muted);
       max-width: 520px;
       line-height: 1.7;
     }
+
     .value-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -495,12 +612,17 @@
       border-radius: 16px;
       overflow: hidden;
     }
+
     .value-item {
       background: var(--cream);
       padding: 40px 36px;
       transition: background .2s;
     }
-    .value-item:hover { background: var(--white); }
+
+    .value-item:hover {
+      background: var(--white);
+    }
+
     .value-icon {
       width: 44px;
       height: 44px;
@@ -512,7 +634,12 @@
       margin-bottom: 20px;
       color: var(--orange);
     }
-    .value-icon svg { width: 22px; height: 22px; }
+
+    .value-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
     .value-item-title {
       font-family: var(--serif);
       font-size: 20px;
@@ -520,6 +647,7 @@
       margin-bottom: 10px;
       line-height: 1.2;
     }
+
     .value-item-desc {
       font-size: 14px;
       color: var(--muted);
@@ -533,16 +661,22 @@
       padding-block: 64px;
       border-bottom: 1px solid var(--line);
     }
+
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0;
     }
+
     .stat-item {
       padding: 24px 32px;
       border-right: 1px solid var(--line);
     }
-    .stat-item:last-child { border-right: none; }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
     .stat-number {
       font-family: var(--serif);
       font-size: clamp(36px, 4vw, 52px);
@@ -550,7 +684,11 @@
       line-height: 1;
       margin-bottom: 6px;
     }
-    .stat-number span { color: var(--orange); }
+
+    .stat-number span {
+      color: var(--orange);
+    }
+
     .stat-label {
       font-size: 13px;
       color: var(--muted);
@@ -563,12 +701,14 @@
       padding-block: 96px;
       border-bottom: 1px solid var(--line);
     }
+
     .how-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: center;
     }
+
     .how-visual {
       position: relative;
       border-radius: 16px;
@@ -576,6 +716,7 @@
       aspect-ratio: 4/3;
       background: var(--cream-dark);
     }
+
     .how-visual-bg {
       width: 100%;
       height: 100%;
@@ -584,26 +725,38 @@
       align-items: center;
       justify-content: center;
     }
+
     .how-visual-plate {
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, rgba(210,195,175,.2), rgba(120,100,80,.05));
-      border: 1px solid rgba(255,255,255,.08);
+      background: radial-gradient(circle at 35% 30%, rgba(210, 195, 175, .2), rgba(120, 100, 80, .05));
+      border: 1px solid rgba(255, 255, 255, .08);
     }
+
     .how-visual-label {
       position: absolute;
       bottom: 24px;
       left: 24px;
       right: 24px;
-      background: rgba(247,243,238,.95);
+      background: rgba(247, 243, 238, .95);
       backdrop-filter: blur(8px);
       border-radius: 10px;
       padding: 14px 18px;
       border: 1px solid var(--line);
     }
-    .how-visual-label-title { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
-    .how-visual-label-sub { font-size: 12px; color: var(--muted); }
+
+    .how-visual-label-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .how-visual-label-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
     .progress-bar {
       height: 4px;
       background: var(--cream-dark);
@@ -611,6 +764,7 @@
       margin-top: 10px;
       overflow: hidden;
     }
+
     .progress-bar-fill {
       height: 100%;
       width: 62%;
@@ -619,19 +773,25 @@
     }
 
     .how-content {}
+
     .how-steps {
       margin-top: 36px;
       display: flex;
       flex-direction: column;
       gap: 0;
     }
+
     .how-step {
       display: flex;
       gap: 20px;
       padding-block: 24px;
       border-bottom: 1px solid var(--line);
     }
-    .how-step:last-child { border-bottom: none; }
+
+    .how-step:last-child {
+      border-bottom: none;
+    }
+
     .step-number {
       font-family: var(--serif);
       font-size: 28px;
@@ -640,11 +800,13 @@
       line-height: 1;
       min-width: 32px;
     }
+
     .step-text h4 {
       font-size: 15px;
       font-weight: 500;
       margin-bottom: 4px;
     }
+
     .step-text p {
       font-size: 13.5px;
       color: var(--muted);
@@ -658,6 +820,7 @@
       padding-block: 96px;
       border-bottom: 1px solid var(--line);
     }
+
     .cta-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -666,11 +829,16 @@
       border-radius: 20px;
       overflow: hidden;
     }
+
     .cta-card {
       background: var(--white);
       padding: 56px 52px;
     }
-    .cta-card:first-child { background: var(--black); }
+
+    .cta-card:first-child {
+      background: var(--black);
+    }
+
     .cta-card-label {
       font-size: 11px;
       letter-spacing: .12em;
@@ -679,7 +847,11 @@
       color: var(--muted);
       margin-bottom: 16px;
     }
-    .cta-card:first-child .cta-card-label { color: rgba(255,255,255,.35); }
+
+    .cta-card:first-child .cta-card-label {
+      color: rgba(255, 255, 255, .35);
+    }
+
     .cta-card-title {
       font-family: var(--serif);
       font-size: clamp(24px, 2.5vw, 34px);
@@ -688,14 +860,22 @@
       margin-bottom: 14px;
       color: var(--ink);
     }
-    .cta-card:first-child .cta-card-title { color: var(--white); }
+
+    .cta-card:first-child .cta-card-title {
+      color: var(--white);
+    }
+
     .cta-card-desc {
       font-size: 14px;
       color: var(--muted);
       line-height: 1.7;
       margin-bottom: 32px;
     }
-    .cta-card:first-child .cta-card-desc { color: rgba(255,255,255,.45); }
+
+    .cta-card:first-child .cta-card-desc {
+      color: rgba(255, 255, 255, .45);
+    }
+
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -708,7 +888,12 @@
       color: var(--white);
       transition: background .2s, transform .15s;
     }
-    .btn-primary:hover { background: var(--orange-dim); transform: translateY(-1px); }
+
+    .btn-primary:hover {
+      background: var(--orange-dim);
+      transform: translateY(-1px);
+    }
+
     .btn-secondary {
       display: inline-flex;
       align-items: center;
@@ -722,7 +907,11 @@
       border: 1px solid var(--line);
       transition: background .2s, transform .15s;
     }
-    .btn-secondary:hover { background: var(--cream-dark); transform: translateY(-1px); }
+
+    .btn-secondary:hover {
+      background: var(--cream-dark);
+      transform: translateY(-1px);
+    }
 
     /* ─────────────────────────────────────────────────────── */
     /* FOOTER                                                 */
@@ -731,6 +920,7 @@
       padding-block: 56px 36px;
       background: var(--cream);
     }
+
     .footer-top {
       display: grid;
       grid-template-columns: 220px 1fr;
@@ -739,13 +929,16 @@
       border-bottom: 1px solid var(--line);
       margin-bottom: 28px;
     }
+
     .footer-brand {}
+
     .footer-logo {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-bottom: 14px;
     }
+
     .footer-logo-mark {
       width: 28px;
       height: 28px;
@@ -753,6 +946,7 @@
       border-radius: 50%;
       position: relative;
     }
+
     .footer-logo-mark::after {
       content: '';
       position: absolute;
@@ -760,12 +954,14 @@
       border: 2px solid var(--white);
       border-radius: 50%;
     }
+
     .footer-logo-name {
       font-family: var(--serif);
       font-size: 20px;
       font-weight: 500;
       color: var(--black);
     }
+
     .footer-tagline {
       font-size: 13px;
       color: var(--muted);
@@ -777,6 +973,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 24px;
     }
+
     .footer-col-title {
       font-size: 12px;
       font-weight: 500;
@@ -785,66 +982,115 @@
       color: var(--ink);
       margin-bottom: 14px;
     }
+
     .footer-col ul {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 9px;
     }
+
     .footer-col a {
       font-size: 13px;
       color: var(--muted);
       transition: color .15s;
     }
-    .footer-col a:hover { color: var(--ink); }
+
+    .footer-col a:hover {
+      color: var(--ink);
+    }
 
     .footer-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
+
     .footer-copy {
       font-size: 12px;
       color: var(--muted);
     }
+
     .footer-legal {
       display: flex;
       gap: 20px;
     }
+
     .footer-legal a {
       font-size: 12px;
       color: var(--muted);
       transition: color .15s;
     }
-    .footer-legal a:hover { color: var(--ink); }
+
+    .footer-legal a:hover {
+      color: var(--ink);
+    }
 
     /* ─────────────────────────────────────────────────────── */
     /* ANIMATIONS                                             */
     /* ─────────────────────────────────────────────────────── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     @keyframes scrollPulse {
-      0%, 100% { opacity: .3; transform: scaleY(1); }
-      50%       { opacity: .7; transform: scaleY(1.15); }
+
+      0%,
+      100% {
+        opacity: .3;
+        transform: scaleY(1);
+      }
+
+      50% {
+        opacity: .7;
+        transform: scaleY(1.15);
+      }
     }
 
     /* Staggered card entry */
-    .research-card { animation: fadeUp .6s ease both; }
-    .research-card:nth-child(1) { animation-delay: .05s; }
-    .research-card:nth-child(2) { animation-delay: .10s; }
-    .research-card:nth-child(3) { animation-delay: .15s; }
-    .research-card:nth-child(4) { animation-delay: .20s; }
-    .research-card:nth-child(5) { animation-delay: .25s; }
+    .research-card {
+      animation: fadeUp .6s ease both;
+    }
 
+    .research-card:nth-child(1) {
+      animation-delay: .05s;
+    }
+
+    .research-card:nth-child(2) {
+      animation-delay: .10s;
+    }
+
+    .research-card:nth-child(3) {
+      animation-delay: .15s;
+    }
+
+    .research-card:nth-child(4) {
+      animation-delay: .20s;
+    }
+
+    .research-card:nth-child(5) {
+      animation-delay: .25s;
+    }
   </style>
 </head>
+
 <body>
 
-  <div id="lgpd-banner" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--white); padding: 16px 24px; border-radius: 12px; display: flex; align-items: center; gap: 24px; z-index: 1000; font-size: 13px; max-width: 800px; width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-    <p style="margin: 0;">Em conformidade com a Lei Geral de Proteção de Dados (LGPD), utilizamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossos <a href="#" style="color: var(--orange); text-decoration: underline;">Termos de Uso</a>.</p>
-    <button onclick="document.getElementById('lgpd-banner').style.display='none'" style="background: var(--orange); color: var(--white); border: none; padding: 8px 16px; border-radius: 6px; font-weight: 500; cursor: pointer; white-space: nowrap;">Aceitar</button>
+  <div id="lgpd-banner"
+    style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--white); padding: 16px 24px; border-radius: 12px; display: flex; align-items: center; gap: 24px; z-index: 1000; font-size: 13px; max-width: 800px; width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+    <p style="margin: 0;">Em conformidade com a Lei Geral de Proteção de Dados (LGPD), utilizamos cookies para melhorar
+      sua experiência. Ao continuar, você concorda com nossos <a href="#"
+        style="color: var(--orange); text-decoration: underline;">Termos de Uso</a>.</p>
+    <button onclick="document.getElementById('lgpd-banner').style.display='none'"
+      style="background: var(--orange); color: var(--white); border: none; padding: 8px 16px; border-radius: 6px; font-weight: 500; cursor: pointer; white-space: nowrap;">Aceitar</button>
   </div>
 
   <header class="site-header" id="siteHeader">
@@ -886,15 +1132,13 @@
       <p class="hero-sub">Descubra, apoie e compartilhe trabalhos acadêmicos de pesquisadoras de todo o Brasil.</p>
 
       <div class="search-wrap">
-        <input
-          class="search-input"
-          type="text"
-          placeholder="Buscar pesquisas, artigos ou pesquisadoras…"
-          aria-label="Buscar pesquisas"
-        />
+        <input class="search-input" type="text" placeholder="Buscar pesquisas, artigos ou pesquisadoras…"
+          aria-label="Buscar pesquisas" />
         <button class="search-btn" onclick="window.location.href='pesquisa.html'">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
           Buscar
         </button>
@@ -902,7 +1146,8 @@
 
       <p class="hero-hint">
         Busca avançada disponível — filtrar por
-        <a href="pesquisa.html">área de interesse</a>, <a href="pesquisa.html">status</a> ou <a href="pesquisa.html">financiamento</a>
+        <a href="pesquisa.html">área de interesse</a>, <a href="pesquisa.html">status</a> ou <a
+          href="pesquisa.html">financiamento</a>
       </p>
     </div>
 
@@ -919,7 +1164,11 @@
         <h2 class="section-title">Pesquisas em destaque</h2>
         <a href="pesquisa.html" class="section-link">
           Ver todas
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
         </a>
       </div>
 
@@ -932,7 +1181,8 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">Análise transcriptômica diferencial em células tumorais de mama</h3>
-            <p class="card-abstract">Investigação dos perfis de expressão gênica em resposta a terapias-alvo em linhagens celulares MCF-7.</p>
+            <p class="card-abstract">Investigação dos perfis de expressão gênica em resposta a terapias-alvo em
+              linhagens celulares MCF-7.</p>
             <div class="card-author">
               <div class="author-avatar" style="background: linear-gradient(135deg,#C47B5A,#8B4A2F);"></div>
               <div class="author-info">
@@ -950,7 +1200,8 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">Diversidade do microbioma intestinal em populações amazônicas</h3>
-            <p class="card-abstract">Caracterização metagenômica comparativa entre comunidades indígenas e urbanas na região Norte.</p>
+            <p class="card-abstract">Caracterização metagenômica comparativa entre comunidades indígenas e urbanas na
+              região Norte.</p>
             <div class="card-author">
               <div class="author-avatar" style="background: linear-gradient(135deg,#6B8E6B,#3A5A3A);"></div>
               <div class="author-info">
@@ -968,7 +1219,8 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">Identificação de biomarcadores proteicos na doença de Alzheimer precoce</h3>
-            <p class="card-abstract">Análise quantitativa por espectrometria de massas em amostras de líquor cefalorraquidiano.</p>
+            <p class="card-abstract">Análise quantitativa por espectrometria de massas em amostras de líquor
+              cefalorraquidiano.</p>
             <div class="card-author">
               <div class="author-avatar" style="background: linear-gradient(135deg,#8B7BA0,#5A4A70);"></div>
               <div class="author-info">
@@ -986,7 +1238,8 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">Impacto das mudanças climáticas na fenologia de espécies endêmicas do Cerrado</h3>
-            <p class="card-abstract">Modelagem preditiva baseada em dados de longo prazo coletados em áreas de conservação no Planalto Central.</p>
+            <p class="card-abstract">Modelagem preditiva baseada em dados de longo prazo coletados em áreas de
+              conservação no Planalto Central.</p>
             <div class="card-author">
               <div class="author-avatar" style="background: linear-gradient(135deg,#7A9E6A,#4A6E3A);"></div>
               <div class="author-info">
@@ -1004,7 +1257,8 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">Síntese de nanopartículas de prata com atividade antimicrobiana</h3>
-            <p class="card-abstract">Avaliação de novas rotas de biossíntese utilizando extratos vegetais da flora brasileira como agentes redutores.</p>
+            <p class="card-abstract">Avaliação de novas rotas de biossíntese utilizando extratos vegetais da flora
+              brasileira como agentes redutores.</p>
             <div class="card-author">
               <div class="author-avatar" style="background: linear-gradient(135deg,#A08060,#705030);"></div>
               <div class="author-info">
@@ -1022,7 +1276,8 @@
           </div>
           <div class="card-body">
             <h3 class="card-title">Dosimetria de radiação em tratamentos de radioterapia conformacional</h3>
-            <p class="card-abstract">Desenvolvimento de metodologia para calibração de sistemas de planejamento em centros oncológicos de menor porte.</p>
+            <p class="card-abstract">Desenvolvimento de metodologia para calibração de sistemas de planejamento em
+              centros oncológicos de menor porte.</p>
             <div class="card-author">
               <div class="author-avatar" style="background: linear-gradient(135deg,#C4A060,#8A6030);"></div>
               <div class="author-info">
@@ -1033,7 +1288,8 @@
           </div>
         </article>
 
-      </div></div>
+      </div>
+    </div>
   </section>
 
 
@@ -1042,41 +1298,48 @@
       <div class="value-intro">
         <p class="value-eyebrow">Por que Lumina</p>
         <h2 class="value-title">Um espaço construído para a ciência feita por mulheres</h2>
-        <p class="value-desc">Mais do que uma plataforma de publicação — um ecossistema que conecta pesquisadoras, viabiliza financiamento e amplifica o impacto do conhecimento científico feminino.</p>
+        <p class="value-desc">Mais do que uma plataforma de publicação — um ecossistema que conecta pesquisadoras,
+          viabiliza financiamento e amplifica o impacto do conhecimento científico feminino.</p>
       </div>
 
       <div class="value-grid">
         <div class="value-item">
           <div class="value-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
             </svg>
           </div>
           <h3 class="value-item-title">Publicação aberta</h3>
-          <p class="value-item-desc">Submeta artigos em PDF com extração automática de metadados, versionamento e licenças Creative Commons para controle sobre seu trabalho.</p>
+          <p class="value-item-desc">Submeta artigos em PDF com extração automática de metadados, versionamento e
+            licenças Creative Commons para controle sobre seu trabalho.</p>
         </div>
 
         <div class="value-item">
           <div class="value-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 8v4l3 3"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 8v4l3 3" />
             </svg>
           </div>
           <h3 class="value-item-title">Apoio financeiro direto</h3>
-          <p class="value-item-desc">Receba doações pontuais ou crie metas de crowdfunding para seu projeto. Transparência total com relatório público de arrecadação.</p>
+          <p class="value-item-desc">Receba doações pontuais ou crie metas de crowdfunding para seu projeto.
+            Transparência total com relatório público de arrecadação.</p>
         </div>
 
         <div class="value-item">
           <div class="value-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
           </div>
           <h3 class="value-item-title">Comunidade acadêmica</h3>
-          <p class="value-item-desc">Perfil público com histórico de publicações, debates técnicos por artigo e conexão direta entre pesquisadoras e apoiadores engajados.</p>
+          <p class="value-item-desc">Perfil público com histórico de publicações, debates técnicos por artigo e conexão
+            direta entre pesquisadoras e apoiadores engajados.</p>
         </div>
       </div>
     </div>
@@ -1117,7 +1380,9 @@
           <div class="how-visual-label">
             <div class="how-visual-label-title">Meta de financiamento — Projeto RNA-Seq</div>
             <div class="how-visual-label-sub">R$ 3.100 arrecadados de R$ 5.000</div>
-            <div class="progress-bar"><div class="progress-bar-fill"></div></div>
+            <div class="progress-bar">
+              <div class="progress-bar-fill"></div>
+            </div>
           </div>
         </div>
 
@@ -1143,7 +1408,8 @@
               <span class="step-number">03</span>
               <div class="step-text">
                 <h4>Receba apoio direto</h4>
-                <p>Apoiadores podem financiar sua pesquisa via Pix ou PayPal, com total transparência na destinação dos recursos.</p>
+                <p>Apoiadores podem financiar sua pesquisa via Pix ou PayPal, com total transparência na destinação dos
+                  recursos.</p>
               </div>
             </div>
           </div>
@@ -1159,19 +1425,29 @@
         <div class="cta-card">
           <p class="cta-card-label">Para pesquisadoras</p>
           <h3 class="cta-card-title">Publique seu trabalho. Receba o apoio que merece.</h3>
-          <p class="cta-card-desc">Junte-se a mais de 1.200 pesquisadoras que já usam a Lumina para amplificar sua produção científica e viabilizar seus projetos.</p>
+          <p class="cta-card-desc">Junte-se a mais de 1.200 pesquisadoras que já usam a Lumina para amplificar sua
+            produção científica e viabilizar seus projetos.</p>
           <button class="btn-primary" onclick="window.location.href='cadastro.html'">
             Criar conta gratuita
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
           </button>
         </div>
         <div class="cta-card">
           <p class="cta-card-label">Para apoiadores</p>
           <h3 class="cta-card-title">Invista diretamente no conhecimento.</h3>
-          <p class="cta-card-desc">Encontre pesquisas alinhadas com seus valores e contribua diretamente para a ciência brasileira feita por mulheres.</p>
+          <p class="cta-card-desc">Encontre pesquisas alinhadas com seus valores e contribua diretamente para a ciência
+            brasileira feita por mulheres.</p>
           <button class="btn-secondary" onclick="window.location.href='pesquisa.html'">
             Explorar pesquisas
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
           </button>
         </div>
       </div>
@@ -1187,7 +1463,8 @@
             <div class="footer-logo-mark"></div>
             <span class="footer-logo-name">Lumina</span>
           </div>
-          <p class="footer-tagline">Pesquisa científica feminina — publicação aberta, financiamento direto e comunidade acadêmica.</p>
+          <p class="footer-tagline">Pesquisa científica feminina — publicação aberta, financiamento direto e comunidade
+            acadêmica.</p>
         </div>
         <div class="footer-links">
           <div class="footer-col">
@@ -1268,4 +1545,5 @@
   </script>
 
 </body>
+
 </html>

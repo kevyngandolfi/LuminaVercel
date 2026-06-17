@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,27 +9,36 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet" />
 
   <style>
     /* ─── TOKENS ──────────────────────────────────────────── */
     :root {
-      --cream:      #F7F3EE;
+      --cream: #F7F3EE;
       --cream-dark: #EDE7DE;
-      --orange:     #E5501E;
+      --orange: #E5501E;
       --orange-dim: #B83E16;
-      --black:      #181614;
-      --ink:        #2B2622;
-      --muted:      #7A7168;
-      --line:       #DDD7CF;
-      --white:      #FFFFFF;
+      --black: #181614;
+      --ink: #2B2622;
+      --muted: #7A7168;
+      --line: #DDD7CF;
+      --white: #FFFFFF;
 
       --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans:  'DM Sans', system-ui, sans-serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
     }
 
     /* ─── RESET ───────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: var(--sans);
       background: var(--cream);
@@ -36,18 +46,29 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-    a { color: inherit; text-decoration: none; }
-    button { cursor: pointer; font-family: var(--sans); border: none; background: none; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: var(--sans);
+      border: none;
+      background: none;
+    }
 
     /* ─── HEADER ─── */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(247,243,238,.96);
+      background: rgba(247, 243, 238, .96);
       border-bottom: 1px solid var(--line);
       padding: 0 24px;
     }
+
     .header-inner {
       display: flex;
       align-items: center;
@@ -56,13 +77,48 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-    .logo { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--black); }
-    .logo-mark { width: 30px; height: 30px; background: var(--orange); border-radius: 50%; position: relative; }
-    .logo-mark::after { content: ''; position: absolute; inset: 5px; border: 2px solid var(--white); border-radius: 50%; }
-    
-    .nav { display: flex; gap: 24px; list-style: none; }
-    .nav a { font-size: 14px; font-weight: 500; color: var(--muted); }
-    .nav a:hover { color: var(--ink); }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--black);
+    }
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      background: var(--orange);
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .logo-mark::after {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border: 2px solid var(--white);
+      border-radius: 50%;
+    }
+
+    .nav {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+    }
 
     /* ─── CONTAINER DO PERFIL ─── */
     .profile-container {
@@ -73,8 +129,9 @@
       border: 1px solid var(--line);
       border-radius: 16px;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
     }
+
     .avatar-large {
       width: 100px;
       height: 100px;
@@ -88,6 +145,7 @@
       font-weight: 500;
       font-size: 36px;
     }
+
     .profile-name {
       font-family: var(--serif);
       font-size: 36px;
@@ -95,12 +153,13 @@
       margin-bottom: 8px;
       font-weight: 500;
     }
+
     .profile-sub {
       font-size: 15px;
       color: var(--muted);
       margin-bottom: 24px;
     }
-    
+
     .profile-bio {
       font-size: 15px;
       color: var(--ink);
@@ -111,19 +170,22 @@
       border-radius: 8px;
       border: 1px solid var(--line);
     }
+
     .profile-bio p {
       margin-bottom: 12px;
     }
+
     .profile-bio p:last-child {
       margin-bottom: 0;
     }
-    
+
     .articles-section {
       text-align: left;
       margin-top: 40px;
       border-top: 1px solid var(--line);
       padding-top: 32px;
     }
+
     .article-item {
       padding: 20px;
       border: 1px solid var(--line);
@@ -132,19 +194,20 @@
       transition: border-color 0.2s, transform 0.2s;
       cursor: pointer;
     }
+
     .article-item:hover {
       border-color: var(--orange);
       transform: translateY(-2px);
     }
   </style>
 </head>
+
 <body>
 
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo">
-        <div class="logo-mark"></div>
-        Lumina
+        <img src="resources/icons/lumina_icon_L_star_page-0001.jpg" alt="" class="logo-mark">
       </a>
       <nav class="nav">
         <a href="painel.html">Voltar ao Painel</a>
@@ -155,21 +218,25 @@
 
   <main class="container">
     <div class="profile-container">
-      
+
       <div class="avatar-large" id="profAvatar">AM</div>
-      
+
       <h1 class="profile-name" id="profName">Dra. Ana Maria Silva</h1>
       <p class="profile-sub" id="profTitle">Pesquisadora verificada • Instituto de Biociências</p>
-      
+
       <div class="profile-bio">
-        <p>Perfil de utilizadora académica verificado no ecossistema Lumina. Esta página reúne as informações profissionais, artigos publicados, projetos ativos e o histórico de fundos e apoios recebidos da comunidade científica.</p>
-        <p>Desenvolve trabalhos focados na otimização de infraestruturas públicas, análise de dados e criação de soluções tecnológicas com impacto direto na sociedade civil.</p>
+        <p>Perfil de utilizadora académica verificado no ecossistema Lumina. Esta página reúne as informações
+          profissionais, artigos publicados, projetos ativos e o histórico de fundos e apoios recebidos da comunidade
+          científica.</p>
+        <p>Desenvolve trabalhos focados na otimização de infraestruturas públicas, análise de dados e criação de
+          soluções tecnológicas com impacto direto na sociedade civil.</p>
       </div>
 
       <div class="articles-section">
         <h2 style="font-family: var(--serif); font-size: 22px; margin-bottom: 16px;">Trabalhos Publicados</h2>
         <div class="article-item" onclick="window.location.href='artigo.html'">
-          <h3 style="font-size: 16px; font-weight: 500; color: var(--orange); margin-bottom: 4px;">Algoritmos de Otimização Aplicados à Alocação de Recursos em Saúde Pública</h3>
+          <h3 style="font-size: 16px; font-weight: 500; color: var(--orange); margin-bottom: 4px;">Algoritmos de
+            Otimização Aplicados à Alocação de Recursos em Saúde Pública</h3>
           <p style="font-size: 13px; color: var(--muted);">Status: Em andamento • Última atualização: 12 mai. 2025</p>
         </div>
       </div>
@@ -187,4 +254,5 @@
   </script>
 
 </body>
+
 </html>
