@@ -6,6 +6,7 @@
   <title>Lumina · Perfil da Pesquisadora</title>
   <!-- Ícones: Tabler Icons (https://tabler.io/icons) via CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/tabler-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <style>
     :root {
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -19,18 +20,12 @@
 
     body {
       font-family: var(--font-sans);
-      background: #e8e0d6;
-      padding: 1.5rem;
+      background: #F7F3EE;
     }
 
     .page {
-      background: #f5f0eb;
-      min-height: 700px;
-      border-radius: 16px;
-      overflow: hidden;
-      max-width: 1100px;
+      background: #F7F3EE;
       margin: 0 auto;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
     }
 
     /* topbar */
@@ -310,7 +305,7 @@
     }
 
     .content {
-      padding: 1.5rem;
+      padding: 1.5rem clamp(24px, 5vw, 80px) 80px;
     }
 
     .profile-block {
@@ -1663,8 +1658,9 @@
       <div class="topbar-actions">
         <div class="notif-wrap">
           <button class="btn-top" onclick="toggleNotifDropdown(event)" aria-label="Notificações">
-            <i class="ti ti-bell" aria-hidden="true"></i>
-            <span class="bell-dot" id="bellCount">4</span>
+            <span class="material-symbols-outlined">
+              notifications
+            </span> <span class="bell-dot" id="bellCount">4</span>
           </button>
           <div class="notif-dropdown" id="notifDropdown">
             <div class="notif-dd-header">
@@ -1791,8 +1787,10 @@
               <div class="proj-right">
                 <span class="proj-badge badge-green">Concluída</span>
                 <div class="proj-menu">
-                  <button class="btn-menu" onclick="toggleMenu('menu-1')" aria-label="opções"><i
-                      class="ti ti-dots-vertical" aria-hidden="true"></i></button>
+
+                  <button class="btn-menu" onclick="toggleMenu('menu-1')" aria-label="opções">
+                    <span class="material-symbols-outlined">more_vert</span>
+                  </button>
                   <div class="dropdown" id="menu-1">
                     <button class="dd-item" onclick="closeMenus()"><i class="ti ti-edit" style="color:#c8522a;"
                         aria-hidden="true"></i> Editar</button>
@@ -1820,8 +1818,9 @@
               <div class="proj-right">
                 <span class="proj-badge badge-amber">Em andamento</span>
                 <div class="proj-menu">
-                  <button class="btn-menu" onclick="toggleMenu('menu-2')" aria-label="opções"><i
-                      class="ti ti-dots-vertical" aria-hidden="true"></i></button>
+                  <button class="btn-menu" onclick="toggleMenu('menu-2')" aria-label="opções"> <span
+                      class="material-symbols-outlined">more_vert</span>
+                  </button>
                   <div class="dropdown" id="menu-2">
                     <button class="dd-item" onclick="closeMenus()"><i class="ti ti-edit" style="color:#c8522a;"
                         aria-hidden="true"></i> Editar</button>
@@ -1855,8 +1854,9 @@
               <div class="proj-right">
                 <span class="proj-badge badge-gray">Encerrada</span>
                 <div class="proj-menu">
-                  <button class="btn-menu" onclick="toggleMenu('menu-3')" aria-label="opções"><i
-                      class="ti ti-dots-vertical" aria-hidden="true"></i></button>
+                  <button class="btn-menu" onclick="toggleMenu('menu-3')" aria-label="opções"> <span
+                      class="material-symbols-outlined">more_vert</span>
+                  </button>
                   <div class="dropdown" id="menu-3">
                     <button class="dd-item" onclick="closeMenus()"><i class="ti ti-edit" style="color:#c8522a;"
                         aria-hidden="true"></i> Editar</button>
