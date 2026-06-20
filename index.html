@@ -103,7 +103,7 @@
     }
 
     .site-header.scrolled {
-      background: rgba(247, 243, 238, .95);
+      background: rgba(94, 87, 80, 0.856);
       backdrop-filter: blur(10px);
       box-shadow: 0 1px 0 var(--line);
     }
@@ -158,7 +158,7 @@
     .nav-links a {
       font-size: 14px;
       font-weight: 400;
-      color: rgba(255, 255, 255, .85);
+      color: rgb(255, 255, 255);
       transition: color .2s;
     }
 
@@ -167,11 +167,11 @@
     }
 
     .site-header.scrolled .nav-links a {
-      color: var(--muted);
+      color: var(--cream-dark);
     }
 
     .site-header.scrolled .nav-links a:hover {
-      color: var(--ink);
+      color: var(--cream-dark);
     }
 
     .btn-nav {
@@ -188,7 +188,7 @@
     }
 
     .btn-nav-ghost:hover {
-      background: rgba(255, 255, 255, .1);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .btn-nav-fill {
@@ -201,8 +201,8 @@
     }
 
     .site-header.scrolled .btn-nav-ghost {
-      border-color: var(--line);
-      color: var(--ink);
+      border-color: var(--cream-dark);
+      color: var(--cream-dark);
     }
 
     .site-header.scrolled .btn-nav-ghost:hover {
@@ -947,14 +947,6 @@
       position: relative;
     }
 
-    .footer-logo-mark::after {
-      content: '';
-      position: absolute;
-      inset: 5px;
-      border: 2px solid var(--white);
-      border-radius: 50%;
-    }
-
     .footer-logo-name {
       font-family: var(--serif);
       font-size: 20px;
@@ -1460,7 +1452,11 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-logo">
-            <div class="footer-logo-mark"></div>
+            <div class="footer-logo-mark">
+              <a href="index.html">
+                <img src="resources/icons/lumina_icon_L_star_page-0001.jpg" alt="" class="footer-logo-mark">
+              </a>
+            </div>
             <span class="footer-logo-name">Lumina</span>
           </div>
           <p class="footer-tagline">Pesquisa científica feminina — publicação aberta, financiamento direto e comunidade

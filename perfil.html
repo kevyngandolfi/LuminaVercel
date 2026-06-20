@@ -2,80 +2,45 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lumina — Meu Perfil</title>
-  <link rel="icon" type="image/png" href="resources\icons\lumina_icon_L_star_page-0001.jpg" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap"
-    rel="stylesheet" />
-
+  <meta charset="UTF-8">
+  <title>Lumina · Perfil da Pesquisadora</title>
+  <!-- Ícones: Tabler Icons (https://tabler.io/icons) via CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/tabler-icons.min.css">
   <style>
-    /* ─── TOKENS ──────────────────────────────────────────── */
     :root {
-      --cream: #F7F3EE;
-      --cream-dark: #EDE7DE;
-      --orange: #E5501E;
-      --orange-dim: #B83E16;
-      --black: #181614;
-      --ink: #2B2622;
-      --muted: #7A7168;
-      --line: #DDD7CF;
-      --white: #FFFFFF;
-
-      --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans: 'DM Sans', system-ui, sans-serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
-    /* ─── RESET ───────────────────────────────────────────── */
-    *,
-    *::before,
-    *::after {
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
     body {
-      font-family: var(--sans);
-      background: var(--cream);
-      color: var(--ink);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      font-family: var(--font-sans);
+      background: #e8e0d6;
+      padding: 1.5rem;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    .page {
+      background: #f5f0eb;
+      min-height: 700px;
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 1100px;
+      margin: 0 auto;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
     }
 
-    button {
-      cursor: pointer;
-      font-family: var(--sans);
-      border: none;
-      background: none;
-    }
-
-    /* ─── HEADER ─── */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(247, 243, 238, .96);
-      border-bottom: 1px solid var(--line);
-      padding: 0 24px;
-    }
-
-    .header-inner {
+    /* topbar */
+    .topbar {
+      background: #fff;
+      border-bottom: 0.5px solid #e0d9d1;
+      padding: .75rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
-      max-width: 1200px;
-      margin: 0 auto;
     }
 
     .logo {
@@ -86,6 +51,7 @@
       font-size: 22px;
       font-weight: 500;
       color: var(--black);
+      text-decoration: none;
     }
 
     .logo-mark {
@@ -104,153 +70,2497 @@
       border-radius: 50%;
     }
 
-    .nav {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-
-    .nav a {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--muted);
-    }
-
-    .nav a:hover {
-      color: var(--ink);
-    }
-
-    /* ─── CONTAINER DO PERFIL ─── */
-    .profile-container {
-      max-width: 800px;
-      margin: 60px auto;
-      padding: 48px;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-    }
-
-    .avatar-large {
-      width: 100px;
-      height: 100px;
-      background: linear-gradient(135deg, #C47B5A, #8B4A2F);
+    .logo-circle {
+      width: 28px;
+      height: 28px;
+      background: #c8522a;
       border-radius: 50%;
-      margin: 0 auto 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--white);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background .15s, transform .1s;
+    }
+
+    .logo-circle:hover {
+      background: #b04621;
+      transform: scale(1.06);
+    }
+
+    .logo-circle i {
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .logo-name {
+      font-size: 14px;
       font-weight: 500;
-      font-size: 36px;
+      color: #1a1a18;
     }
 
-    .profile-name {
-      font-family: var(--serif);
-      font-size: 36px;
-      color: var(--black);
-      margin-bottom: 8px;
+    .topbar-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-top {
+      background: none;
+      border: 0.5px solid #d3d1c7;
+      border-radius: 7px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: #1a1a18;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      display: flex;
+      align-items: center;
+      gap: 5px;
       font-weight: 500;
+      position: relative;
     }
 
-    .profile-sub {
+    .btn-top:hover {
+      background: #f5f0eb;
+    }
+
+    .btn-top i {
       font-size: 15px;
-      color: var(--muted);
-      margin-bottom: 24px;
+      color: #1a1a18;
     }
 
-    .profile-bio {
-      font-size: 15px;
-      color: var(--ink);
-      text-align: justify;
-      margin-bottom: 32px;
-      background: var(--cream);
-      padding: 24px;
-      border-radius: 8px;
-      border: 1px solid var(--line);
+    .bell-dot {
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 14px;
+      height: 14px;
+      background: #c8522a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 600;
+      color: #fff;
+      border: 1.5px solid #fff;
     }
 
-    .profile-bio p {
-      margin-bottom: 12px;
+    /* notificações dropdown */
+    .notif-wrap {
+      position: relative;
     }
 
-    .profile-bio p:last-child {
-      margin-bottom: 0;
-    }
-
-    .articles-section {
-      text-align: left;
-      margin-top: 40px;
-      border-top: 1px solid var(--line);
-      padding-top: 32px;
-    }
-
-    .article-item {
-      padding: 20px;
-      border: 1px solid var(--line);
+    .notif-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #fff;
+      border: 0.5px solid #e0d9d1;
       border-radius: 12px;
-      background: var(--cream);
-      transition: border-color 0.2s, transform 0.2s;
+      width: 320px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+      z-index: 200;
+      overflow: hidden;
+    }
+
+    .notif-dropdown.open {
+      display: block;
+    }
+
+    .notif-dd-header {
+      padding: 12px 14px;
+      border-bottom: 0.5px solid #e0d9d1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .notif-dd-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a18;
+    }
+
+    .notif-dd-mark {
+      background: none;
+      border: none;
+      font-size: 11px;
+      color: #c8522a;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-weight: 500;
+    }
+
+    .notif-dd-mark:hover {
+      text-decoration: underline;
+    }
+
+    .notif-dd-list {
+      max-height: 340px;
+      overflow-y: auto;
+    }
+
+    .notif-dd-item {
+      display: flex;
+      gap: 10px;
+      padding: 11px 14px;
+      border-bottom: 0.5px solid #f0ece8;
+      cursor: pointer;
+      transition: background .12s;
+    }
+
+    .notif-dd-item:last-child {
+      border-bottom: none;
+    }
+
+    .notif-dd-item:hover {
+      background: #fdf9f7;
+    }
+
+    .notif-dd-item.unread {
+      background: #fff9f7;
+    }
+
+    .notif-dd-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ic-comment {
+      background: #E6F1FB;
+    }
+
+    .ic-comment i {
+      color: #185FA5;
+      font-size: 16px;
+    }
+
+    .ic-donation {
+      background: #EAF3DE;
+    }
+
+    .ic-donation i {
+      color: #1e4d09;
+      font-size: 16px;
+    }
+
+    .ic-follower {
+      background: #FAECE7;
+    }
+
+    .ic-follower i {
+      color: #993C1D;
+      font-size: 16px;
+    }
+
+    .ic-publication {
+      background: #EEEDFE;
+    }
+
+    .ic-publication i {
+      color: #3C3489;
+      font-size: 16px;
+    }
+
+    .notif-dd-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .notif-dd-text {
+      font-size: 12.5px;
+      color: #1a1a18;
+      line-height: 1.4;
+      margin-bottom: 2px;
+    }
+
+    .notif-dd-text strong {
+      font-weight: 600;
+    }
+
+    .notif-dd-time {
+      font-size: 11px;
+      color: #888780;
+    }
+
+    .notif-dd-footer {
+      padding: 9px 14px;
+      text-align: center;
+      border-top: 0.5px solid #e0d9d1;
+    }
+
+    .notif-dd-footer a {
+      font-size: 12px;
+      color: #c8522a;
+      text-decoration: none;
+      font-weight: 500;
       cursor: pointer;
     }
 
-    .article-item:hover {
-      border-color: var(--orange);
-      transform: translateY(-2px);
+    .notif-dd-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      padding: 1.5rem;
+    }
+
+    .profile-block {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .avatar-wrap {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      background: #FAECE7;
+    }
+
+    .avatar-initials {
+      font-size: 42px;
+      font-weight: 500;
+      color: #993C1D;
+      background: #FAECE7;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .info-tags {
+      background: #fff;
+      border: 0.5px solid #e0d9d1;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .info-tags-title {
+      font-size: 10px;
+      font-weight: 500;
+      color: #5f5e5a;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 8px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .tag {
+      font-size: 11px;
+      background: #f5f0eb;
+      color: #444441;
+      padding: 3px 9px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tag i {
+      font-size: 12px;
+      color: #c8522a;
+    }
+
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .name-block {
+      background: #fff;
+      border: 0.5px solid #e0d9d1;
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .name-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .profile-name {
+      font-size: 20px;
+      font-weight: 500;
+      color: #1a1a18;
+      font-family: Georgia, serif;
+    }
+
+    .btn-edit {
+      background: none;
+      border: 0.5px solid #d3d1c7;
+      border-radius: 7px;
+      padding: 7px 14px;
+      font-size: 12px;
+      color: #1a1a18;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
+
+    .btn-edit:hover {
+      background: #f5f0eb;
+      border-color: #c8522a;
+      color: #c8522a;
+    }
+
+    .btn-edit i {
+      font-size: 15px;
+    }
+
+    .profile-area {
+      font-size: 12px;
+      color: #5f5e5a;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .profile-area i {
+      font-size: 14px;
+      color: #c8522a;
+    }
+
+    .followers-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    .fol-item {
+      font-size: 12px;
+      color: #5f5e5a;
+    }
+
+    .fol-item span {
+      font-weight: 500;
+      color: #1a1a18;
+    }
+
+    .bio-block {
+      background: #fff;
+      border: 0.5px solid #e0d9d1;
+      border-radius: 10px;
+      padding: 14px 16px;
+      flex: 1;
+    }
+
+    .bio-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: #5f5e5a;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 6px;
+    }
+
+    .bio-text {
+      font-size: 13px;
+      color: #444441;
+      line-height: 1.65;
+    }
+
+    .links-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .link-btn {
+      background: #f5f0eb;
+      border: none;
+      border-radius: 7px;
+      padding: 6px 11px;
+      font-size: 11px;
+      color: #1a1a18;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
+
+    .link-btn:hover {
+      background: #e8e0d8;
+    }
+
+    .link-btn i {
+      font-size: 14px;
+      color: #c8522a;
+    }
+
+    .tabs-row {
+      display: flex;
+      border-bottom: 0.5px solid #e0d9d1;
+      margin-bottom: 1.25rem;
+      background: #fff;
+      border-radius: 10px 10px 0 0;
+      overflow: hidden;
+      overflow-x: auto;
+    }
+
+    .tab {
+      padding: 11px 16px;
+      font-size: 13px;
+      color: #5f5e5a;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: var(--font-sans);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .15s;
+      white-space: nowrap;
+    }
+
+    .tab:hover {
+      color: #c8522a;
+      background: #fff9f7;
+    }
+
+    .tab.active {
+      color: #c8522a;
+      border-bottom-color: #c8522a;
+      font-weight: 500;
+    }
+
+    .tab i {
+      font-size: 15px;
+    }
+
+    .tab .tc {
+      font-size: 10px;
+      background: #FAECE7;
+      color: #993C1D;
+      padding: 2px 6px;
+      border-radius: 20px;
+      font-weight: 400;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* projetos */
+    .proj-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .proj-toolbar-title {
+      font-size: 13px;
+      color: #5f5e5a;
+    }
+
+    .btn-upload {
+      background: #c8522a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-upload:hover {
+      background: #b04621;
+    }
+
+    .btn-upload i {
+      font-size: 16px;
+    }
+
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .project-card {
+      background: #fff;
+      border: 0.5px solid #e0d9d1;
+      border-radius: 10px;
+      padding: 14px;
+      transition: border-color .15s;
+    }
+
+    .project-card:hover {
+      border-color: #c8522a;
+    }
+
+    .proj-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .proj-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a18;
+      line-height: 1.4;
+    }
+
+    .proj-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .proj-badge {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .badge-green {
+      background: #EAF3DE;
+      color: #1e4d09;
+    }
+
+    .badge-amber {
+      background: #FAEEDA;
+      color: #633806;
+    }
+
+    .badge-gray {
+      background: #F1EFE8;
+      color: #2c2c2a;
+    }
+
+    .proj-menu {
+      position: relative;
+    }
+
+    .btn-menu {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #5f5e5a;
+      padding: 5px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+    }
+
+    .btn-menu:hover {
+      background: #f5f0eb;
+      color: #1a1a18;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 110%;
+      background: #fff;
+      border: 0.5px solid #e0d9d1;
+      border-radius: 10px;
+      padding: 5px;
+      z-index: 10;
+      min-width: 150px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
+    }
+
+    .dropdown.open {
+      display: block;
+    }
+
+    .dd-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: #1a1a18;
+      border-radius: 7px;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .dd-item i {
+      font-size: 16px;
+    }
+
+    .dd-item:hover {
+      background: #f5f0eb;
+    }
+
+    .dd-item.danger {
+      color: #A32D2D;
+    }
+
+    .dd-item.danger:hover {
+      background: #FCEBEB;
+    }
+
+    .dd-sep {
+      height: 0.5px;
+      background: #f0ece8;
+      margin: 4px 0;
+    }
+
+    .proj-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .proj-meta span {
+      font-size: 11px;
+      color: #5f5e5a;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .proj-meta i {
+      font-size: 13px;
+    }
+
+    .proj-desc {
+      font-size: 12px;
+      color: #444441;
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    .progress-wrap {
+      margin-top: 4px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #5f5e5a;
+      margin-bottom: 5px;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: #f0ece8;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #c8522a;
+      border-radius: 10px;
+    }
+
+    /* favoritos */
+    .favs-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .fav-card {
+      background: #fff;
+      border: 0.5px solid #e0d9d1;
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: border-color .15s;
+    }
+
+    .fav-card:hover {
+      border-color: #c8522a;
+    }
+
+    .fav-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: #FAECE7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .fav-icon i {
+      font-size: 18px;
+      color: #993C1D;
+    }
+
+    .fav-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .fav-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a1a18;
+      margin-bottom: 3px;
+      line-height: 1.4;
+    }
+
+    .fav-author {
+      font-size: 11px;
+      color: #5f5e5a;
+      margin-bottom: 5px;
+    }
+
+    .fav-tags {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .fav-tag {
+      font-size: 10px;
+      background: #f5f0eb;
+      color: #444441;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .btn-unfav {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #c8522a;
+      padding: 6px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+    }
+
+    .btn-unfav:hover {
+      background: #FAECE7;
+    }
+
+    .btn-unfav i {
+      font-size: 18px;
+    }
+
+    /* arquivados */
+    .archived-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #F1EFE8;
+      border-radius: 8px;
+      padding: 10px 13px;
+      margin-bottom: 1rem;
+      font-size: 12px;
+      color: #5f5e5a;
+    }
+
+    .archived-note i {
+      font-size: 16px;
+      color: #888780;
+      flex-shrink: 0;
+    }
+
+    .archived-card {
+      background: #fff;
+      border: 0.5px solid #e0d9d1;
+      border-radius: 10px;
+      padding: 14px;
+      opacity: .85;
+      transition: border-color .15s;
+    }
+
+    .archived-card:hover {
+      border-color: #c8522a;
+      opacity: 1;
+    }
+
+    /* empty */
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: #888780;
+    }
+
+    .empty-state i {
+      font-size: 36px;
+      display: block;
+      margin: 0 auto 8px;
+      color: #d3d1c7;
+    }
+
+    .empty-state p {
+      font-size: 13px;
+    }
+
+    /* painel financeiro */
+    .fin-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+
+    .fin-card {
+      background: #fff;
+      border: 0.5px solid #e0d9d1;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .fin-card-label {
+      font-size: 11px;
+      color: #888780;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .fin-card-label i {
+      font-size: 14px;
+      color: #c8522a;
+    }
+
+    .fin-card-value {
+      font-size: 22px;
+      font-weight: 500;
+      color: #1a1a18;
+    }
+
+    .fin-card-sub {
+      font-size: 11px;
+      color: #888780;
+      margin-top: 3px;
+    }
+
+    .fin-section-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a1a18;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .fin-section-title i {
+      font-size: 16px;
+      color: #c8522a;
+    }
+
+    .fin-block {
+      margin-bottom: 1.25rem;
+    }
+
+    .proj-fin-card {
+      background: #fff;
+      border: 0.5px solid #e0d9d1;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .proj-fin-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .proj-fin-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a1a18;
+      line-height: 1.4;
+    }
+
+    .proj-fin-total {
+      font-size: 13px;
+      font-weight: 500;
+      color: #c8522a;
+      white-space: nowrap;
+    }
+
+    .proj-fin-meta {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .proj-fin-meta span {
+      font-size: 11px;
+      color: #5f5e5a;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .proj-fin-meta i {
+      font-size: 13px;
+    }
+
+    .donations-list {
+      border-top: 0.5px solid #f0ece8;
+      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .donation-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .donation-who {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .mini-av {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #FAECE7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 500;
+      color: #993C1D;
+      flex-shrink: 0;
+    }
+
+    .donation-name {
+      font-size: 12px;
+      color: #444441;
+    }
+
+    .donation-date {
+      font-size: 11px;
+      color: #888780;
+    }
+
+    .donation-val {
+      font-size: 12px;
+      font-weight: 500;
+      color: #1e4d09;
+      background: #EAF3DE;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .donation-method {
+      font-size: 10px;
+      color: #888780;
+      background: #f5f0eb;
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+
+    /* overlay/modais */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.25rem 0;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1;
+    }
+
+    .modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .modal-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mi-upload {
+      background: #FAECE7;
+    }
+
+    .mi-upload i {
+      font-size: 20px;
+      color: #993C1D;
+    }
+
+    .mi-danger {
+      background: #FCEBEB;
+    }
+
+    .mi-danger i {
+      font-size: 20px;
+      color: #A32D2D;
+    }
+
+    .mi-archive {
+      background: #F1EFE8;
+    }
+
+    .mi-archive i {
+      font-size: 20px;
+      color: #444441;
+    }
+
+    .mi-edit {
+      background: #FAECE7;
+    }
+
+    .mi-edit i {
+      font-size: 20px;
+      color: #993C1D;
+    }
+
+    .btn-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #888780;
+      font-size: 20px;
+      padding: 4px;
+      border-radius: 6px;
+      line-height: 1;
+    }
+
+    .btn-close:hover {
+      background: #f5f0eb;
+      color: #1a1a18;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: #1a1a18;
+      margin-bottom: 3px;
+    }
+
+    .modal-sub {
+      font-size: 13px;
+      color: #5f5e5a;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 0.5px solid #f0ece8;
+    }
+
+    .modal-body {
+      padding: 0 1.25rem 1.25rem;
+    }
+
+    .field {
+      margin-bottom: 1rem;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #1a1a18;
+      margin-bottom: 5px;
+    }
+
+    .req {
+      color: #c8522a;
+    }
+
+    .opt {
+      font-weight: 400;
+      color: #888780;
+      font-size: 11px;
+      margin-left: 3px;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 0.5px solid #d3d1c7;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 13px;
+      color: #1a1a18;
+      background: #fff;
+      outline: none;
+      font-family: var(--font-sans);
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: #c8522a;
+      box-shadow: 0 0 0 2px rgba(200, 82, 42, .1);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #b4b2a9;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.5;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .upload-area {
+      border: 1.5px dashed #d3d1c7;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .15s;
+      background: #fafaf8;
+    }
+
+    .upload-area:hover {
+      border-color: #c8522a;
+      background: #fff9f7;
+    }
+
+    .upload-area i {
+      font-size: 32px;
+      color: #c8522a;
+      display: block;
+      margin: 0 auto 8px;
+    }
+
+    .upload-area p {
+      font-size: 13px;
+      color: #5f5e5a;
+      margin-bottom: 3px;
+    }
+
+    .upload-area span {
+      font-size: 11px;
+      color: #b4b2a9;
+    }
+
+    .upload-area input {
+      display: none;
+    }
+
+    .file-chosen {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #c8522a;
+      font-weight: 500;
+      display: none;
+    }
+
+    .license-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .license-opt {
+      border: 0.5px solid #d3d1c7;
+      border-radius: 8px;
+      padding: 9px 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: border-color .15s, background .15s;
+    }
+
+    .license-opt:hover {
+      background: #fff9f7;
+    }
+
+    .license-opt.selected {
+      border-color: #c8522a;
+      background: #FAECE7;
+    }
+
+    .license-opt p {
+      font-size: 12px;
+      font-weight: 500;
+      color: #1a1a18;
+      margin-bottom: 2px;
+    }
+
+    .license-opt span {
+      font-size: 10px;
+      color: #5f5e5a;
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      padding: 1rem 1.25rem;
+      border-top: 0.5px solid #f0ece8;
+      position: sticky;
+      bottom: 0;
+      background: #fff;
+    }
+
+    .btn-modal-cancel {
+      background: none;
+      border: 0.5px solid #d3d1c7;
+      border-radius: 7px;
+      padding: 8px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      color: #1a1a18;
+      font-family: var(--font-sans);
+      font-weight: 500;
+    }
+
+    .btn-modal-cancel:hover {
+      background: #f5f0eb;
+    }
+
+    .btn-modal-primary {
+      background: #c8522a;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-modal-primary:hover {
+      background: #b04621;
+    }
+
+    .btn-modal-primary:disabled {
+      opacity: .5;
+      cursor: default;
+    }
+
+    .btn-modal-danger {
+      background: #E24B4A;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-modal-danger:hover {
+      background: #A32D2D;
+    }
+
+    .btn-modal-archive {
+      background: #444441;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-modal-archive:hover {
+      background: #2c2c2a;
+    }
+
+    .confirm-preview {
+      background: #f5f0eb;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #444441;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      border-left: 3px solid #E24B4A;
+    }
+
+    .confirm-preview-archive {
+      border-left-color: #888780;
+    }
+
+    .char-hint {
+      font-size: 11px;
+      color: #b4b2a9;
+      text-align: right;
+      margin-top: 3px;
+    }
+
+    /* editar perfil */
+    .avatar-edit-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1.25rem;
+    }
+
+    .avatar-edit-preview {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #FAECE7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 2px solid #e0d9d1;
+      position: relative;
+    }
+
+    .avatar-edit-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-edit-preview .ph {
+      font-size: 28px;
+      font-weight: 500;
+      color: #993C1D;
+    }
+
+    .btn-change-photo {
+      background: none;
+      border: 0.5px solid #d3d1c7;
+      border-radius: 7px;
+      padding: 6px 14px;
+      font-size: 12px;
+      color: #1a1a18;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
+
+    .btn-change-photo:hover {
+      background: #f5f0eb;
+      border-color: #c8522a;
+      color: #c8522a;
+    }
+
+    .btn-change-photo i {
+      font-size: 15px;
+    }
+
+    .tags-edit-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .tag-edit-chip {
+      font-size: 11px;
+      background: #f5f0eb;
+      color: #444441;
+      padding: 4px 8px 4px 10px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag-edit-chip button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #888780;
+      font-size: 13px;
+      padding: 0;
+      display: flex;
+      line-height: 1;
+    }
+
+    .tag-edit-chip button:hover {
+      color: #A32D2D;
+    }
+
+    .tag-add-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .tag-add-row input {
+      flex: 1;
+    }
+
+    .btn-add-tag {
+      background: #f5f0eb;
+      border: 0.5px solid #d3d1c7;
+      border-radius: 8px;
+      padding: 0 12px;
+      font-size: 13px;
+      color: #1a1a18;
+      cursor: pointer;
+      font-weight: 500;
+      font-family: var(--font-sans);
+    }
+
+    .btn-add-tag:hover {
+      background: #e8e0d8;
+    }
+
+    /* toast */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1a1a18;
+      color: #fff;
+      font-size: 13px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      z-index: 400;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
+    }
+
+    .toast.show {
+      display: flex;
+    }
+
+    .toast i {
+      color: #7DD3A8;
+      font-size: 16px;
     }
   </style>
 </head>
 
 <body>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">
-        <img src="resources/icons/lumina_icon_L_star_page-0001.jpg" alt="" class="logo-mark">
-      </a>
-      <nav class="nav">
-        <a href="painel.html">Voltar ao Painel</a>
-        <a href="pesquisa.html">Pesquisas</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <div class="profile-container">
-
-      <div class="avatar-large" id="profAvatar">AM</div>
-
-      <h1 class="profile-name" id="profName">Dra. Ana Maria Silva</h1>
-      <p class="profile-sub" id="profTitle">Pesquisadora verificada • Instituto de Biociências</p>
-
-      <div class="profile-bio">
-        <p>Perfil de utilizadora académica verificado no ecossistema Lumina. Esta página reúne as informações
-          profissionais, artigos publicados, projetos ativos e o histórico de fundos e apoios recebidos da comunidade
-          científica.</p>
-        <p>Desenvolve trabalhos focados na otimização de infraestruturas públicas, análise de dados e criação de
-          soluções tecnológicas com impacto direto na sociedade civil.</p>
+  <div class="page">
+    <div class="topbar">
+      <div class="logo">
+        <a href="index.html" class="logo">
+          <img src="resources/icons/lumina_icon_L_star_page-0001.jpg" alt="" class="logo-mark">
+        </a>
+        <span class="logo-name">Lumina</span>
       </div>
+      <div class="topbar-actions">
+        <div class="notif-wrap">
+          <button class="btn-top" onclick="toggleNotifDropdown(event)" aria-label="Notificações">
+            <i class="ti ti-bell" aria-hidden="true"></i>
+            <span class="bell-dot" id="bellCount">4</span>
+          </button>
+          <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-dd-header">
+              <span class="notif-dd-title">Notificações</span>
+              <button class="notif-dd-mark" onclick="markAllNotifRead()">Marcar todas como lidas</button>
+            </div>
+            <div class="notif-dd-list" id="notifList">
+              <div class="notif-dd-item unread" onclick="readNotif(this)">
+                <div class="notif-dd-icon ic-comment"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
+                <div class="notif-dd-body">
+                  <p class="notif-dd-text"><strong>Julia Santos</strong> comentou no seu artigo e aguarda moderação.</p>
+                  <p class="notif-dd-time">há 10 minutos</p>
+                </div>
+              </div>
+              <div class="notif-dd-item unread" onclick="readNotif(this)">
+                <div class="notif-dd-icon ic-donation"><i class="ti ti-currency-dollar" aria-hidden="true"></i></div>
+                <div class="notif-dd-body">
+                  <p class="notif-dd-text"><strong>Doação de R$ 150,00</strong> recebida de um apoiador anônimo.</p>
+                  <p class="notif-dd-time">há 43 minutos</p>
+                </div>
+              </div>
+              <div class="notif-dd-item unread" onclick="readNotif(this)">
+                <div class="notif-dd-icon ic-follower"><i class="ti ti-user-plus" aria-hidden="true"></i></div>
+                <div class="notif-dd-body">
+                  <p class="notif-dd-text"><strong>Profa. Carla Duarte</strong> começou a seguir seu perfil.</p>
+                  <p class="notif-dd-time">há 1 hora</p>
+                </div>
+              </div>
+              <div class="notif-dd-item unread" onclick="readNotif(this)">
+                <div class="notif-dd-icon ic-publication"><i class="ti ti-file-text" aria-hidden="true"></i></div>
+                <div class="notif-dd-body">
+                  <p class="notif-dd-text"><strong>Dra. Renata Moura</strong>, que você segue, publicou um novo artigo.
+                  </p>
+                  <p class="notif-dd-time">há 5 horas</p>
+                </div>
+              </div>
+              <div class="notif-dd-item" onclick="readNotif(this)">
+                <div class="notif-dd-icon ic-donation"><i class="ti ti-currency-dollar" aria-hidden="true"></i></div>
+                <div class="notif-dd-body">
+                  <p class="notif-dd-text"><strong>Doação de R$ 80,00</strong> recebida de Carlos Menezes.</p>
+                  <p class="notif-dd-time">ontem</p>
+                </div>
+              </div>
+            </div>
+            <div class="notif-dd-footer"><a onclick="alert('Aqui abriria a tela completa de notificações.')">Ver todas
+                as notificações</a></div>
+          </div>
+        </div>
+        <button class="btn-top" onclick="goToProfile()"><i class="ti ti-user" aria-hidden="true"></i> <span
+            id="topbarName">Dra. Ana Costa</span></button>
+      </div>
+    </div>
 
-      <div class="articles-section">
-        <h2 style="font-family: var(--serif); font-size: 22px; margin-bottom: 16px;">Trabalhos Publicados</h2>
-        <div class="article-item" onclick="window.location.href='artigo.html'">
-          <h3 style="font-size: 16px; font-weight: 500; color: var(--orange); margin-bottom: 4px;">Algoritmos de
-            Otimização Aplicados à Alocação de Recursos em Saúde Pública</h3>
-          <p style="font-size: 13px; color: var(--muted);">Status: Em andamento • Última atualização: 12 mai. 2025</p>
+    <div class="content">
+      <div class="profile-block">
+        <div class="left-col">
+          <div class="avatar-wrap" id="avatarWrap">
+            <div class="avatar-initials" id="avatarInitials">AC</div>
+          </div>
+          <div class="info-tags">
+            <p class="info-tags-title">Formação</p>
+            <div class="tag-row" id="formacaoTags">
+              <span class="tag"><i class="ti ti-school" aria-hidden="true"></i>Doutorado</span>
+              <span class="tag"><i class="ti ti-building" aria-hidden="true"></i>USP</span>
+              <span class="tag"><i class="ti ti-certificate" aria-hidden="true"></i>Mestrado</span>
+              <span class="tag"><i class="ti ti-map-pin" aria-hidden="true"></i>São Paulo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-col">
+          <div class="name-block">
+            <div class="name-row">
+              <p class="profile-name" id="profileName">Dra. Ana Costa</p>
+              <button class="btn-edit" onclick="openModal('editModal')"><i class="ti ti-edit" aria-hidden="true"></i>
+                Editar perfil</button>
+            </div>
+            <p class="profile-area"><i class="ti ti-microscope" aria-hidden="true"></i> Sociologia · Gênero e Ciência
+            </p>
+            <div class="followers-row">
+              <p class="fol-item"><span>34</span> seguidores</p>
+              <p class="fol-item"><span>12</span> seguindo</p>
+              <p class="fol-item"><span id="pubCount">3</span> publicações</p>
+            </div>
+          </div>
+
+          <div class="bio-block">
+            <p class="bio-label">Biografia</p>
+            <p class="bio-text" id="bioText">Pesquisadora em sociologia com foco em equidade de gênero na ciência
+              brasileira. Doutora pela USP, com pós-doutorado na Unicamp. Membro do grupo de pesquisa GêneroLab e
+              colaboradora do CNPq desde 2018.</p>
+            <div class="links-row">
+              <button class="link-btn"><i class="ti ti-external-link" aria-hidden="true"></i> Currículo Lattes</button>
+              <button class="link-btn"><i class="ti ti-brand-orcid" aria-hidden="true"></i> ORCID</button>
+              <button class="link-btn" id="contactBtn"><i class="ti ti-mail" aria-hidden="true"></i> <span
+                  id="contactText">Contato</span></button>
+            </div>
+          </div>
         </div>
       </div>
 
+      <div class="tabs-row">
+        <button class="tab active" onclick="switchTab('projetos',this)"><i class="ti ti-file-text"
+            aria-hidden="true"></i> Projetos <span class="tc" id="tabProjCount">3</span></button>
+        <button class="tab" onclick="switchTab('favoritos',this)"><i class="ti ti-star" aria-hidden="true"></i>
+          Favoritos <span class="tc" id="tabFavCount">3</span></button>
+        <button class="tab" onclick="switchTab('arquivados',this)"><i class="ti ti-archive" aria-hidden="true"></i>
+          Arquivados <span class="tc" id="tabArcCount">0</span></button>
+        <button class="tab" onclick="switchTab('financeiro',this)"><i class="ti ti-chart-bar" aria-hidden="true"></i>
+          Painel financeiro</button>
+      </div>
+
+      <!-- PROJETOS -->
+      <div id="tab-projetos" class="tab-content active">
+        <div class="proj-toolbar">
+          <p class="proj-toolbar-title">Seus artigos e pesquisas publicadas</p>
+          <button class="btn-upload" onclick="openModal('uploadModal')"><i class="ti ti-upload" aria-hidden="true"></i>
+            Novo artigo</button>
+        </div>
+        <div class="projects-grid" id="projGrid">
+          <div class="project-card" id="proj-1">
+            <div class="proj-top">
+              <p class="proj-title">Representatividade feminina na ciência brasileira</p>
+              <div class="proj-right">
+                <span class="proj-badge badge-green">Concluída</span>
+                <div class="proj-menu">
+                  <button class="btn-menu" onclick="toggleMenu('menu-1')" aria-label="opções"><i
+                      class="ti ti-dots-vertical" aria-hidden="true"></i></button>
+                  <div class="dropdown" id="menu-1">
+                    <button class="dd-item" onclick="closeMenus()"><i class="ti ti-edit" style="color:#c8522a;"
+                        aria-hidden="true"></i> Editar</button>
+                    <div class="dd-sep"></div>
+                    <button class="dd-item"
+                      onclick="openArchive('proj-1','Representatividade feminina na ciência brasileira')"><i
+                        class="ti ti-archive" style="color:#5f5e5a;" aria-hidden="true"></i> Arquivar</button>
+                    <button class="dd-item danger"
+                      onclick="openDelete('proj-1','Representatividade feminina na ciência brasileira')"><i
+                        class="ti ti-trash" aria-hidden="true"></i> Excluir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="proj-meta"><span><i class="ti ti-calendar" aria-hidden="true"></i> 12/05/2025</span><span><i
+                  class="ti ti-eye" aria-hidden="true"></i> 3.200 views</span><span><i class="ti ti-currency-dollar"
+                  aria-hidden="true"></i> Financiado</span></div>
+            <p class="proj-desc">Análise da participação de mulheres em cargos de liderança científica no Brasil nas
+              últimas duas décadas, com dados do CNPq e entrevistas regionais.</p>
+          </div>
+
+          <div class="project-card" id="proj-2">
+            <div class="proj-top">
+              <p class="proj-title">Desigualdade de gênero no mercado de trabalho pós-pandemia</p>
+              <div class="proj-right">
+                <span class="proj-badge badge-amber">Em andamento</span>
+                <div class="proj-menu">
+                  <button class="btn-menu" onclick="toggleMenu('menu-2')" aria-label="opções"><i
+                      class="ti ti-dots-vertical" aria-hidden="true"></i></button>
+                  <div class="dropdown" id="menu-2">
+                    <button class="dd-item" onclick="closeMenus()"><i class="ti ti-edit" style="color:#c8522a;"
+                        aria-hidden="true"></i> Editar</button>
+                    <div class="dd-sep"></div>
+                    <button class="dd-item"
+                      onclick="openArchive('proj-2','Desigualdade de gênero no mercado de trabalho pós-pandemia')"><i
+                        class="ti ti-archive" style="color:#5f5e5a;" aria-hidden="true"></i> Arquivar</button>
+                    <button class="dd-item danger"
+                      onclick="openDelete('proj-2','Desigualdade de gênero no mercado de trabalho pós-pandemia')"><i
+                        class="ti ti-trash" aria-hidden="true"></i> Excluir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="proj-meta"><span><i class="ti ti-calendar" aria-hidden="true"></i> 03/01/2025</span><span><i
+                  class="ti ti-eye" aria-hidden="true"></i> 1.430 views</span><span><i class="ti ti-currency-dollar"
+                  aria-hidden="true"></i> Financiado</span></div>
+            <p class="proj-desc">Análise dos dados da PNAD Contínua sobre a recuperação assimétrica de empregos entre
+              homens e mulheres no período 2021-2024.</p>
+            <div class="progress-wrap">
+              <div class="progress-label"><span>Meta de financiamento</span><span>R$ 8.400 / R$ 15.000</span></div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:56%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" id="proj-3">
+            <div class="proj-top">
+              <p class="proj-title">Mulheres na liderança universitária: um estudo de caso</p>
+              <div class="proj-right">
+                <span class="proj-badge badge-gray">Encerrada</span>
+                <div class="proj-menu">
+                  <button class="btn-menu" onclick="toggleMenu('menu-3')" aria-label="opções"><i
+                      class="ti ti-dots-vertical" aria-hidden="true"></i></button>
+                  <div class="dropdown" id="menu-3">
+                    <button class="dd-item" onclick="closeMenus()"><i class="ti ti-edit" style="color:#c8522a;"
+                        aria-hidden="true"></i> Editar</button>
+                    <div class="dd-sep"></div>
+                    <button class="dd-item"
+                      onclick="openArchive('proj-3','Mulheres na liderança universitária: um estudo de caso')"><i
+                        class="ti ti-archive" style="color:#5f5e5a;" aria-hidden="true"></i> Arquivar</button>
+                    <button class="dd-item danger"
+                      onclick="openDelete('proj-3','Mulheres na liderança universitária: um estudo de caso')"><i
+                        class="ti ti-trash" aria-hidden="true"></i> Excluir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="proj-meta"><span><i class="ti ti-calendar" aria-hidden="true"></i> 07/2023</span><span><i
+                  class="ti ti-eye" aria-hidden="true"></i> 890 views</span></div>
+            <p class="proj-desc">Estudo qualitativo sobre trajetórias de reitoras e pró-reitoras em universidades
+              federais brasileiras entre 2010 e 2022.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAVORITOS -->
+      <div id="tab-favoritos" class="tab-content">
+        <div class="favs-grid" id="favsList">
+          <div class="fav-card" id="fav-1">
+            <div class="fav-icon"><i class="ti ti-file-text" aria-hidden="true"></i></div>
+            <div class="fav-body">
+              <p class="fav-title">Impacto das mudanças climáticas na biodiversidade da Mata Atlântica</p>
+              <p class="fav-author">Profa. Carla Duarte · Biologia</p>
+              <div class="fav-tags"><span class="fav-tag">Em andamento</span><span
+                  class="fav-tag">Financiado</span><span class="fav-tag">2025</span></div>
+            </div><button class="btn-unfav" onclick="removeFav('fav-1')" title="Remover favorito"><i class="ti ti-star"
+                aria-hidden="true"></i></button>
+          </div>
+          <div class="fav-card" id="fav-2">
+            <div class="fav-icon"><i class="ti ti-file-text" aria-hidden="true"></i></div>
+            <div class="fav-body">
+              <p class="fav-title">Detecção precoce de sepse via biomarcadores inflamatórios</p>
+              <p class="fav-author">Dra. Renata Moura · Medicina</p>
+              <div class="fav-tags"><span class="fav-tag">Em andamento</span><span class="fav-tag">2024</span></div>
+            </div><button class="btn-unfav" onclick="removeFav('fav-2')" title="Remover favorito"><i class="ti ti-star"
+                aria-hidden="true"></i></button>
+          </div>
+          <div class="fav-card" id="fav-3">
+            <div class="fav-icon"><i class="ti ti-file-text" aria-hidden="true"></i></div>
+            <div class="fav-body">
+              <p class="fav-title">Algoritmos de otimização aplicados à engenharia estrutural</p>
+              <p class="fav-author">Eng. Fernanda Lima · Engenharia</p>
+              <div class="fav-tags"><span class="fav-tag">Concluída</span><span class="fav-tag">2024</span></div>
+            </div><button class="btn-unfav" onclick="removeFav('fav-3')" title="Remover favorito"><i class="ti ti-star"
+                aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARQUIVADOS -->
+      <div id="tab-arquivados" class="tab-content">
+        <div class="archived-note"><i class="ti ti-info-circle" aria-hidden="true"></i> Artigos arquivados ficam ocultos
+          do seu perfil público, mas você pode desarquivá-los a qualquer momento.</div>
+        <div class="projects-grid" id="arcGrid">
+          <div class="empty-state" id="arcEmpty"><i class="ti ti-archive" aria-hidden="true"></i>
+            <p>Nenhum artigo arquivado ainda.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAINEL FINANCEIRO -->
+      <div id="tab-financeiro" class="tab-content">
+        <div class="fin-summary">
+          <div class="fin-card">
+            <p class="fin-card-label"><i class="ti ti-coins" aria-hidden="true"></i> Total recebido</p>
+            <p class="fin-card-value">R$ 11.240</p>
+            <p class="fin-card-sub">em todos os projetos</p>
+          </div>
+          <div class="fin-card">
+            <p class="fin-card-label"><i class="ti ti-users" aria-hidden="true"></i> Apoiadores</p>
+            <p class="fin-card-value">38</p>
+            <p class="fin-card-sub">contribuições únicas</p>
+          </div>
+          <div class="fin-card">
+            <p class="fin-card-label"><i class="ti ti-clock" aria-hidden="true"></i> Último recebimento</p>
+            <p class="fin-card-value">R$ 150</p>
+            <p class="fin-card-sub">há 2 dias · via Pix</p>
+          </div>
+        </div>
+
+        <div class="fin-block">
+          <p class="fin-section-title"><i class="ti ti-target" aria-hidden="true"></i> Projetos com meta de
+            financiamento</p>
+          <div class="proj-fin-card">
+            <div class="proj-fin-top">
+              <p class="proj-fin-title">Desigualdade de gênero no mercado de trabalho pós-pandemia</p>
+              <p class="proj-fin-total">R$ 8.400 / R$ 15.000</p>
+            </div>
+            <div class="proj-fin-meta">
+              <span><i class="ti ti-calendar" aria-hidden="true"></i> Meta até 12/2025</span>
+              <span><i class="ti ti-users" aria-hidden="true"></i> 24 apoiadores</span>
+              <span style="color:#c8522a;"><i class="ti ti-chart-pie" aria-hidden="true"></i> 56% atingida</span>
+            </div>
+            <div class="progress-bar" style="margin-bottom:10px;">
+              <div class="progress-fill" style="width:56%"></div>
+            </div>
+            <div class="donations-list">
+              <div class="donation-row">
+                <div class="donation-who">
+                  <div class="mini-av">JS</div>
+                  <div>
+                    <p class="donation-name">Julia Santos</p>
+                    <p class="donation-date">08/06/2025</p>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <span class="donation-method">Pix</span>
+                  <span class="donation-val">+ R$ 150</span>
+                </div>
+              </div>
+              <div class="donation-row">
+                <div class="donation-who">
+                  <div class="mini-av" style="background:#E1F5EE;color:#085041;">PR</div>
+                  <div>
+                    <p class="donation-name">Paulo Ribeiro</p>
+                    <p class="donation-date">05/06/2025</p>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <span class="donation-method">PayPal</span>
+                  <span class="donation-val">+ R$ 300</span>
+                </div>
+              </div>
+              <div class="donation-row">
+                <div class="donation-who">
+                  <div class="mini-av" style="background:#EAF3DE;color:#27500A;">MC</div>
+                  <div>
+                    <p class="donation-name">Maria Carvalho</p>
+                    <p class="donation-date">01/06/2025</p>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <span class="donation-method">Pix</span>
+                  <span class="donation-val">+ R$ 80</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fin-block">
+          <p class="fin-section-title"><i class="ti ti-heart" aria-hidden="true"></i> Doações diretas por artigo</p>
+          <div class="proj-fin-card">
+            <div class="proj-fin-top">
+              <p class="proj-fin-title">Representatividade feminina na ciência brasileira</p>
+              <p class="proj-fin-total">R$ 2.840 recebidos</p>
+            </div>
+            <div class="proj-fin-meta">
+              <span><i class="ti ti-users" aria-hidden="true"></i> 14 apoiadores</span>
+              <span><i class="ti ti-calendar" aria-hidden="true"></i> Última doação em 03/06/2025</span>
+            </div>
+            <div class="donations-list">
+              <div class="donation-row">
+                <div class="donation-who">
+                  <div class="mini-av" style="background:#FAEEDA;color:#633806;">LF</div>
+                  <div>
+                    <p class="donation-name">Lucas Ferreira</p>
+                    <p class="donation-date">03/06/2025</p>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <span class="donation-method">PayPal</span>
+                  <span class="donation-val">+ R$ 200</span>
+                </div>
+              </div>
+              <div class="donation-row">
+                <div class="donation-who">
+                  <div class="mini-av">RM</div>
+                  <div>
+                    <p class="donation-name">Renata Moura</p>
+                    <p class="donation-date">28/05/2025</p>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <span class="donation-method">Pix</span>
+                  <span class="donation-val">+ R$ 50</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </main>
+  </div>
+
+  <!-- MODAL EDITAR PERFIL -->
+  <div class="overlay" id="editModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-top">
+          <div class="modal-icon mi-edit"><i class="ti ti-user-edit" aria-hidden="true"></i></div>
+          <button class="btn-close" onclick="closeModal('editModal')" aria-label="fechar"><i class="ti ti-x"
+              aria-hidden="true"></i></button>
+        </div>
+        <p class="modal-title">Editar perfil</p>
+        <p class="modal-sub">Atualize sua foto, formação, biografia e contato.</p>
+      </div>
+      <div class="modal-body">
+
+        <div class="avatar-edit-wrap">
+          <div class="avatar-edit-preview" id="avatarPreview"><span class="ph">AC</span></div>
+          <button class="btn-change-photo" onclick="document.getElementById('photoInput').click()">
+            <i class="ti ti-camera" aria-hidden="true"></i> Alterar foto
+          </button>
+          <input type="file" id="photoInput" accept="image/*" style="display:none;" onchange="previewPhoto(this)">
+        </div>
+
+        <div class="field">
+          <label>Nome de exibição <span class="req">*</span></label>
+          <input type="text" id="editName" value="Dra. Ana Costa" maxlength="100">
+        </div>
+
+        <div class="field">
+          <label>Formação <span class="opt">(tags exibidas no seu perfil)</span></label>
+          <div class="tags-edit-wrap" id="tagsEditWrap"></div>
+          <div class="tag-add-row">
+            <input type="text" id="newTagInput" placeholder="Ex: Pós-doutorado, Unicamp...">
+            <button class="btn-add-tag" onclick="addTag()">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Biografia <span class="opt">(máx. 500 caracteres)</span></label>
+          <textarea id="editBio" maxlength="500"
+            oninput="document.getElementById('bioCharCount').textContent=this.value.length"></textarea>
+          <p class="char-hint"><span id="bioCharCount">0</span>/500</p>
+        </div>
+
+        <div class="field">
+          <label>E-mail de contato <span class="req">*</span></label>
+          <input type="email" id="editContact" placeholder="seuemail@instituicao.edu.br">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" onclick="closeModal('editModal')">Cancelar</button>
+        <button class="btn-modal-primary" onclick="saveProfile()"><i class="ti ti-device-floppy" aria-hidden="true"></i>
+          Salvar alterações</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL UPLOAD -->
+  <div class="overlay" id="uploadModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-top">
+          <div class="modal-icon mi-upload"><i class="ti ti-upload" aria-hidden="true"></i></div>
+          <button class="btn-close" onclick="closeModal('uploadModal')" aria-label="fechar"><i class="ti ti-x"
+              aria-hidden="true"></i></button>
+        </div>
+        <p class="modal-title">Publicar novo artigo</p>
+        <p class="modal-sub">Envie o arquivo PDF e preencha as informações do seu trabalho.</p>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label>Arquivo PDF <span class="req">*</span></label>
+          <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <i class="ti ti-file-upload" aria-hidden="true"></i>
+            <p>Clique para selecionar ou arraste o PDF aqui</p>
+            <span>Máximo 50 MB · somente PDF</span>
+            <p class="file-chosen" id="fileChosen"></p>
+            <input type="file" id="fileInput" accept=".pdf" onchange="showFile(this)">
+          </div>
+        </div>
+        <div class="field">
+          <label>Título do artigo <span class="req">*</span></label>
+          <input type="text" placeholder="Ex: Representatividade feminina na ciência brasileira" maxlength="300"
+            id="uploadTitle" oninput="updateUploadBtn()">
+        </div>
+        <div class="field">
+          <label>Autoras <span class="req">*</span></label>
+          <input type="text" placeholder="Ex: Ana Costa, Carla Duarte" maxlength="500">
+        </div>
+        <div class="field">
+          <label>Resumo <span class="req">*</span></label>
+          <textarea placeholder="Descreva brevemente o artigo..." maxlength="2000" id="uploadResumo"
+            oninput="updateUploadBtn(); this.nextElementSibling.textContent=this.value.length+'/2000'"></textarea>
+          <p class="char-hint">0/2000</p>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Área de atuação <span class="req">*</span></label>
+            <select>
+              <option value="">Selecione...</option>
+              <option>Sociologia</option>
+              <option>Biologia</option>
+              <option>Engenharia</option>
+              <option>Medicina</option>
+              <option>Física</option>
+              <option>Educação</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Status <span class="req">*</span></label>
+            <select>
+              <option>Em andamento</option>
+              <option>Concluída</option>
+              <option>Encerrada</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Licença Creative Commons <span class="req">*</span></label>
+          <div class="license-grid">
+            <div class="license-opt selected" onclick="selectLicense(this)">
+              <p>CC BY</p><span>Atribuição</span>
+            </div>
+            <div class="license-opt" onclick="selectLicense(this)">
+              <p>CC BY-SA</p><span>Compartilha igual</span>
+            </div>
+            <div class="license-opt" onclick="selectLicense(this)">
+              <p>CC BY-NC</p><span>Não comercial</span>
+            </div>
+            <div class="license-opt" onclick="selectLicense(this)">
+              <p>CC BY-ND</p><span>Sem derivações</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Palavras-chave <span class="opt">(opcional)</span></label>
+          <input type="text" placeholder="Ex: gênero, ciência, equidade (separadas por vírgula)">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" onclick="closeModal('uploadModal')">Cancelar</button>
+        <button class="btn-modal-primary" id="uploadBtn" onclick="submitUpload()"><i class="ti ti-upload"
+            aria-hidden="true"></i> Publicar artigo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL EXCLUIR -->
+  <div class="overlay" id="deleteModal">
+    <div class="modal" style="max-width:380px;">
+      <div class="modal-header">
+        <div class="modal-top">
+          <div class="modal-icon mi-danger"><i class="ti ti-trash" aria-hidden="true"></i></div>
+          <button class="btn-close" onclick="closeModal('deleteModal')" aria-label="fechar"><i class="ti ti-x"
+              aria-hidden="true"></i></button>
+        </div>
+        <p class="modal-title">Excluir artigo?</p>
+        <p class="modal-sub">Essa ação não pode ser desfeita. O artigo será removido permanentemente da plataforma.</p>
+      </div>
+      <div class="modal-body">
+        <div class="confirm-preview" id="deletePreview"></div>
+        <div class="field">
+          <label>Por que você quer excluir? <span class="opt">(opcional)</span></label>
+          <select>
+            <option value="">Selecione um motivo...</option>
+            <option>Conteúdo desatualizado</option>
+            <option>Erro nas informações</option>
+            <option>Publicado por engano</option>
+            <option>Substituído por nova versão</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" onclick="closeModal('deleteModal')">Cancelar</button>
+        <button class="btn-modal-danger" onclick="confirmDelete()"><i class="ti ti-trash" aria-hidden="true"></i>
+          Excluir artigo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ARQUIVAR -->
+  <div class="overlay" id="archiveModal">
+    <div class="modal" style="max-width:380px;">
+      <div class="modal-header">
+        <div class="modal-top">
+          <div class="modal-icon mi-archive"><i class="ti ti-archive" aria-hidden="true"></i></div>
+          <button class="btn-close" onclick="closeModal('archiveModal')" aria-label="fechar"><i class="ti ti-x"
+              aria-hidden="true"></i></button>
+        </div>
+        <p class="modal-title">Arquivar artigo?</p>
+        <p class="modal-sub">O artigo ficará oculto do seu perfil público. Você pode desarquivá-lo quando quiser na aba
+          "Arquivados".</p>
+      </div>
+      <div class="modal-body">
+        <div class="confirm-preview confirm-preview-archive" id="archivePreview"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" onclick="closeModal('archiveModal')">Cancelar</button>
+        <button class="btn-modal-archive" onclick="confirmArchive()"><i class="ti ti-archive" aria-hidden="true"></i>
+          Arquivar artigo</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><i class="ti ti-check" aria-hidden="true"></i> <span id="toastMsg">Alterações
+      salvas!</span></div>
 
   <script>
-    const savedName = localStorage.getItem('lumina_userName');
-    if (savedName) {
-      document.getElementById('profName').innerText = savedName;
-      document.getElementById('profAvatar').innerText = savedName.substring(0, 2).toUpperCase();
-      document.getElementById('profTitle').innerText = "Conta Coringa Ativa • Pesquisadora";
+    /* ===================== Navegação ===================== */
+    function goToIndex() {
+      // Redireciona o usuário para a página inicial da plataforma
+      window.location.href = 'index.html';
     }
+
+    function goToProfile() {
+      // Recarrega a página atual de perfil
+      window.location.reload();
+    }
+
+    /* ===================== Abas ===================== */
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + name).classList.add('active');
+      closeMenus();
+    }
+
+    /* ===================== Menus de projeto ===================== */
+    function toggleMenu(id) {
+      const isOpen = document.getElementById(id).classList.contains('open');
+      closeMenus();
+      if (!isOpen) document.getElementById(id).classList.add('open');
+    }
+
+    function closeMenus() {
+      document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+    }
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.proj-menu')) closeMenus();
+      if (!e.target.closest('.notif-wrap')) closeNotifDropdown();
+    });
+
+    /* ===================== Modais genéricos ===================== */
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+    /* ===================== Excluir artigo ===================== */
+    let targetId = null;
+    function openDelete(projId, title) {
+      closeMenus();
+      targetId = projId;
+      document.getElementById('deletePreview').textContent = '"' + title + '"';
+      openModal('deleteModal');
+    }
+    function confirmDelete() {
+      if (!targetId) return;
+      const card = document.getElementById(targetId);
+      if (card) {
+        card.style.opacity = '0'; card.style.transition = 'opacity .2s';
+        setTimeout(() => { card.remove(); updateProjCount(); }, 200);
+      }
+      closeModal('deleteModal');
+      showToast('Artigo excluído com sucesso.');
+      targetId = null;
+    }
+
+    /* ===================== Arquivar artigo ===================== */
+    let archiveId = null;
+    let archiveTitle = null;
+    function openArchive(projId, title) {
+      closeMenus();
+      archiveId = projId; archiveTitle = title;
+      document.getElementById('archivePreview').textContent = '"' + title + '"';
+      openModal('archiveModal');
+    }
+    function confirmArchive() {
+      if (!archiveId) return;
+      const card = document.getElementById(archiveId);
+      if (card) {
+        const titleText = archiveTitle;
+        card.style.opacity = '0'; card.style.transition = 'opacity .2s';
+        setTimeout(() => {
+          card.remove();
+          updateProjCount();
+          const arcGrid = document.getElementById('arcGrid');
+          const empty = document.getElementById('arcEmpty');
+          if (empty) empty.remove();
+          const newCard = document.createElement('div');
+          newCard.className = 'archived-card';
+          newCard.id = 'arc-' + archiveId;
+          newCard.innerHTML = `
+        <div class="proj-top">
+          <p class="proj-title" style="color:#5f5e5a;">${titleText}</p>
+          <button class="btn-edit" style="flex-shrink:0;" onclick="unarchive('arc-${archiveId}')">
+            <i class="ti ti-archive-off" style="font-size:14px;" aria-hidden="true"></i> Desarquivar
+          </button>
+        </div>
+        <div class="proj-meta"><span><i class="ti ti-archive" aria-hidden="true"></i> Arquivado agora</span></div>
+        <p class="proj-desc" style="color:#888780;">Este artigo está oculto do seu perfil público.</p>`;
+          arcGrid.appendChild(newCard);
+          updateArcCount();
+        }, 200);
+      }
+      closeModal('archiveModal');
+      showToast('Artigo arquivado.');
+      archiveId = null;
+    }
+
+    function unarchive(cardId) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.style.opacity = '0'; card.style.transition = 'opacity .2s';
+        setTimeout(() => {
+          card.remove();
+          updateArcCount();
+          const arcGrid = document.getElementById('arcGrid');
+          if (!arcGrid.querySelector('.archived-card')) {
+            const e = document.createElement('div');
+            e.className = 'empty-state';
+            e.id = 'arcEmpty';
+            e.innerHTML = '<i class="ti ti-archive" aria-hidden="true"></i><p>Nenhum artigo arquivado ainda.</p>';
+            arcGrid.appendChild(e);
+          }
+        }, 200);
+      }
+    }
+
+    function updateProjCount() {
+      const c = document.querySelectorAll('#projGrid .project-card').length;
+      document.getElementById('tabProjCount').textContent = c;
+      document.getElementById('pubCount').textContent = c;
+    }
+
+    function updateArcCount() {
+      const c = document.querySelectorAll('#arcGrid .archived-card').length;
+      document.getElementById('tabArcCount').textContent = c;
+    }
+
+    /* ===================== Favoritos ===================== */
+    function removeFav(id) {
+      const card = document.getElementById(id);
+      card.style.opacity = '0'; card.style.transition = 'opacity .2s';
+      setTimeout(() => {
+        card.remove();
+        const c = document.querySelectorAll('#favsList .fav-card').length;
+        document.getElementById('tabFavCount').textContent = c;
+        if (c === 0) {
+          document.getElementById('favsList').innerHTML = '<div class="empty-state"><i class="ti ti-star" aria-hidden="true"></i><p>Nenhum artigo favorito ainda.</p></div>';
+        }
+      }, 200);
+    }
+
+    /* ===================== Upload de artigo ===================== */
+    function showFile(input) {
+      const name = input.files[0]?.name || '';
+      const el = document.getElementById('fileChosen');
+      el.textContent = name ? '✓ ' + name : '';
+      el.style.display = name ? 'block' : 'none';
+      updateUploadBtn();
+    }
+
+    function updateUploadBtn() {
+      const title = document.getElementById('uploadTitle').value.trim();
+      const resumo = document.getElementById('uploadResumo').value.trim();
+      const file = document.getElementById('fileInput').files.length > 0;
+      document.getElementById('uploadBtn').disabled = !(title && resumo && file);
+    }
+
+    function selectLicense(el) {
+      document.querySelectorAll('.license-opt').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function submitUpload() {
+      closeModal('uploadModal');
+      showToast('Artigo enviado para publicação!');
+    }
+
+    /* ===================== Editar perfil ===================== */
+    let profileTags = ['Doutorado', 'USP', 'Mestrado', 'São Paulo'];
+    const tagIcons = {
+      'doutorado': 'ti-school',
+      'mestrado': 'ti-certificate',
+      'pós-doutorado': 'ti-certificate',
+      'usp': 'ti-building',
+      'unicamp': 'ti-building',
+      'são paulo': 'ti-map-pin'
+    };
+
+    function getTagIcon(label) {
+      const key = label.toLowerCase();
+      for (const k in tagIcons) { if (key.includes(k)) return tagIcons[k]; }
+      return 'ti-tag';
+    }
+
+    function renderTagsEdit() {
+      const wrap = document.getElementById('tagsEditWrap');
+      wrap.innerHTML = profileTags.map((t, i) => `
+    <span class="tag-edit-chip">${t}<button onclick="removeTag(${i})" aria-label="remover tag" title="Remover"><i class="ti ti-x" aria-hidden="true"></i></button></span>
+  `).join('');
+    }
+
+    function addTag() {
+      const input = document.getElementById('newTagInput');
+      const val = input.value.trim();
+      if (!val) return;
+      profileTags.push(val);
+      input.value = '';
+      renderTagsEdit();
+    }
+
+    function removeTag(i) {
+      profileTags.splice(i, 1);
+      renderTagsEdit();
+    }
+
+    let pendingPhotoDataUrl = null;
+    function previewPhoto(input) {
+      const file = input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        pendingPhotoDataUrl = e.target.result;
+        document.getElementById('avatarPreview').innerHTML = `<img src="${pendingPhotoDataUrl}" alt="Pré-visualização da nova foto">`;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // preenche o modal de edição com os dados atuais sempre que ele for aberto
+    document.querySelector('[onclick="openModal(\'editModal\')"]').addEventListener('click', () => {
+      document.getElementById('editName').value = document.getElementById('profileName').textContent;
+      document.getElementById('editBio').value = document.getElementById('bioText').textContent;
+      document.getElementById('bioCharCount').textContent = document.getElementById('bioText').textContent.length;
+      document.getElementById('editContact').value = document.getElementById('contactBtn').dataset.email || '';
+      renderTagsEdit();
+    });
+
+    function saveProfile() {
+      const name = document.getElementById('editName').value.trim();
+      const bio = document.getElementById('editBio').value.trim();
+      const contact = document.getElementById('editContact').value.trim();
+
+      if (!name || !contact) {
+        showToast('Preencha os campos obrigatórios.');
+        return;
+      }
+
+      document.getElementById('profileName').textContent = name;
+      document.getElementById('topbarName').textContent = name;
+      document.getElementById('bioText').textContent = bio;
+      document.getElementById('contactBtn').dataset.email = contact;
+
+      // atualiza as iniciais do avatar
+      const initials = name.replace(/^Dra?\.\s*/i, '').split(' ').filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+      if (pendingPhotoDataUrl) {
+        document.getElementById('avatarWrap').innerHTML = `<img src="${pendingPhotoDataUrl}" alt="Foto de perfil">`;
+      } else {
+        document.getElementById('avatarInitials').textContent = initials;
+      }
+
+      // atualiza as tags de formação exibidas no perfil
+      document.getElementById('formacaoTags').innerHTML = profileTags.map(t => `
+    <span class="tag"><i class="ti ${getTagIcon(t)}" aria-hidden="true"></i>${t}</span>
+  `).join('');
+
+      closeModal('editModal');
+      showToast('Perfil atualizado com sucesso!');
+    }
+
+    /* ===================== Notificações ===================== */
+    let unreadNotifs = 4;
+
+    function toggleNotifDropdown(e) {
+      e.stopPropagation();
+      document.getElementById('notifDropdown').classList.toggle('open');
+    }
+    function closeNotifDropdown() {
+      document.getElementById('notifDropdown').classList.remove('open');
+    }
+
+    function updateBellCount() {
+      const bell = document.getElementById('bellCount');
+      bell.textContent = unreadNotifs;
+      bell.style.display = unreadNotifs > 0 ? 'flex' : 'none';
+    }
+
+    function readNotif(el) {
+      if (el.classList.contains('unread')) {
+        el.classList.remove('unread');
+        unreadNotifs = Math.max(0, unreadNotifs - 1);
+        updateBellCount();
+      }
+    }
+
+    function markAllNotifRead() {
+      document.querySelectorAll('.notif-dd-item.unread').forEach(el => el.classList.remove('unread'));
+      unreadNotifs = 0;
+      updateBellCount();
+    }
+
+    /* ===================== Toast ===================== */
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2600);
+    }
+
+    updateBellCount();
   </script>
 
 </body>
